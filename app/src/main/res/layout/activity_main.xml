@@ -10,31 +10,31 @@
         tools:ignore="MissingDefaultResource">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/uploadButton"
-        app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/uploadButton"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/uploadButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="upload an image"/>
+            android:id="@+id/uploadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="upload an image"/>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/magicButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/uploadButton"
-        app:layout_constraintLeft_toLeftOf="@+id/uploadButton"
-        app:layout_constraintRight_toRightOf="@+id/uploadButton"
-        android:text="do the trick"
-        android:clickable="false"/>
+            android:id="@+id/magicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/uploadButton"
+            app:layout_constraintLeft_toLeftOf="@+id/uploadButton"
+            app:layout_constraintRight_toRightOf="@+id/uploadButton"
+            android:text="do the trick"
+            android:clickable="false"/>
 
 </android.support.constraint.ConstraintLayout>
