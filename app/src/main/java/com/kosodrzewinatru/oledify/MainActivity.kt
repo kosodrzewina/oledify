@@ -12,11 +12,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // opening file picker
+        // open file picker
         uploadButton.setOnClickListener {
             val intent = Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
 
-            startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
+            startActivityForResult(Intent.createChooser(intent, "Select a file"), 100)
+        }
+
+        // go to EditActivity
+        magicButton.setOnClickListener() {
+            val intent = Intent(this, EditActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -24,11 +30,11 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 111 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             val selectedFile = data?.data
 
             // image showed via URI
-            imageView.setImageURI(selectedFile)
+            imagePreviewView.setImageURI(selectedFile)
         }
     }
 }
