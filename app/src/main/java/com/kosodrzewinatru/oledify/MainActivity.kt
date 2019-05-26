@@ -2,11 +2,14 @@ package com.kosodrzewinatru.oledify
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    var selectedFileGlobal = "i'm here just for a moment, i guess"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             val selectedFile = data?.data
+            selectedFileGlobal = selectedFile.toString()
 
             // image showed via URI
             imagePreviewView.setImageURI(selectedFile)
