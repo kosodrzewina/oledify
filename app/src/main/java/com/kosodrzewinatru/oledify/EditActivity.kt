@@ -11,6 +11,7 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        imageEditView.setImageURI(Uri.parse(MainActivity().selectedFileGlobal))
+        val selectedFileEdit = intent.getStringExtra("selectedFileEdit")
+        imageEditView.setImageURI(Uri.parse(selectedFileEdit))
     }
 }

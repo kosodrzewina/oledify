@@ -2,14 +2,13 @@ package com.kosodrzewinatru.oledify
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var selectedFileGlobal = "i'm here just for a moment, i guess"
+    lateinit var selectedFileEdit: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,14 +16,15 @@ class MainActivity : AppCompatActivity() {
 
         // open file picker
         uploadButton.setOnClickListener {
-            val intent = Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
+            val intent= Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
 
             startActivityForResult(Intent.createChooser(intent, "Select a file"), 100)
         }
 
         // go to EditActivity
-        magicButton.setOnClickListener() {
+        magicButton.setOnClickListener {
             val intent = Intent(this, EditActivity::class.java)
+            intent.putExtra("selectedFileEdit", selectedFileEdit)
             startActivity(intent)
         }
     }
@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             val selectedFile = data?.data
-            selectedFileGlobal = selectedFile.toString()
+
+            // passing URI to EditActivity
+            selectedFileEdit = selectedFile.toString()
 
             // image showed via URI
             imagePreviewView.setImageURI(selectedFile)
