@@ -37,4 +37,13 @@
             app:layout_constraintRight_toRightOf="@+id/uploadButton"
             android:text="do the trick"/>
 
+    <android.support.v7.widget.AppCompatButton
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/magicButton"
+            app:layout_constraintLeft_toLeftOf="@+id/magicButton"
+            app:layout_constraintRight_toRightOf="@+id/magicButton"
+            android:text="clear"/>
+
 </android.support.constraint.ConstraintLayout>

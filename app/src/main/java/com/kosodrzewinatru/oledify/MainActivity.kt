@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("selectedFileEdit", selectedFileEdit)
             startActivity(intent)
         }
+
+        // clear imageView
+        clearButton.setOnClickListener {
+            imagePreviewView.setImageDrawable(null)
+            magicButton.isEnabled = false
+        }
     }
 
     // result of quitting file picker
