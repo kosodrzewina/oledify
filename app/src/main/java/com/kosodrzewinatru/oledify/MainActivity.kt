@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        magicButton.isEnabled = false
 
         // open file picker
         uploadButton.setOnClickListener {
@@ -41,6 +42,8 @@ class MainActivity : AppCompatActivity() {
 
             // image showed via URI
             imagePreviewView.setImageURI(selectedFile)
+
+            magicButton.isEnabled = true
         }
     }
 }
