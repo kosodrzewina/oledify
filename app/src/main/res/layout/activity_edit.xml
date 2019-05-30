@@ -8,7 +8,7 @@
         android:orientation="vertical">
 
     <android.support.v7.widget.AppCompatButton
-            android:id="@+id/idk"
+            android:id="@+id/process"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -23,9 +23,14 @@
             android:id="@+id/imageEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/idk"
-            app:layout_constraintRight_toRightOf="@+id/idk"
-            app:layout_constraintBottom_toTopOf="@+id/idk"
+            app:layout_constraintLeft_toLeftOf="@+id/process"
+            app:layout_constraintRight_toRightOf="@+id/process"
+            app:layout_constraintBottom_toTopOf="@+id/process"
             app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </android.support.constraint.ConstraintLayout>
