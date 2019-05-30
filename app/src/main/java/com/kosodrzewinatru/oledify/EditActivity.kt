@@ -8,6 +8,9 @@ import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
+import android.R.array
+import android.media.Image
+
 
 class EditActivity : AppCompatActivity() {
 
@@ -19,10 +22,11 @@ class EditActivity : AppCompatActivity() {
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
         imageEditView.setImageURI(selectedFileEdit)
 
+        // get Bitmap from URI
         val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFileEdit)
 
         process.setOnClickListener {
-            Editing.makeBlack(bitmap)
+            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
         }
     }
 }
@@ -30,15 +34,17 @@ class EditActivity : AppCompatActivity() {
 object Editing : AppCompatActivity() {
 
     fun makeBlack(bitmap: Bitmap): Bitmap {
-        val pixels = IntArray(bitmap.width * bitmap.height)
-//        bitmap.getPixels(pixels, 0, 0, 0, 0, bitmap.width, bitmap.height)
 
-        val pixel = bitmap.getPixel(3, 7)
+        // create a mutable copy of the bitmap
+        val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
 
-        Log.d("red", Color.red(pixel).toString())
-        Log.d("green", Color.green(pixel).toString())
-        Log.d("blue", Color.blue(pixel).toString())
-        
-        return bitmap
+        // check every single pixel
+        for (y in 0 until bitmap.height) {
+            for (x in 0 until bitmap.width) {
+                processed.setPixel(x, y, Color.rgb(0, 0, 255))
+            }
+        }
+
+        return processed
     }
 }
