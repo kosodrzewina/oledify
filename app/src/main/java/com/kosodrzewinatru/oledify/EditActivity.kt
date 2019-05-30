@@ -41,7 +41,14 @@ object Editing : AppCompatActivity() {
         // check every single pixel
         for (y in 0 until bitmap.height) {
             for (x in 0 until bitmap.width) {
-                processed.setPixel(x, y, Color.rgb(0, 0, 255))
+                val red = Color.red(bitmap.getPixel(x, y))
+                val green = Color.green(bitmap.getPixel(x, y))
+                val blue = Color.blue(bitmap.getPixel(x, y))
+
+                if (red + green + blue >= 730) {
+                    processed.setPixel(x, y, Color.rgb(0, 0, 255))
+                }
+
             }
         }
 
