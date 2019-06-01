@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+        <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -9,6 +9,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity"
         tools:ignore="MissingDefaultResource">
+
 
     <android.support.v7.widget.AppCompatImageView
             android:id="@+id/imagePreviewView"
@@ -46,4 +47,17 @@
             app:layout_constraintRight_toRightOf="@+id/magicButton"
             android:text="clear"/>
 
+    <!--<android.support.v4.widget.DrawerLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--tools:openDrawer="start">-->
+
+    <!--</android.support.v4.widget.DrawerLayout>-->
+
 </android.support.constraint.ConstraintLayout>
+

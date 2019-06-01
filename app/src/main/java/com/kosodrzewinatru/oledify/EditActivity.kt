@@ -8,9 +8,6 @@ import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
-import android.R.array
-import android.media.Image
-
 
 class EditActivity : AppCompatActivity() {
 
@@ -33,6 +30,7 @@ class EditActivity : AppCompatActivity() {
 
 object Editing : AppCompatActivity() {
 
+    // main function responsible for processing bitmap
     fun makeBlack(bitmap: Bitmap): Bitmap {
 
         // create a mutable copy of the bitmap
@@ -52,5 +50,25 @@ object Editing : AppCompatActivity() {
         }
 
         return processed
+    }
+
+    // check if pixel is contrasting
+    fun isContrasting(bitmap: Bitmap, x: Int, y: Int, x1: Int, y1: Int): Boolean {
+
+        // combined values of two points
+        val sumX = Color.red(bitmap.getPixel(x, y)) + Color.green(bitmap.getPixel(x, y)) + Color.blue(bitmap.getPixel(x, y))
+        val sumX1 = Color.red(bitmap.getPixel(x1, y1)) + Color.green(bitmap.getPixel(x1, y1)) + Color.blue(bitmap.getPixel(x1, y1))
+
+        var difference: Int
+
+        if (sumX >= sumX1) {
+            difference = sumX - sumX1
+        }
+        else {
+            difference = sumX1 - sumX
+        }
+
+        // temporary
+        return false
     }
 }
