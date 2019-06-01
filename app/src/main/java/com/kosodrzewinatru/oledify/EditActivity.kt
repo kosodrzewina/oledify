@@ -53,7 +53,7 @@ object Editing : AppCompatActivity() {
     }
 
     // check if pixel is closer to black
-    fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
+    private fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
 
         val gamma = 2.2
 
