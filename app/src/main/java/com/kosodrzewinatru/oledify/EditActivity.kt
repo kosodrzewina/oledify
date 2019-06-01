@@ -43,7 +43,7 @@ object Editing : AppCompatActivity() {
                 val green = Color.green(bitmap.getPixel(x, y))
                 val blue = Color.blue(bitmap.getPixel(x, y))
 
-                if (red + green + blue <= 140) {
+                if (red + green + blue <= 140 && isCloserToBlack(bitmap, x, y)) {
                     processed.setPixel(x, y, Color.rgb(0, 0, 0))
                 }
             }
@@ -52,8 +52,8 @@ object Editing : AppCompatActivity() {
         return processed
     }
 
-    // check if pixel is contrasting
-    fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int, x1: Int, y1: Int): Boolean {
+    // check if pixel is closer to black
+    fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
 
         val gamma = 2.2
 
@@ -62,15 +62,9 @@ object Editing : AppCompatActivity() {
         val greenX = Color.green(bitmap.getPixel(x, y))
         val blueX = Color.blue(bitmap.getPixel(x, y))
 
-        val redX1 = Color.red(bitmap.getPixel(x1, y1))
-        val greenX1 = Color.green(bitmap.getPixel(x1, y1))
-        val blueX1 = Color.blue(bitmap.getPixel(x1, y1))
-
         // get sum of rgb in 0.0-1.0 range
         val sumX = 0.2126 * Math.pow(redX.toDouble(), gamma) + 0.7152 * Math.pow(greenX.toDouble(), gamma)+ 0.0722 * Math.pow(blueX.toDouble(), gamma)
-        val sumX1 = 0.2126 * Math.pow(redX1.toDouble(), gamma) + 0.7152 * Math.pow(greenX1.toDouble(), gamma) + 0.0722 * Math.pow(blueX1.toDouble(), gamma)
 
-        // temporary
-        return false
+        return sumX <= Math.pow(0.5, gamma)
     }
 }
