@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:text="massive cock"/>
+            android:text="process"/>
 
     <android.support.v7.widget.AppCompatImageView
             android:id="@+id/imageEditView"
@@ -27,10 +27,5 @@
             app:layout_constraintRight_toRightOf="@+id/process"
             app:layout_constraintBottom_toTopOf="@+id/process"
             app:layout_constraintTop_toTopOf="parent"/>
-
-    <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/cock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
 </android.support.constraint.ConstraintLayout>

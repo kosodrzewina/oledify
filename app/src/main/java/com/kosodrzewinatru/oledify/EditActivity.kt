@@ -45,10 +45,9 @@ object Editing : AppCompatActivity() {
                 val green = Color.green(bitmap.getPixel(x, y))
                 val blue = Color.blue(bitmap.getPixel(x, y))
 
-                if (red + green + blue >= 730) {
-                    processed.setPixel(x, y, Color.rgb(0, 0, 255))
+                if (red + green + blue <= 140) {
+                    processed.setPixel(x, y, Color.rgb(0, 0, 0))
                 }
-
             }
         }
 
