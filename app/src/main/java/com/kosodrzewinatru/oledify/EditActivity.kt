@@ -55,9 +55,19 @@ object Editing : AppCompatActivity() {
     // check if pixel is contrasting
     fun isContrasting(bitmap: Bitmap, x: Int, y: Int, x1: Int, y1: Int): Boolean {
 
+        val gamma = 2.2
+
+        val redX = Color.red(bitmap.getPixel(x, y))
+        val greenX = Color.green(bitmap.getPixel(x, y))
+        val blueX = Color.blue(bitmap.getPixel(x, y))
+
+        val redX1 = Color.red(bitmap.getPixel(x1, y1))
+        val greenX1 = Color.green(bitmap.getPixel(x1, y1))
+        val blueX1 = Color.blue(bitmap.getPixel(x1, y1))
+
         // combined values of two points
-        val sumX = 0.2126 * Color.red(bitmap.getPixel(x, y)) + 0.7152 * Color.green(bitmap.getPixel(x, y)) + 0.0722 * Color.blue(bitmap.getPixel(x, y))
-        val sumX1 = 0.2126 * Color.red(bitmap.getPixel(x1, y1)) + 0.7152 * Color.green(bitmap.getPixel(x1, y1)) + 0.0722 * Color.blue(bitmap.getPixel(x1, y1))
+        val sumX = 0.2126 * redX + 0.7152 * greenX + 0.0722 * blueX
+        val sumX1 = 0.2126 * redX1 + 0.7152 * greenX1 + 0.0722 * blueX1
 
         var difference: Double
 
