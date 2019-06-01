@@ -56,10 +56,10 @@ object Editing : AppCompatActivity() {
     fun isContrasting(bitmap: Bitmap, x: Int, y: Int, x1: Int, y1: Int): Boolean {
 
         // combined values of two points
-        val sumX = Color.red(bitmap.getPixel(x, y)) + Color.green(bitmap.getPixel(x, y)) + Color.blue(bitmap.getPixel(x, y))
-        val sumX1 = Color.red(bitmap.getPixel(x1, y1)) + Color.green(bitmap.getPixel(x1, y1)) + Color.blue(bitmap.getPixel(x1, y1))
+        val sumX = 0.2126 * Color.red(bitmap.getPixel(x, y)) + 0.7152 * Color.green(bitmap.getPixel(x, y)) + 0.0722 * Color.blue(bitmap.getPixel(x, y))
+        val sumX1 = 0.2126 * Color.red(bitmap.getPixel(x1, y1)) + 0.7152 * Color.green(bitmap.getPixel(x1, y1)) + 0.0722 * Color.blue(bitmap.getPixel(x1, y1))
 
-        var difference: Int
+        var difference: Double
 
         if (sumX >= sumX1) {
             difference = sumX - sumX1
