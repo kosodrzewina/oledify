@@ -53,10 +53,11 @@ object Editing : AppCompatActivity() {
     }
 
     // check if pixel is contrasting
-    fun isContrasting(bitmap: Bitmap, x: Int, y: Int, x1: Int, y1: Int): Boolean {
+    fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int, x1: Int, y1: Int): Boolean {
 
         val gamma = 2.2
 
+        // rgb values of two points
         val redX = Color.red(bitmap.getPixel(x, y))
         val greenX = Color.green(bitmap.getPixel(x, y))
         val blueX = Color.blue(bitmap.getPixel(x, y))
@@ -65,18 +66,9 @@ object Editing : AppCompatActivity() {
         val greenX1 = Color.green(bitmap.getPixel(x1, y1))
         val blueX1 = Color.blue(bitmap.getPixel(x1, y1))
 
-        // combined values of two points
-        val sumX = 0.2126 * redX + 0.7152 * greenX + 0.0722 * blueX
-        val sumX1 = 0.2126 * redX1 + 0.7152 * greenX1 + 0.0722 * blueX1
-
-        var difference: Double
-
-        if (sumX >= sumX1) {
-            difference = sumX - sumX1
-        }
-        else {
-            difference = sumX1 - sumX
-        }
+        // get sum of rgb in 0.0-1.0 range
+        val sumX = 0.2126 * Math.pow(redX.toDouble(), gamma) + 0.7152 * Math.pow(greenX.toDouble(), gamma)+ 0.0722 * Math.pow(blueX.toDouble(), gamma)
+        val sumX1 = 0.2126 * Math.pow(redX1.toDouble(), gamma) + 0.7152 * Math.pow(greenX1.toDouble(), gamma) + 0.0722 * Math.pow(blueX1.toDouble(), gamma)
 
         // temporary
         return false
