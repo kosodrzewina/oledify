@@ -36,6 +36,7 @@
             app:layout_constraintLeft_toLeftOf="@id/process"
             app:layout_constraintRight_toRightOf="@+id/process"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp"
+            android:visibility="invisible"/>
 
 </android.support.constraint.ConstraintLayout>

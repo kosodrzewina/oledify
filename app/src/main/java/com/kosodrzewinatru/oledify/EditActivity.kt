@@ -3,11 +3,13 @@ package com.kosodrzewinatru.oledify
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
+import android.widget.Toast
 
 class EditActivity : AppCompatActivity() {
 
@@ -23,7 +25,28 @@ class EditActivity : AppCompatActivity() {
         val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFileEdit)
 
         process.setOnClickListener {
-            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
+//            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
+
+            val task = Async()
+            task.execute()
+        }
+    }
+
+    internal inner class Async : AsyncTask<Void, Void, String>() {
+        override fun onPreExecute() {
+            super.onPreExecute()
+            progressBar.show()
+        }
+
+        override fun doInBackground(vararg params: Void?): String {
+            return "It works!"
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            progressBar.hide()
+
+            Toast.makeText(this@EditActivity, result, Toast.LENGTH_SHORT).show()
         }
     }
 }
@@ -43,7 +66,7 @@ object Editing : AppCompatActivity() {
                 val green = Color.green(bitmap.getPixel(x, y))
                 val blue = Color.blue(bitmap.getPixel(x, y))
 
-                if (red + green + blue <= 140 && isCloserToBlack(bitmap, x, y)) {
+                if (red + green + blue <= 140) {
                     processed.setPixel(x, y, Color.rgb(0, 0, 0))
                 }
             }
