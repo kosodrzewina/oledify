@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 
 class EditActivity : AppCompatActivity() {
@@ -32,19 +33,23 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
+    // asynchronous class for heavy processing tasks
     internal inner class Async : AsyncTask<Void, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            progressBar.show()
+
+            progressBar.visibility = View.VISIBLE
         }
 
         override fun doInBackground(vararg params: Void?): String {
+            Thread.sleep(3000)
+
             return "It works!"
         }
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-            progressBar.hide()
+            progressBar.visibility = View.INVISIBLE
 
             Toast.makeText(this@EditActivity, result, Toast.LENGTH_SHORT).show()
         }
