@@ -28,4 +28,14 @@
             app:layout_constraintBottom_toTopOf="@+id/process"
             app:layout_constraintTop_toTopOf="parent"/>
 
+    <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/process"
+            app:layout_constraintLeft_toLeftOf="@id/process"
+            app:layout_constraintRight_toRightOf="@+id/process"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_margin="16dp"/>
+
 </android.support.constraint.ConstraintLayout>
