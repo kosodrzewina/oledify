@@ -26,32 +26,27 @@ class EditActivity : AppCompatActivity() {
         val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFileEdit)
 
         process.setOnClickListener {
-//            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
-
-            val task = Async()
-            task.execute()
+            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
+//            Async().execute(bitmap)
         }
     }
 
     // asynchronous class for heavy processing tasks
-    internal inner class Async : AsyncTask<Void, Void, String>() {
+    internal inner class Async : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun onPreExecute() {
             super.onPreExecute()
 
             progressBar.visibility = View.VISIBLE
         }
 
-        override fun doInBackground(vararg params: Void?): String {
-            Thread.sleep(3000)
-
-            return "It works!"
+        override fun doInBackground(vararg params: Bitmap?): Bitmap? {
+            return Editing.makeBlack(params[0]!!)
         }
 
-        override fun onPostExecute(result: String?) {
+        override fun onPostExecute(result: Bitmap?) {
             super.onPostExecute(result)
-            progressBar.visibility = View.INVISIBLE
 
-            Toast.makeText(this@EditActivity, result, Toast.LENGTH_SHORT).show()
+            progressBar.visibility = View.INVISIBLE
         }
     }
 }
