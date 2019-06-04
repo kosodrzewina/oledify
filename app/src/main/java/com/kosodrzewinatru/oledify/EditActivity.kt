@@ -55,6 +55,7 @@ class EditActivity : AppCompatActivity() {
             imageEditView.setImageBitmap(result)
 
             progressBar.visibility = View.INVISIBLE
+            Toast.makeText(this@EditActivity, "Finished!", Toast.LENGTH_SHORT).show()
         }
 
         // inner class with all functions related to editing
