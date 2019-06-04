@@ -40,12 +40,6 @@ class EditActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            if (params[0] is Bitmap) {
-                Log.d("type:", "TRUE")
-            } else {
-                Log.d("type", "FALSE")
-            }
-
             return Editing().makeBlack(params[0]!!)
         }
 
