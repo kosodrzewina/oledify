@@ -26,8 +26,8 @@ class EditActivity : AppCompatActivity() {
         val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFileEdit)
 
         process.setOnClickListener {
-            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
-//            Async().execute(bitmap)
+//            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
+            Async().execute(bitmap)
         }
     }
 
@@ -40,54 +40,64 @@ class EditActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing.makeBlack(params[0]!!)
+            if (params[0] is Bitmap) {
+                Log.d("type:", "TRUE")
+            } else {
+                Log.d("type", "FALSE")
+            }
+
+            return Editing().makeBlack(params[0]!!)
         }
 
         override fun onPostExecute(result: Bitmap?) {
             super.onPostExecute(result)
 
+            imageEditView.setImageBitmap(result)
+
             progressBar.visibility = View.INVISIBLE
         }
-    }
-}
 
-object Editing : AppCompatActivity() {
+        // inner class with all functions related to editing
+        internal inner class Editing {
 
-    // main function responsible for processing bitmap
-    fun makeBlack(bitmap: Bitmap): Bitmap {
+            // main function responsible for processing bitmap
+            fun makeBlack(bitmap: Bitmap): Bitmap {
 
-        // create a mutable copy of the bitmap
-        val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+                // create a mutable copy of the bitmap
+                val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
 
-        // check every single pixel
-        for (y in 0 until bitmap.height) {
-            for (x in 0 until bitmap.width) {
-                val red = Color.red(bitmap.getPixel(x, y))
-                val green = Color.green(bitmap.getPixel(x, y))
-                val blue = Color.blue(bitmap.getPixel(x, y))
+                // check every single pixel
+                for (y in 0 until bitmap.height) {
+                    for (x in 0 until bitmap.width) {
+                        val red = Color.red(bitmap.getPixel(x, y))
+                        val green = Color.green(bitmap.getPixel(x, y))
+                        val blue = Color.blue(bitmap.getPixel(x, y))
 
-                if (red + green + blue <= 140) {
-                    processed.setPixel(x, y, Color.rgb(0, 0, 0))
+                        if (red + green + blue <= 140) {
+                            processed.setPixel(x, y, Color.rgb(0, 0, 0))
+                        }
+                    }
                 }
+
+                return processed
+            }
+
+            // check if pixel is closer to black
+            private fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
+
+                val gamma = 2.2
+
+                // rgb values of two points
+                val redX = Color.red(bitmap.getPixel(x, y))
+                val greenX = Color.green(bitmap.getPixel(x, y))
+                val blueX = Color.blue(bitmap.getPixel(x, y))
+
+                // get sum of rgb in 0.0-1.0 range
+                val sumX = 0.2126 * Math.pow(redX.toDouble(), gamma) + 0.7152 * Math.pow(greenX.toDouble(), gamma)+ 0.0722 * Math.pow(blueX.toDouble(), gamma)
+
+                return sumX <= Math.pow(0.5, gamma)
             }
         }
-
-        return processed
-    }
-
-    // check if pixel is closer to black
-    private fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
-
-        val gamma = 2.2
-
-        // rgb values of two points
-        val redX = Color.red(bitmap.getPixel(x, y))
-        val greenX = Color.green(bitmap.getPixel(x, y))
-        val blueX = Color.blue(bitmap.getPixel(x, y))
-
-        // get sum of rgb in 0.0-1.0 range
-        val sumX = 0.2126 * Math.pow(redX.toDouble(), gamma) + 0.7152 * Math.pow(greenX.toDouble(), gamma)+ 0.0722 * Math.pow(blueX.toDouble(), gamma)
-
-        return sumX <= Math.pow(0.5, gamma)
     }
 }
+
