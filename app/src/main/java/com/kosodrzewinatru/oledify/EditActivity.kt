@@ -64,9 +64,11 @@ class EditActivity : AppCompatActivity() {
                 // check every single pixel
                 for (y in 0 until bitmap.height) {
                     for (x in 0 until bitmap.width) {
-                        val red = Color.red(bitmap.getPixel(x, y))
-                        val green = Color.green(bitmap.getPixel(x, y))
-                        val blue = Color.blue(bitmap.getPixel(x, y))
+                        val currentPixel = bitmap.getPixel(x, y)
+
+                        val red = Color.red(currentPixel)
+                        val green = Color.green(currentPixel)
+                        val blue = Color.blue(currentPixel)
 
                         if (red + green + blue <= 140) {
                             processed.setPixel(x, y, Color.rgb(0, 0, 0))
@@ -77,7 +79,7 @@ class EditActivity : AppCompatActivity() {
                 return processed
             }
 
-            // check if pixel is closer to black
+            // this function is trash
             private fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
 
                 val gamma = 2.2
