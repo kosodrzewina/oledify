@@ -2,8 +2,10 @@ package com.kosodrzewinatru.oledify
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +49,10 @@ class MainActivity : AppCompatActivity() {
             selectedFileEdit = selectedFile.toString()
 
             // image showed via URI
-            imagePreviewView.setImageURI(selectedFile)
+            val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFile)
+            val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+
+            imagePreviewView.setImageBitmap(thumbnail)
 
             magicButton.isEnabled = true
         }

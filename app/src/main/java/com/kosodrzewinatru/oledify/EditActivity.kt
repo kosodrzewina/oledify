@@ -20,14 +20,14 @@ class EditActivity : AppCompatActivity() {
 
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
-        imageEditView.setImageURI(selectedFileEdit)
 
-        // get Bitmap from URI
         val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFileEdit)
+        val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+
+        imageEditView.setImageBitmap(thumbnail)
 
         process.setOnClickListener {
-//            imageEditView.setImageBitmap(Editing.makeBlack(bitmap))
-            Async().execute(bitmap)
+            Async().execute(thumbnail)
         }
     }
 
@@ -77,22 +77,6 @@ class EditActivity : AppCompatActivity() {
                 }
 
                 return processed
-            }
-
-            // this function is trash
-            private fun isCloserToBlack(bitmap: Bitmap, x: Int, y: Int): Boolean {
-
-                val gamma = 2.2
-
-                // rgb values of two points
-                val redX = Color.red(bitmap.getPixel(x, y))
-                val greenX = Color.green(bitmap.getPixel(x, y))
-                val blueX = Color.blue(bitmap.getPixel(x, y))
-
-                // get sum of rgb in 0.0-1.0 range
-                val sumX = 0.2126 * Math.pow(redX.toDouble(), gamma) + 0.7152 * Math.pow(greenX.toDouble(), gamma)+ 0.0722 * Math.pow(blueX.toDouble(), gamma)
-
-                return sumX <= Math.pow(0.5, gamma)
             }
         }
     }
