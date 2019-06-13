@@ -7,8 +7,17 @@
         android:background="#263238"
         android:orientation="vertical">
 
+    <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageEditView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/processButton"
+            app:layout_constraintRight_toRightOf="@+id/processButton"
+            app:layout_constraintBottom_toTopOf="@+id/processButton"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     <android.support.v7.widget.AppCompatButton
-            android:id="@+id/process"
+            android:id="@+id/processButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -19,22 +28,22 @@
             app:layout_constraintHorizontal_bias="0.5"
             android:text="process"/>
 
-    <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/imageEditView"
-            android:layout_width="match_parent"
+    <android.support.v7.widget.AppCompatButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/process"
-            app:layout_constraintRight_toRightOf="@+id/process"
-            app:layout_constraintBottom_toTopOf="@+id/process"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/processButton"
+            app:layout_constraintRight_toRightOf="@+id/processButton"
+            app:layout_constraintLeft_toLeftOf="@+id/processButton"
+            android:text="save"/>
 
     <android.support.v4.widget.ContentLoadingProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/process"
-            app:layout_constraintLeft_toLeftOf="@id/process"
-            app:layout_constraintRight_toRightOf="@+id/process"
+            app:layout_constraintTop_toBottomOf="@+id/saveButton"
+            app:layout_constraintLeft_toLeftOf="@id/saveButton"
+            app:layout_constraintRight_toRightOf="@+id/saveButton"
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_margin="16dp"
             android:visibility="invisible"/>

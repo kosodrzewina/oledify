@@ -18,21 +18,47 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        saveButton.isEnabled = false
+
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
-        val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFileEdit)
+        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
         val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
 
         imageEditView.setImageBitmap(thumbnail)
 
-        process.setOnClickListener {
-            Async().execute(thumbnail)
+        processButton.setOnClickListener {
+            Processing().execute(thumbnail)
+        }
+    }
+
+    // async for saving bitmap to file
+    internal inner class Saving : AsyncTask<Bitmap, Void, Void>() {
+        override fun onPreExecute() {
+            super.onPreExecute()
+
+            progressBar.visibility = View.VISIBLE
+        }
+
+        override fun doInBackground(vararg params: Bitmap?): Void {
+            return bitmapToFile(params[0]!!)!!
+        }
+
+        override fun onPostExecute(result: Void?) {
+            super.onPostExecute(result)
+
+            progressBar.visibility = View.INVISIBLE
+        }
+
+        fun bitmapToFile(bitmap: Bitmap): Void? {
+            // write this function later
+            return null
         }
     }
 
     // asynchronous class for heavy processing tasks
-    internal inner class Async : AsyncTask<Bitmap, Void, Bitmap>() {
+    internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun onPreExecute() {
             super.onPreExecute()
 
