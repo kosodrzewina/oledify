@@ -5,12 +5,16 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
 class EditActivity : AppCompatActivity() {
 
@@ -31,6 +35,10 @@ class EditActivity : AppCompatActivity() {
         processButton.setOnClickListener {
             Processing().execute(thumbnail)
         }
+
+        saveButton.setOnClickListener {
+            Saving().execute(bitmap)
+        }
     }
 
     // async for saving bitmap to file
@@ -49,10 +57,20 @@ class EditActivity : AppCompatActivity() {
             super.onPostExecute(result)
 
             progressBar.visibility = View.INVISIBLE
+            Toast.makeText(this@EditActivity, "YEET", Toast.LENGTH_SHORT).show()
         }
 
         fun bitmapToFile(bitmap: Bitmap): Void? {
-            // write this function later
+
+            val path = Environment.getExternalStorageDirectory().toString()
+            val file = File(path, "dupa.jpg")
+
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+            stream.flush()
+            stream.close()
+
             return null
         }
     }
@@ -75,6 +93,7 @@ class EditActivity : AppCompatActivity() {
             imageEditView.setImageBitmap(result)
 
             progressBar.visibility = View.INVISIBLE
+            saveButton.isEnabled = true
             Toast.makeText(this@EditActivity, "Finished!", Toast.LENGTH_SHORT).show()
         }
 
