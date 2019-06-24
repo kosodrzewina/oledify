@@ -37,41 +37,26 @@ class EditActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            Saving().execute(bitmap)
+            saveBitmap(bitmap)
         }
     }
 
-    // async for saving bitmap to file
-    internal inner class Saving : AsyncTask<Bitmap, Void, Void>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
+    fun saveBitmap(bitmap: Bitmap) {
 
-            progressBar.visibility = View.VISIBLE
-        }
+        val rootPath = Environment.getExternalStorageDirectory().toString()
 
-        override fun doInBackground(vararg params: Bitmap?): Void {
-            return bitmapToFile(params[0]!!)!!
-        }
+        // create new file
+        var file = File(rootPath + "/oledify_images")
+        file.createNewFile()
 
-        override fun onPostExecute(result: Void?) {
-            super.onPostExecute(result)
+        try {
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
 
-            progressBar.visibility = View.INVISIBLE
-            Toast.makeText(this@EditActivity, "YEET", Toast.LENGTH_SHORT).show()
-        }
-
-        fun bitmapToFile(bitmap: Bitmap): Void? {
-
-            val path = Environment.getExternalStorageDirectory().toString()
-            val file = File(path, "dupa.jpg")
-
-            val stream: OutputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-
-            stream.flush()
-            stream.close()
-
-            return null
+            outputStream.flush()
+            outputStream.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
