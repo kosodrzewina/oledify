@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v7.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#263238"
@@ -11,41 +10,29 @@
             android:id="@+id/imageEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/processButton"
-            app:layout_constraintRight_toRightOf="@+id/processButton"
-            app:layout_constraintBottom_toTopOf="@+id/processButton"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_gravity="center"/>
 
     <android.support.v7.widget.AppCompatButton
             android:id="@+id/processButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_gravity="center"
             android:text="process"/>
 
     <android.support.v7.widget.AppCompatButton
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/processButton"
-            app:layout_constraintRight_toRightOf="@+id/processButton"
-            app:layout_constraintLeft_toLeftOf="@+id/processButton"
+            android:layout_gravity="center"
             android:text="save"/>
 
     <android.support.v4.widget.ContentLoadingProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/saveButton"
-            app:layout_constraintLeft_toLeftOf="@id/saveButton"
-            app:layout_constraintRight_toRightOf="@+id/saveButton"
+            android:layout_gravity="center"
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_margin="16dp"
             android:visibility="invisible"/>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.LinearLayoutCompat>
