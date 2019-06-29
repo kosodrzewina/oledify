@@ -1,5 +1,6 @@
 package com.kosodrzewinatru.oledify
 
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
@@ -7,6 +8,8 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
@@ -16,6 +19,7 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.util.jar.Manifest
 
 class EditActivity : AppCompatActivity() {
 
@@ -42,7 +46,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            saveBitmap(bitmap)
+            saveToStorage(bitmap)
         }
 
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -62,22 +66,28 @@ class EditActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveBitmap(bitmap: Bitmap) {
+    private fun saveToStorage(bitmap: Bitmap) {
 
-        val rootPath = Environment.getExternalStorageDirectory().toString()
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
 
-        // create new file
-        var file = File(rootPath + "/oledify_images")
-        file.createNewFile()
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Log.d("check_permission", "GRANTED")
+        } else {
+            Log.d("check_permission", "DENIED")
+        }
+    }
 
-        try {
-            val outputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == 100) {
+            if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+                val storageDirectory = Environment.getExternalStorageDirectory().toString()
+                val file = File(storageDirectory, "test.jpg")
+                val stream: OutputStream = FileOutputStream(file)
+                // finish it later
 
-            outputStream.flush()
-            outputStream.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
+            }
+        } else {
+            Toast.makeText(this, "Something went wrong. Image cannot be saved.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -132,4 +142,3 @@ class EditActivity : AppCompatActivity() {
         }
     }
 }
-
