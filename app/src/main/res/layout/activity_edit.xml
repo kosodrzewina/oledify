@@ -12,6 +12,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
 
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/blacknessValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="100%"/>
+
+    <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/intensitySeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="250dp"
+            android:layout_gravity="center"/>
+
     <android.support.v7.widget.AppCompatButton
             android:id="@+id/processButton"
             android:layout_width="wrap_content"

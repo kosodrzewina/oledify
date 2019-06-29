@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.view.View
+import android.widget.SeekBar
 import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
@@ -39,9 +40,25 @@ class EditActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             saveBitmap(bitmap)
         }
+
+        intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                processButton.isEnabled = false
+                saveButton.isEnabled = false
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                blacknessValue.text = progress.toString()
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                processButton.isEnabled = true
+                saveButton.isEnabled = true
+            }
+        })
     }
 
-    fun saveBitmap(bitmap: Bitmap) {
+    private fun saveBitmap(bitmap: Bitmap) {
 
         val rootPath = Environment.getExternalStorageDirectory().toString()
 
@@ -69,7 +86,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing().makeBlack(params[0]!!)
+            return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
         }
 
         override fun onPostExecute(result: Bitmap?) {
@@ -86,7 +103,7 @@ class EditActivity : AppCompatActivity() {
         internal inner class Editing {
 
             // main function responsible for processing bitmap
-            fun makeBlack(bitmap: Bitmap): Bitmap {
+            fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
 
                 // create a mutable copy of the bitmap
                 val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
@@ -100,7 +117,7 @@ class EditActivity : AppCompatActivity() {
                         val green = Color.green(currentPixel)
                         val blue = Color.blue(currentPixel)
 
-                        if (red + green + blue <= 140) {
+                        if (red + green + blue <= intensity) {
                             processed.setPixel(x, y, Color.rgb(0, 0, 0))
                         }
                     }
