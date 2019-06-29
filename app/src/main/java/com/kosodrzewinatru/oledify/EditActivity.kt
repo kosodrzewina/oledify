@@ -25,6 +25,10 @@ class EditActivity : AppCompatActivity() {
 
         saveButton.isEnabled = false
 
+        // default value of intensity
+        intensitySeekBar.progress = 18
+        blacknessValue.text = intensitySeekBar.progress.toString()
+
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
