@@ -46,7 +46,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            saveToStorage(bitmap)
+            saveToStorage()
         }
 
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -66,7 +66,7 @@ class EditActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveToStorage(bitmap: Bitmap) {
+    private fun saveToStorage() {
 
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
 
@@ -78,14 +78,23 @@ class EditActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == 100) {
-            if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-                val storageDirectory = Environment.getExternalStorageDirectory().toString()
-                val file = File(storageDirectory, "test.jpg")
-                val stream: OutputStream = FileOutputStream(file)
-                // finish it later
+        if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            val storageDirectory = Environment.getExternalStorageDirectory().toString()
+            val file = File(storageDirectory, "test.jpg")
+            val stream: OutputStream = FileOutputStream(file)
 
-            }
+            // get the original bitmap once again
+            val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
+            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
+
+            bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+            stream.flush()
+            stream.close()
+
+            Toast.makeText(this, "Image saved!", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Something went wrong. Image cannot be saved.", Toast.LENGTH_SHORT).show()
         }
