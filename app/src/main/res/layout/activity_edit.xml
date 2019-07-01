@@ -29,6 +29,15 @@
                 android:minWidth="250dp"
                 android:layout_gravity="center"/>
 
+        <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_margin="16dp"
+                android:visibility="invisible"/>
+
         <android.support.v7.widget.AppCompatButton
                 android:id="@+id/processButton"
                 android:layout_width="wrap_content"
@@ -42,14 +51,5 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="save"/>
-
-        <android.support.v4.widget.ContentLoadingProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                style="@style/Widget.AppCompat.ProgressBar"
-                android:layout_margin="16dp"
-                android:visibility="invisible"/>
     </LinearLayout>
 </ScrollView>
