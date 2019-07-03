@@ -105,8 +105,8 @@ class EditActivity : AppCompatActivity() {
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         // dialog fragment
-        val fragmentManager = supportFragmentManager
-        val editFragment = EditFragment()
+        private val fragmentManager = supportFragmentManager
+        private val editFragment = EditFragment()
 
 
         override fun onPreExecute() {
