@@ -10,11 +10,17 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageView
+        <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/imagePreviewView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="300dp"/>
+
+        <!--<android.support.v7.widget.AppCompatImageView-->
+                <!--android:id="@+id/imagePreviewView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:minHeight="300dp"/>-->
 
         <android.support.v7.widget.AppCompatButton
                 android:id="@+id/uploadButton"
