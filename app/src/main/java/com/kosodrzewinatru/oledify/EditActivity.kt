@@ -13,13 +13,11 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
-import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.util.jar.Manifest
 
 class EditActivity : AppCompatActivity() {
 
