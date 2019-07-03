@@ -87,9 +87,11 @@ class EditActivity : AppCompatActivity() {
             val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
             var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
 
-            bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
+//            bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
+            val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
 
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
             stream.flush()
             stream.close()
@@ -102,10 +104,15 @@ class EditActivity : AppCompatActivity() {
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
+        // dialog fragment
+        val fragmentManager = supportFragmentManager
+        val editFragment = EditFragment()
+
+
         override fun onPreExecute() {
             super.onPreExecute()
 
-            progressBar.visibility = View.VISIBLE
+            editFragment.show(fragmentManager, "YEET")
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
@@ -117,7 +124,8 @@ class EditActivity : AppCompatActivity() {
 
             imageEditView.setImageBitmap(result)
 
-            progressBar.visibility = View.INVISIBLE
+            editFragment.dismiss()
+
             saveButton.isEnabled = true
             Toast.makeText(this@EditActivity, "Finished!", Toast.LENGTH_SHORT).show()
         }
