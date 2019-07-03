@@ -13,8 +13,6 @@ class EditFragment: DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var rootView: View = inflater.inflate(R.layout.dialog_fragment_edit, container, false)
-
-        return rootView
+        return inflater.inflate(R.layout.dialog_fragment_edit, container, false)
     }
 }
