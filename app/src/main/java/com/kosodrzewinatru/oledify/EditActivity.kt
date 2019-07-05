@@ -2,7 +2,6 @@ package com.kosodrzewinatru.oledify
 
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.AsyncTask
@@ -19,7 +18,6 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.nio.IntBuffer
 
 class EditActivity : AppCompatActivity() {
 
@@ -182,8 +180,11 @@ class EditActivity : AppCompatActivity() {
                     }
                 }
 
-//                return bitmap.copyPixelsFromBuffer(IntBuffer.wrap(pixels))
-                return bitmap
+                val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+
+                processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+                return processed
             }
         }
     }
