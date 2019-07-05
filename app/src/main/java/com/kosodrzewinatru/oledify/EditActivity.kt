@@ -2,6 +2,7 @@ package com.kosodrzewinatru.oledify
 
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.AsyncTask
@@ -18,6 +19,7 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.nio.IntBuffer
 
 class EditActivity : AppCompatActivity() {
 
@@ -45,6 +47,10 @@ class EditActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             saveToStorage()
+        }
+
+        testButton.setOnClickListener {
+//            Processing().Editing().superiorMakeBlack(bitmap)
         }
 
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -114,7 +120,8 @@ class EditActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+            Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+            return Editing().superiorMakeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
         }
 
         override fun onPostExecute(result: Bitmap?) {
@@ -153,6 +160,30 @@ class EditActivity : AppCompatActivity() {
                 }
 
                 return processed
+            }
+
+            fun superiorMakeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
+
+                val pixels = IntArray(bitmap.height * bitmap.width)
+
+                bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+                Log.d("0", pixels[0].toString())
+                Log.d("50", pixels[49].toString())
+                Log.d("100", pixels[99].toString())
+
+                for (i in 0 until pixels.size) {
+                    val red = Color.red(pixels[i])
+                    val green = Color.green(pixels[i])
+                    val blue = Color.blue(pixels[i])
+
+                    if (red + green + blue <= intensity) {
+                        pixels[i] = -16777214
+                    }
+                }
+
+//                return bitmap.copyPixelsFromBuffer(IntBuffer.wrap(pixels))
+                return bitmap
             }
         }
     }
