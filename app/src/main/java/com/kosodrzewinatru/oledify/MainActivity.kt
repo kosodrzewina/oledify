@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         magicButton.isEnabled = false
+
+        // hamburger icon
+        var toggle = ActionBarDrawerToggle(this, drawerMain, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerMain.addDrawerListener(toggle)
+        toggle.syncState()
 
         // open file picker
         uploadButton.setOnClickListener {
@@ -37,6 +44,16 @@ class MainActivity : AppCompatActivity() {
             magicButton.isEnabled = false
         }
     }
+
+    // if back button is pressed and the drawer is open, close the drawer
+    override fun onBackPressed() {
+        if (drawerMain.isDrawerOpen(GravityCompat.START)) {
+            drawerMain.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
 
     // result of quitting file picker
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

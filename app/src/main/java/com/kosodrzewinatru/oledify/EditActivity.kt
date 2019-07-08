@@ -10,6 +10,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
@@ -24,6 +26,11 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+
+        // hamburger icon
+        var toggle = ActionBarDrawerToggle(this, drawerEdit, toolbarEdit, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerEdit.addDrawerListener(toggle)
+        toggle.syncState()
 
         saveButton.isEnabled = false
 
@@ -57,6 +64,15 @@ class EditActivity : AppCompatActivity() {
                 saveButton.isEnabled = true
             }
         })
+    }
+
+    // if back button is pressed and the drawer is open, close the drawer
+    override fun onBackPressed() {
+        if (drawerEdit.isDrawerOpen(GravityCompat.START)) {
+            drawerEdit.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     private fun saveToStorage() {
