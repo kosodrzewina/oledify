@@ -39,17 +39,12 @@ class EditActivity : AppCompatActivity() {
 
         imageEditView.setImageBitmap(thumbnail)
 
-        processButton.setOnClickListener {
-            Processing().execute(thumbnail)
-        }
-
         saveButton.setOnClickListener {
             saveToStorage()
         }
 
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                processButton.isEnabled = false
                 saveButton.isEnabled = false
             }
 
@@ -58,7 +53,7 @@ class EditActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                processButton.isEnabled = true
+                Processing().execute(thumbnail)
                 saveButton.isEnabled = true
             }
         })
@@ -110,7 +105,7 @@ class EditActivity : AppCompatActivity() {
         override fun onPreExecute() {
             super.onPreExecute()
 
-            editFragment.show(fragmentManager, "YEET")
+//            editFragment.show(fragmentManager, "YEET")
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
@@ -122,7 +117,7 @@ class EditActivity : AppCompatActivity() {
 
             imageEditView.setImageBitmap(result)
 
-            editFragment.dismiss()
+//            editFragment.dismiss()
 
             saveButton.isEnabled = true
             Toast.makeText(this@EditActivity, "Finished!", Toast.LENGTH_SHORT).show()
