@@ -114,8 +114,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
-            return Editing().superiorMakeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+            return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
         }
 
         override fun onPostExecute(result: Bitmap?) {
@@ -134,29 +133,6 @@ class EditActivity : AppCompatActivity() {
 
             // main function responsible for processing bitmap
             fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
-
-                // create a mutable copy of the bitmap
-                val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-
-                // check every single pixel
-                for (y in 0 until bitmap.height) {
-                    for (x in 0 until bitmap.width) {
-                        val currentPixel = bitmap.getPixel(x, y)
-
-                        val red = Color.red(currentPixel)
-                        val green = Color.green(currentPixel)
-                        val blue = Color.blue(currentPixel)
-
-                        if (red + green + blue <= intensity) {
-                            processed.setPixel(x, y, Color.rgb(0, 0, 0))
-                        }
-                    }
-                }
-
-                return processed
-            }
-
-            fun superiorMakeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
 
                 val pixels = IntArray(bitmap.height * bitmap.width)
 
