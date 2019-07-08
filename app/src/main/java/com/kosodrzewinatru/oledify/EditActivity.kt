@@ -133,10 +133,6 @@ class EditActivity : AppCompatActivity() {
 
                 bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-                Log.d("0", pixels[0].toString())
-                Log.d("50", pixels[49].toString())
-                Log.d("100", pixels[99].toString())
-
                 for (i in 0 until pixels.size) {
                     val red = Color.red(pixels[i])
                     val green = Color.green(pixels[i])
