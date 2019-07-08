@@ -120,7 +120,6 @@ class EditActivity : AppCompatActivity() {
 //            editFragment.dismiss()
 
             saveButton.isEnabled = true
-            Toast.makeText(this@EditActivity, "Finished!", Toast.LENGTH_SHORT).show()
         }
 
         // inner class with all functions related to editing
