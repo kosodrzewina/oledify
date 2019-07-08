@@ -97,17 +97,6 @@ class EditActivity : AppCompatActivity() {
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
-        // dialog fragment
-        private val fragmentManager = supportFragmentManager
-        private val editFragment = EditFragment()
-
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-
-//            editFragment.show(fragmentManager, "YEET")
-        }
-
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
         }
@@ -116,8 +105,6 @@ class EditActivity : AppCompatActivity() {
             super.onPostExecute(result)
 
             imageEditView.setImageBitmap(result)
-
-//            editFragment.dismiss()
 
             saveButton.isEnabled = true
         }
