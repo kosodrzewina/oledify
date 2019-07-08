@@ -28,7 +28,7 @@ class EditActivity : AppCompatActivity() {
         saveButton.isEnabled = false
 
         // default value of intensity
-        intensitySeekBar.progress = 18
+        intensitySeekBar.progress = 0
         blacknessValue.text = intensitySeekBar.progress.toString()
 
         // set imageView src via URI from MainActivity
