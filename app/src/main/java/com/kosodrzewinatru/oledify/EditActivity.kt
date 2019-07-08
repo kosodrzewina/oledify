@@ -47,10 +47,6 @@ class EditActivity : AppCompatActivity() {
             saveToStorage()
         }
 
-        testButton.setOnClickListener {
-//            Processing().Editing().superiorMakeBlack(bitmap)
-        }
-
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 processButton.isEnabled = false
