@@ -10,55 +10,69 @@
         tools:openDrawer="start"
         android:id="@+id/drawerEdit">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:background="#5C6BC0">
 
-    <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbarEdit"
+        <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbarEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    android:elevation="4dp"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:elevation="4dp"/>
+                android:layout_height="match_parent">
 
-        <com.github.chrisbanes.photoview.PhotoView
-                android:id="@+id/imageEditView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/blacknessValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+                <com.github.chrisbanes.photoview.PhotoView
+                        android:id="@+id/imageEditView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
-                android:id="@+id/intensitySeekBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="250dp"
-                android:layout_gravity="center"/>
+                <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/blacknessValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
 
-        <android.support.v7.widget.AppCompatButton
-                android:id="@+id/saveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="save"/>
+                <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/intensitySeekBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="250dp"
+                        android:layout_gravity="center"/>
 
-    </LinearLayout>
+                <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/saveButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="save"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
-            android:id="@+id/navView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/drawer_menu"/>
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu"/>
 
 </android.support.v4.widget.DrawerLayout>
