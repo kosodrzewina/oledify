@@ -1,42 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
+<android.support.v4.widget.DrawerLayout
+        xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="#5C6BC0">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".MainActivity"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start"
+        android:id="@+id/drawerMain">
 
     <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:background="#5C6BC0">
+
+        <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbarMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    android:elevation="4dp"/>
 
         <com.github.chrisbanes.photoview.PhotoView
-                android:id="@+id/imagePreviewView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="300dp"/>
+                    android:id="@+id/imagePreviewView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="300dp"/>
 
         <android.support.v7.widget.AppCompatButton
-                android:id="@+id/uploadButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="upload an image"/>
+                    android:id="@+id/uploadButton"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="upload an image"/>
 
         <android.support.v7.widget.AppCompatButton
-                android:id="@+id/magicButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="do the trick"/>
+                    android:id="@+id/magicButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="do the trick"/>
 
         <android.support.v7.widget.AppCompatButton
-                android:id="@+id/clearButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="clear"/>
+                    android:id="@+id/clearButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="clear"/>
     </LinearLayout>
-</ScrollView>
+
+    <android.support.design.widget.NavigationView
+            android:id="@+id/navViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/drawer_menu"/>
+
+</android.support.v4.widget.DrawerLayout>
 
 
