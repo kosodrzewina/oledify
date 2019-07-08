@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             selectedFileEdit = selectedFile.toString()
 
             // image showed via URI
-            val bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFile)
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFile)
             val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
 
             imagePreviewView.setImageBitmap(thumbnail)
