@@ -65,7 +65,6 @@
 
         </ScrollView>
 
-
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView

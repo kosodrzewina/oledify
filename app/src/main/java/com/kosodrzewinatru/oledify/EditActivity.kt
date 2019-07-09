@@ -89,6 +89,8 @@ class EditActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             val storageDirectory = Environment.getExternalStorageDirectory().toString()
+            Log.d("PATH", storageDirectory)
+
             val file = File(storageDirectory, "test.jpg")
             val stream: OutputStream = FileOutputStream(file)
 

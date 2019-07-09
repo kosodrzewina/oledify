@@ -15,4 +15,16 @@
 
     </group>
 
+    <item android:title="Settings">
+
+        <menu>
+
+            <item android:id="@+id/language"
+                  android:icon="@drawable/ic_language"
+                  android:title="Change language"/>
+
+        </menu>
+
+    </item>
+
 </menu>
