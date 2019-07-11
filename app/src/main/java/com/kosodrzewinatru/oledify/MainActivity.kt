@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         magicButton.isEnabled = false
 
+        toolbarMain.title = getString(R.string.app_name)
+
         // hamburger icon
         var toggle = ActionBarDrawerToggle(this, drawerMain, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerMain.addDrawerListener(toggle)

@@ -27,6 +27,8 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        toolbarEdit.title = getString(R.string.app_name)
+
         // hamburger icon
         var toggle = ActionBarDrawerToggle(this, drawerEdit, toolbarEdit, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerEdit.addDrawerListener(toggle)
