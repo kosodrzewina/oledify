@@ -17,7 +17,12 @@
 
     <item android:title="Settings">
 
-        <menu>
+        <menu xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <item android:id="@+id/realTime"
+                  app:actionLayout="@layout/layout_switch"
+                  android:title="Real time processing"/>
 
             <item android:id="@+id/language"
                   android:icon="@drawable/ic_language"
