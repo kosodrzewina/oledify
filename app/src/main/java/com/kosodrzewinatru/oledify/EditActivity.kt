@@ -57,10 +57,10 @@ class EditActivity : AppCompatActivity() {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 blacknessValue.text = progress.toString()
+                Processing().execute(thumbnail)
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                Processing().execute(thumbnail)
                 saveButton.isEnabled = true
             }
         })
@@ -117,11 +117,10 @@ class EditActivity : AppCompatActivity() {
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+
         }
 
         override fun onPostExecute(result: Bitmap?) {
-            super.onPostExecute(result)
-
             imageEditView.setImageBitmap(result)
 
             saveButton.isEnabled = true
