@@ -24,12 +24,12 @@
                   app:actionLayout="@layout/layout_switch"
                   android:title="Real time processing"/>
 
-            <item android:id="@+id/language"
-                  android:icon="@drawable/ic_language"
-                  android:title="Change language"/>
-
         </menu>
-
+        
     </item>
+
+    <item android:id="@+id/language"
+          android:icon="@drawable/ic_language"
+          android:title="Change language"/>
 
 </menu>
