@@ -7,29 +7,29 @@
 
         <item android:id="@+id/switchEditing"
             android:icon="@drawable/ic_edit"
-            android:title="Editing"/>
+            android:title="@string/editing"/>
 
         <item android:id="@+id/switchGallery"
             android:icon="@drawable/ic_gallery"
-            android:title="Gallery"/>
+            android:title="@string/gallery"/>
 
     </group>
 
-    <item android:title="Settings">
+    <item android:title="@string/settings">
 
         <menu xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:android="http://schemas.android.com/apk/res/android">
 
             <item android:id="@+id/realTime"
                   app:actionLayout="@layout/layout_switch"
-                  android:title="Real time processing"/>
+                  android:title="@string/real_time_processing"/>
 
         </menu>
-        
+
     </item>
 
     <item android:id="@+id/language"
           android:icon="@drawable/ic_language"
-          android:title="Change language"/>
+          android:title="@string/change_language"/>
 
 </menu>

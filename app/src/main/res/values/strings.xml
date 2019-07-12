@@ -1,6 +1,24 @@
 <resources>
+
     <string name="app_name">Oledify</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!--accessibility for navigation drawer-->
+    <string name="navigation_drawer_open">Navigation drawer opened</string>
+    <string name="navigation_drawer_close">Navigation drawer closed</string>
+
+    <!--menu of navigation drawer-->
+    <string name="real_time_processing">Real time processing</string>
+    <string name="gallery">Gallery</string>
+    <string name="editing">Editing</string>
+    <string name="settings">Settings</string>
+    <string name="change_language">Change language</string>
+
+    <!--main activity-->
+    <string name="upload_image">upload an image</string>
+    <string name="trick">do the trick</string>
+    <string name="clear">clear</string>
+
+    <!--edit activity-->
+    <string name="save">save</string>
+
 </resources>
