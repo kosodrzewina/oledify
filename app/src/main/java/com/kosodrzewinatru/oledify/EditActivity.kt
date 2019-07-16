@@ -100,11 +100,9 @@ class EditActivity : AppCompatActivity() {
             val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
             var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
 
-//            bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
-            val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+            bitmap = Processing().Editing().makeBlack(bitmap, (765 * (blacknessValue.text.toString().toFloat() / 100)))
 
-
-            thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
             stream.flush()
             stream.close()
@@ -119,7 +117,6 @@ class EditActivity : AppCompatActivity() {
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
-
         }
 
         override fun onPostExecute(result: Bitmap?) {
