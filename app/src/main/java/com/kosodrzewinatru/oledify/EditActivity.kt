@@ -60,7 +60,7 @@ class EditActivity : AppCompatActivity() {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
-                if (switchRealTime.isChecked == true) {
+                if (switchRealTime.isChecked) {
                     blacknessValue.text = progress.toString()
                     Processing().execute(thumbnail)
                 } else {
@@ -70,7 +70,7 @@ class EditActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
-                if (switchRealTime.isChecked == true) {
+                if (switchRealTime.isChecked) {
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
@@ -128,7 +128,7 @@ class EditActivity : AppCompatActivity() {
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-                return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+            return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
         }
 
         override fun onPostExecute(result: Bitmap?) {
