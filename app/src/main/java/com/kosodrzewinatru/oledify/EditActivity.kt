@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.widget.SeekBar
@@ -58,12 +59,23 @@ class EditActivity : AppCompatActivity() {
             }
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                blacknessValue.text = progress.toString()
-                Processing().execute(thumbnail)
+                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+                if (switchRealTime.isChecked == true) {
+                    blacknessValue.text = progress.toString()
+                    Processing().execute(thumbnail)
+                } else {
+                    blacknessValue.text = progress.toString()
+                }
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                saveButton.isEnabled = true
+                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+                if (switchRealTime.isChecked == true) {
+                    saveButton.isEnabled = true
+                } else {
+                    saveButton.isEnabled = true
+                    Processing().execute(thumbnail)
+                }
             }
         })
     }
@@ -116,7 +128,7 @@ class EditActivity : AppCompatActivity() {
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+                return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
         }
 
         override fun onPostExecute(result: Bitmap?) {
