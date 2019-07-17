@@ -90,14 +90,7 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun saveToStorage() {
-
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
-
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Log.d("check_permission", "GRANTED")
-        } else {
-            Log.d("check_permission", "DENIED")
-        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -119,9 +112,9 @@ class EditActivity : AppCompatActivity() {
             stream.flush()
             stream.close()
 
-            Toast.makeText(this, "Image saved!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Something went wrong. Image cannot be saved.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.not_saved), Toast.LENGTH_SHORT).show()
         }
     }
 

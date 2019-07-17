@@ -3,22 +3,26 @@
     <string name="app_name" translatable="false">Oledify</string>
 
     <!--accessibility for navigation drawer-->
-    <string name="navigation_drawer_open" translatable="false">Otworzono szufladę</string>
-    <string name="navigation_drawer_close" translatable="false">Zamknięto szufladę</string>
+    <string name="navigation_drawer_open">Otworzono szufladę</string>
+    <string name="navigation_drawer_close">Zamknięto szufladę</string>
 
     <!--menu of navigation drawer-->
-    <string name="real_time_processing" translatable="false">Przetwarzanie w czasie rzeczywistym</string>
-    <string name="gallery" translatable="false">Galeria</string>
-    <string name="editing" translatable="false">Edytowanie</string>
-    <string name="settings" translatable="false">Ustawienia</string>
-    <string name="change_language" translatable="false">Zmiana języka</string>
+    <string name="real_time_processing">Przetwarzanie w czasie rzeczywistym</string>
+    <string name="gallery">Galeria</string>
+    <string name="editing">Edytowanie</string>
+    <string name="settings">Ustawienia</string>
+    <string name="change_language">Zmiana języka</string>
 
     <!--main activity-->
-    <string name="upload_image" translatable="false">załaduj zdjęcie</string>
-    <string name="trick" translatable="false">przejdź dalej</string>
-    <string name="clear" translatable="false">wyczyść</string>
+    <string name="upload_image">załaduj zdjęcie</string>
+    <string name="trick">przejdź dalej</string>
+    <string name="clear">wyczyść</string>
 
     <!--edit activity-->
-    <string name="save" translatable="false">zapisz</string>
+    <string name="save">zapisz</string>
+
+    <!--toast messages-->
+    <string name="saved">Obraz zapisany!</string>
+    <string name="not_saved">Coś poszło nie tak. Obraz nie został zapisany!</string>
 
 </resources>
