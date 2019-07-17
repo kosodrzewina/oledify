@@ -21,7 +21,7 @@
               xmlns:android="http://schemas.android.com/apk/res/android">
 
             <item android:id="@+id/realTime"
-                  app:actionLayout="@layout/layout_switch"
+                  app:actionViewClass="android.support.v7.widget.SwitchCompat"
                   android:title="@string/real_time_processing"/>
 
         </menu>
