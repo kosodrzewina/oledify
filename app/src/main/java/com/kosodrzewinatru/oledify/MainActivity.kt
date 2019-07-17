@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         magicButton.isEnabled = false
 
         toolbarMain.title = getString(R.string.app_name)
+
+        val fragmentManager = supportFragmentManager
+        val languagesFragment = LanguagesFragment()
 
         // hamburger icon
         val toggle = ActionBarDrawerToggle(this, drawerMain, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -41,11 +43,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         // clear imageView
         clearButton.setOnClickListener {
             imagePreviewView.setImageDrawable(null)
             magicButton.isEnabled = false
+
+            languagesFragment.show(fragmentManager, "LIST")
         }
     }
 
@@ -71,12 +74,6 @@ class MainActivity : AppCompatActivity() {
             // image showed via URI
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFile)
             val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
-            Log.d("file", selectedFileEdit)
-
-            val path = selectedFile?.path
-
-            val fileName = path?.substring(path.lastIndexOf("/") + 1)
-            Log.d("file_name", fileName)
 
             imagePreviewView.setImageBitmap(thumbnail)
 
