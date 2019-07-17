@@ -1,6 +1,5 @@
 package com.kosodrzewinatru.oledify
 
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
@@ -9,7 +8,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -60,6 +58,7 @@ class EditActivity : AppCompatActivity() {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+
                 if (switchRealTime.isChecked) {
                     blacknessValue.text = progress.toString()
                     Processing().execute(thumbnail)
@@ -70,6 +69,7 @@ class EditActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+
                 if (switchRealTime.isChecked) {
                     saveButton.isEnabled = true
                 } else {
