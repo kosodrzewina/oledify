@@ -94,7 +94,7 @@ class EditActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             val storageDirectory = Environment.getExternalStorageDirectory().toString()
             Log.d("PATH", storageDirectory)
 
@@ -105,7 +105,7 @@ class EditActivity : AppCompatActivity() {
             val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
             var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
 
-            bitmap = Processing().Editing().makeBlack(bitmap, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+            bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
@@ -121,7 +121,7 @@ class EditActivity : AppCompatActivity() {
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing().makeBlack(params[0]!!, (765 * (blacknessValue.text.toString().toFloat() / 100)))
+            return Editing().makeBlack(params[0]!!, blacknessValue.text.toString().toFloat())
         }
 
         override fun onPostExecute(result: Bitmap?) {
@@ -135,6 +135,7 @@ class EditActivity : AppCompatActivity() {
 
             // main function responsible for processing bitmap
             fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
+                val intensity = intensity * 765 / 100
 
                 val pixels = IntArray(bitmap.height * bitmap.width)
 
