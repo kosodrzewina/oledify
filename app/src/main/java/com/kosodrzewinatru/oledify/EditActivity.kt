@@ -7,24 +7,36 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityCompat
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
+import android.view.MenuItem
 import android.widget.SeekBar
 import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class EditActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var drawer: DrawerLayout
+
+    private val fragmentManager = supportFragmentManager
+    private val languagesFragment = LanguagesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+
+        drawer = findViewById(R.id.drawerEdit)
+        val navigationView = findViewById<NavigationView>(R.id.navViewEdit)
+        navigationView.setNavigationItemSelectedListener(this)
+
 
         toolbarEdit.title = getString(R.string.app_name)
 
@@ -78,6 +90,14 @@ class EditActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when(p0.itemId) {
+            R.id.language -> languagesFragment.show(fragmentManager, "LIST")
+        }
+
+        return true
     }
 
     // if back button is pressed and the drawer is open, close the drawer
