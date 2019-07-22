@@ -6,23 +6,32 @@ import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var selectedFileEdit: String
+
+    private lateinit var drawer: DrawerLayout
+
+    val fragmentManager = supportFragmentManager
+    val languagesFragment = LanguagesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        drawer = findViewById(R.id.drawerMain)
+        val navigationView = findViewById<NavigationView>(R.id.navViewMain)
+        navigationView.setNavigationItemSelectedListener(this)
+
         magicButton.isEnabled = false
 
         toolbarMain.title = getString(R.string.app_name)
-
-        val fragmentManager = supportFragmentManager
-        val languagesFragment = LanguagesFragment()
 
         // hamburger icon
         val toggle = ActionBarDrawerToggle(this, drawerMain, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -48,8 +57,16 @@ class MainActivity : AppCompatActivity() {
             imagePreviewView.setImageDrawable(null)
             magicButton.isEnabled = false
 
-            languagesFragment.show(fragmentManager, "LIST")
+//            languagesFragment.show(fragmentManager, "LIST")
         }
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when(p0.itemId) {
+            R.id.language -> languagesFragment.show(fragmentManager, "LIST")
+        }
+
+        return true
     }
 
     // if back button is pressed and the drawer is open, close the drawer
