@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawer: DrawerLayout
 
-    val fragmentManager = supportFragmentManager
-    val languagesFragment = LanguagesFragment()
+    private val fragmentManager = supportFragmentManager
+    private val languagesFragment = LanguagesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
