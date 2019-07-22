@@ -56,11 +56,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         clearButton.setOnClickListener {
             imagePreviewView.setImageDrawable(null)
             magicButton.isEnabled = false
-
-//            languagesFragment.show(fragmentManager, "LIST")
         }
     }
 
+    // back-end for stuff in the drawer
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
