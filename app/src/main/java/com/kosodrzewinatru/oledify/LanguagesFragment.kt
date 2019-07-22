@@ -9,10 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 
 class LanguagesFragment: DialogFragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.dialog_fragment_languages, container, false)
 
