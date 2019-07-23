@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -18,7 +19,6 @@ import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.view.MenuItem
 import android.widget.SeekBar
-import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -33,6 +33,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        // drawer itself
         drawer = findViewById(R.id.drawerEdit)
         val navigationView = findViewById<NavigationView>(R.id.navViewEdit)
         navigationView.setNavigationItemSelectedListener(this)
@@ -132,9 +133,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             stream.flush()
             stream.close()
 
-            Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show()
+            Snackbar.make(drawerEdit, getString(R.string.saved), Snackbar.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, getString(R.string.not_saved), Toast.LENGTH_SHORT).show()
+            Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
     }
 
