@@ -10,6 +10,7 @@
         android:id="@+id/drawerMain">
 
     <android.support.constraint.ConstraintLayout
+                android:id="@+id/constrainLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
@@ -39,14 +40,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:minHeight="300dp"/>
-
-                        <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/uploadButton"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="@string/upload_image"/>
-
+                    
                         <android.support.v7.widget.AppCompatButton
                                 android:id="@+id/magicButton"
                                 android:layout_width="wrap_content"
@@ -64,6 +58,16 @@
                 </LinearLayout>
 
         </ScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/uploadButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/constrainLayout"
+                app:layout_constraintRight_toRightOf="@+id/constrainLayout"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_add"/>
 
     </android.support.constraint.ConstraintLayout>
 
