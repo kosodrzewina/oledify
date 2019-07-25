@@ -46,6 +46,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:textSize="12sp"
+                                android:background="@drawable/rounded_button"
+                                android:layout_marginTop="16dp"
+                                android:width="100dp"
                                 android:text="@string/trick"/>
 
                         <android.support.v7.widget.AppCompatButton
@@ -53,6 +57,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:background="@drawable/rounded_button"
+                                android:layout_marginTop="16dp"
+                                android:textSize="12sp"
+                                android:width="100dp"
                                 android:text="@string/clear"/>
 
                 </LinearLayout>
