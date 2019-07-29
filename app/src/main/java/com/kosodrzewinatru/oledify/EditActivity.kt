@@ -1,5 +1,7 @@
 package com.kosodrzewinatru.oledify
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
@@ -61,7 +63,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         imageEditView.setImageBitmap(thumbnail)
 
         saveButton.setOnClickListener {
-            saveToStorage()
+            Saving().execute(bitmap)
         }
 
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -110,34 +112,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun saveToStorage() {
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-            if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            val storageDirectory = Environment.getExternalStorageDirectory().toString()
-            Log.d("PATH", storageDirectory)
-
-            val file = File(storageDirectory, "test.jpg")
-            val stream: OutputStream = FileOutputStream(file)
-
-            // get the original bitmap once again
-            val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
-            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
-
-            bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
-
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-
-            stream.flush()
-            stream.close()
-
-            Snackbar.make(drawerEdit, getString(R.string.saved), Snackbar.LENGTH_SHORT).show()
-        } else {
-            Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
-        }
-    }
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
@@ -178,6 +152,52 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 return processed
             }
+        }
+    }
+
+    // asynchronous class for saving
+    internal inner class Saving : AsyncTask<Bitmap, Void, Void?>() {
+        private var bitmapToSave = MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.getStringExtra("selectedFileEdit")))
+
+        override fun doInBackground(vararg p0: Bitmap?): Void? {
+            bitmapToSave = p0[0]!!
+
+            return saveToStorage(bitmapToSave)
+        }
+
+        override fun onPostExecute(result: Void?) {
+            Snackbar.make(drawerEdit, getString(R.string.saved), Snackbar.LENGTH_SHORT).show()
+        }
+
+        private fun saveToStorage(bitmap: Bitmap): Void? {
+            if (ActivityCompat.checkSelfPermission(this@EditActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                val storageDirectory = Environment.getExternalStorageDirectory().toString()
+                Log.d("PATH", storageDirectory)
+
+                val file = File(storageDirectory, "test.jpg")
+                val stream: OutputStream = FileOutputStream(file)
+
+                val bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+                stream.flush()
+                stream.close()
+            } else {
+//                ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+                ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+            }
+
+            return null
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            Saving().execute(MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.getStringExtra("selectedFileEdit"))))
+        } else {
+            Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
     }
 }
