@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val SHARED_PREFS = "sharedPrefs"
     val SWITCH_REAL_TIME = "switchRealTime"
 
-    var switchRealTimeState = findViewById<SwitchCompat>(R.id.realTime).isChecked
+    var switchRealTimeState = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
