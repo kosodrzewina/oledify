@@ -7,7 +7,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".MainActivity"
         android:fitsSystemWindows="true"
-        tools:openDrawer="start"
         android:id="@+id/drawerEdit">
 
     <android.support.constraint.ConstraintLayout
@@ -42,13 +41,39 @@
                         android:layout_gravity="center"/>
 
                 <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/blacknessValue"
+                        android:id="@+id/blacknessOrRedValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"/>
 
                 <android.support.v7.widget.AppCompatSeekBar
-                        android:id="@+id/intensitySeekBar"
+                        android:id="@+id/intensitySeekBarMaybeRed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="250dp"
+                        android:layout_gravity="center"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/greenValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/intensitySeekBarGreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="250dp"
+                        android:layout_gravity="center"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/blueValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/intensitySeekBarBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="250dp"

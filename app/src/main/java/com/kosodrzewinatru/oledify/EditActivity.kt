@@ -51,8 +51,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         saveButton.isEnabled = false
 
         // default value of intensity
-        intensitySeekBar.progress = 0
-        blacknessValue.text = intensitySeekBar.progress.toString()
+        intensitySeekBarMaybeRed.progress = 0
+        blacknessOrRedValue.text = intensitySeekBarMaybeRed.progress.toString()
 
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
@@ -66,7 +66,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Saving().execute(bitmap)
         }
 
-        intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        intensitySeekBarMaybeRed.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 saveButton.isEnabled = false
             }
@@ -75,10 +75,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
 
                 if (switchRealTime.isChecked) {
-                    blacknessValue.text = progress.toString()
+                    blacknessOrRedValue.text = progress.toString()
                     Processing().execute(thumbnail)
                 } else {
-                    blacknessValue.text = progress.toString()
+                    blacknessOrRedValue.text = progress.toString()
                 }
             }
 
@@ -116,7 +116,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing().makeBlack(params[0]!!, blacknessValue.text.toString().toFloat())
+            return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
         }
 
         override fun onPostExecute(result: Bitmap?) {
@@ -177,7 +177,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val file = File(storageDirectory, "test.jpg")
                 val stream: OutputStream = FileOutputStream(file)
 
-                val bitmap = Processing().Editing().makeBlack(bitmap, blacknessValue.text.toString().toFloat())
+                val bitmap = Processing().Editing().makeBlack(bitmap, blacknessOrRedValue.text.toString().toFloat())
 
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
