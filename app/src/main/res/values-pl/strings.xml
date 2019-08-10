@@ -12,6 +12,7 @@
     <string name="editing">Edytowanie</string>
     <string name="settings">Ustawienia</string>
     <string name="change_language">Zmiana języka</string>
+    <string name="RGB_sliders">suwaki RGB</string>
 
     <!--main activity-->
     <string name="upload_image">załaduj zdjęcie</string>

@@ -12,6 +12,7 @@
     <string name="editing">Editing</string>
     <string name="settings">Settings</string>
     <string name="change_language">Change language</string>
+    <string name="RGB_sliders">RGB sliders</string>
 
     <!--main activity-->
     <string name="upload_image">upload an image</string>
