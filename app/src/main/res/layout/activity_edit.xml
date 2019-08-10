@@ -47,7 +47,8 @@
                         android:id="@+id/blacknessOrRedValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorAccent"/>
 
                 <android.support.v7.widget.AppCompatSeekBar
                         android:id="@+id/intensitySeekBarMaybeRed"
@@ -60,27 +61,33 @@
                         android:id="@+id/greenValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/holo_green_light"/>
 
                 <android.support.v7.widget.AppCompatSeekBar
                         android:id="@+id/intensitySeekBarGreen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="250dp"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:progressTint="@android:color/holo_green_light"
+                        android:thumbTint="@android:color/holo_green_dark"/>
 
                 <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/blueValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/holo_blue_light"/>
 
                 <android.support.v7.widget.AppCompatSeekBar
                         android:id="@+id/intensitySeekBarBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="250dp"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:progressTint="@android:color/holo_blue_light"
+                        android:thumbTint="@android:color/holo_blue_dark"/>
 
                 <android.support.v7.widget.AppCompatButton
                         android:id="@+id/saveButton"
