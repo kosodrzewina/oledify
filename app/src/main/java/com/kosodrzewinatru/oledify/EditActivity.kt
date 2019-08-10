@@ -54,6 +54,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         intensitySeekBarMaybeRed.progress = 0
         blacknessOrRedValue.text = intensitySeekBarMaybeRed.progress.toString()
 
+        intensitySeekBarGreen.progress = 0
+        greenValue.text = intensitySeekBarGreen.progress.toString()
+
+        intensitySeekBarBlue.progress = 0
+        blueValue.text = intensitySeekBarBlue.progress.toString()
+
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
@@ -66,23 +72,24 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Saving().execute(bitmap)
         }
 
+        // seekbar for general or red intensity
         intensitySeekBarMaybeRed.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 saveButton.isEnabled = false
             }
 
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
 
                 if (switchRealTime.isChecked) {
-                    blacknessOrRedValue.text = progress.toString()
+                    blacknessOrRedValue.text = p1.toString()
                     Processing().execute(thumbnail)
                 } else {
-                    blacknessOrRedValue.text = progress.toString()
+                    blacknessOrRedValue.text = p1.toString()
                 }
             }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            override fun onStopTrackingTouch(p0: SeekBar?) {
                 val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
 
                 if (switchRealTime.isChecked) {
@@ -90,6 +97,60 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 } else {
                     saveButton.isEnabled = true
                     Processing().execute(thumbnail)
+                }
+            }
+        })
+
+        // seekbar for green intensity
+        intensitySeekBarGreen.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+                saveButton.isEnabled = false
+            }
+
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+
+                if (switchRealTime.isChecked) {
+                    greenValue.text = p1.toString()
+                } else {
+                    greenValue.text = p1.toString()
+                }
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+
+                if (switchRealTime.isChecked) {
+                    saveButton.isEnabled = true
+                } else {
+                    saveButton.isEnabled = true
+                }
+            }
+        })
+
+        // seekbar for blue intensity
+        intensitySeekBarBlue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+                saveButton.isEnabled = false
+            }
+
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+
+                if (switchRealTime.isChecked) {
+                    blueValue.text = p1.toString()
+                } else {
+                    blueValue.text = p1.toString()
+                }
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
+
+                if (switchRealTime.isChecked) {
+                    saveButton.isEnabled = true
+                } else {
+                    saveButton.isEnabled = true
                 }
             }
         })
