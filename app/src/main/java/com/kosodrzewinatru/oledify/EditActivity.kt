@@ -213,6 +213,32 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 return processed
             }
+
+            fun makeBlackRGB(bitmap: Bitmap, intensityRed: Float, intensityGreen: Float, intensityBlue: Float): Bitmap {
+                val intensityRed = intensityRed * 765 / 100
+                val intensityGreen = intensityGreen * 765 / 100
+                val intensityBlue = intensityBlue * 765 / 100
+
+                val pixels = IntArray(bitmap.height * bitmap.width)
+
+                bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+                for (i in 0 until pixels.size) {
+                    val red = Color.red(pixels[i])
+                    val green = Color.green(pixels[i])
+                    val blue = Color.blue(pixels[i])
+
+                    if (red <= intensityRed && green <= intensityGreen && blue <= intensityBlue) {
+                        pixels[i] = -16777214
+                    }
+                }
+
+                val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+
+                processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+                return processed
+            }
         }
     }
 
