@@ -24,6 +24,10 @@
                   app:actionViewClass="android.support.v7.widget.SwitchCompat"
                   android:title="@string/real_time_processing"/>
 
+            <item android:id="@+id/rgbSliders"
+                  app:actionViewClass="android.support.v7.widget.SwitchCompat"
+                  android:title="@string/RGB_sliders"/>
+
         </menu>
 
     </item>
