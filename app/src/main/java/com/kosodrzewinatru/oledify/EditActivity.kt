@@ -112,6 +112,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 if (switchRealTime.isChecked) {
                     greenValue.text = p1.toString()
+                    Processing().execute(thumbnail)
                 } else {
                     greenValue.text = p1.toString()
                 }
@@ -124,6 +125,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
+                    Processing().execute(thumbnail)
                 }
             }
         })
@@ -139,6 +141,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 if (switchRealTime.isChecked) {
                     blueValue.text = p1.toString()
+                    Processing().execute(thumbnail)
                 } else {
                     blueValue.text = p1.toString()
                 }
@@ -151,6 +154,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
+                    Processing().execute(thumbnail)
                 }
             }
         })
@@ -177,7 +181,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+//            return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+            return Editing().makeBlackRGB(params[0]!!, blacknessOrRedValue.text.toString().toFloat(), greenValue.text.toString().toFloat(), blueValue.text.toString().toFloat())
         }
 
         override fun onPostExecute(result: Bitmap?) {
