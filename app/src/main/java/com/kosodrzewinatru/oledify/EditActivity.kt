@@ -40,8 +40,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView = findViewById<NavigationView>(R.id.navViewEdit)
         navigationView.setNavigationItemSelectedListener(this)
 
-
         toolbarEdit.title = getString(R.string.app_name)
+
+//        if (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked == false) {
+//            intensitySeekBarGreen.isEnabled = false
+//            intensitySeekBarBlue.isEnabled = false
+//        }
 
         // hamburger icon
         var toggle = ActionBarDrawerToggle(this, drawerEdit, toolbarEdit, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -181,8 +185,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-//            return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
-            return Editing().makeBlackRGB(params[0]!!, blacknessOrRedValue.text.toString().toFloat(), greenValue.text.toString().toFloat(), blueValue.text.toString().toFloat())
+            if (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked) {
+                return Editing().makeBlackRGB(params[0]!!, blacknessOrRedValue.text.toString().toFloat(), greenValue.text.toString().toFloat(), blueValue.text.toString().toFloat())
+            } else {
+                return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+            }
         }
 
         override fun onPostExecute(result: Bitmap?) {
