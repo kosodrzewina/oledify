@@ -1,19 +1,20 @@
 package com.kosodrzewinatru.oledify
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SwitchCompat
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+
+private var switchDefaultState = true
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var selectedFileEdit: String
@@ -22,11 +23,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
-
-    val SHARED_PREFS = "sharedPrefs"
-    val SWITCH_REAL_TIME = "switchRealTime"
-
-    var switchRealTimeState = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,31 +62,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    // saving values with shared preferences after closing the app
-    private fun saveValues() {
-        val sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
 
-        // state of real-time-switch in the drawer
-        val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
-        editor.putBoolean(SWITCH_REAL_TIME, switchRealTime.isChecked)
-
-        editor.apply()
-    }
-
-    // loading values with shared preferences
-    private fun loadValues() {
-        val sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-
-        // state of real-time-switch in the drawer
-        switchRealTimeState = sharedPreferences.getBoolean(SWITCH_REAL_TIME, false)
-    }
-
-    // updating values with shared preferences
-    private fun updateValues() {
-        // updating state of real-time-switch
-        val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
-        switchRealTime.isChecked = switchRealTimeState
+        if (switchDefaultState) {
+            findViewById<SwitchCompat>(R.id.realTime).isChecked = true
+            switchDefaultState = false
+        }
     }
 
     // back-end for stuff in the drawer

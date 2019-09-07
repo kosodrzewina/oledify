@@ -25,6 +25,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
+private var switchDefaultState = true
+
 class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
 
@@ -164,6 +166,15 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if (switchDefaultState) {
+            findViewById<SwitchCompat>(R.id.realTime).isChecked = true
+            switchDefaultState = false
+        }
+    }
+
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
@@ -209,7 +220,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-                for (i in 0 until pixels.size) {
+                for (i in pixels.indices) {
                     val red = Color.red(pixels[i])
                     val green = Color.green(pixels[i])
                     val blue = Color.blue(pixels[i])
@@ -235,7 +246,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-                for (i in 0 until pixels.size) {
+                for (i in pixels.indices) {
                     val red = Color.red(pixels[i])
                     val green = Color.green(pixels[i])
                     val blue = Color.blue(pixels[i])
