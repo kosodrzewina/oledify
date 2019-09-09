@@ -20,14 +20,10 @@ import android.support.v7.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.view.MenuItem
-import android.view.MotionEvent
-import android.widget.CompoundButton
 import android.widget.SeekBar
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-
-private var switchDefaultState = true
 
 class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
@@ -167,17 +163,17 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         val rgbSwitch = navigationView.menu.findItem(R.id.rgbSliders)
-        var isRGBChecked = rgbSwitch.isChecked
+        var isRGBChecked = false
 
         // listener for rgbSwitch
         rgbSwitch.actionView.setOnClickListener {
             if (isRGBChecked) {
-                intensitySeekBarGreen.isEnabled = true
-                intensitySeekBarBlue.isEnabled = true
-                isRGBChecked = false
-            } else {
                 intensitySeekBarGreen.isEnabled = false
                 intensitySeekBarBlue.isEnabled = false
+                isRGBChecked = false
+            } else {
+                intensitySeekBarGreen.isEnabled = true
+                intensitySeekBarBlue.isEnabled = true
                 isRGBChecked = true
             }
         }
