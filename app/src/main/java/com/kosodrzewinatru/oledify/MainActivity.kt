@@ -62,15 +62,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-
-        if (switchDefaultState) {
-            findViewById<SwitchCompat>(R.id.realTime).isChecked = true
-            switchDefaultState = false
-        }
-    }
-
     // back-end for stuff in the drawer
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
