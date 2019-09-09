@@ -20,6 +20,8 @@ import android.support.v7.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.widget.CompoundButton
 import android.widget.SeekBar
 import java.io.File
 import java.io.FileOutputStream
@@ -44,10 +46,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         toolbarEdit.title = getString(R.string.app_name)
 
-//        if (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked == false) {
-//            intensitySeekBarGreen.isEnabled = false
-//            intensitySeekBarBlue.isEnabled = false
-//        }
+        // seekbars disabled by default
+        intensitySeekBarGreen.isEnabled = false
+        intensitySeekBarBlue.isEnabled = false
 
         // hamburger icon
         var toggle = ActionBarDrawerToggle(this, drawerEdit, toolbarEdit, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -164,14 +165,21 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         })
-    }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
+        val rgbSwitch = navigationView.menu.findItem(R.id.rgbSliders)
+        var isRGBChecked = rgbSwitch.isChecked
 
-        if (switchDefaultState) {
-            findViewById<SwitchCompat>(R.id.realTime).isChecked = true
-            switchDefaultState = false
+        // listener for rgbSwitch
+        rgbSwitch.actionView.setOnClickListener {
+            if (isRGBChecked) {
+                intensitySeekBarGreen.isEnabled = true
+                intensitySeekBarBlue.isEnabled = true
+                isRGBChecked = false
+            } else {
+                intensitySeekBarGreen.isEnabled = false
+                intensitySeekBarBlue.isEnabled = false
+                isRGBChecked = true
+            }
         }
     }
 
