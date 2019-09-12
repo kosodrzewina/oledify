@@ -200,10 +200,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            if (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked) {
-                return Editing().makeBlackRGB(params[0]!!, blacknessOrRedValue.text.toString().toFloat(), greenValue.text.toString().toFloat(), blueValue.text.toString().toFloat())
-            } else {
-                return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+            when (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked) {
+                true -> return Editing().makeBlackRGB(params[0]!!, blacknessOrRedValue.text.toString().toFloat(), greenValue.text.toString().toFloat(), blueValue.text.toString().toFloat())
+                false -> return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
             }
         }
 
