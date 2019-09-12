@@ -1,6 +1,7 @@
 package com.kosodrzewinatru.oledify
 
 import android.os.Bundle
+import android.os.LocaleList
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,11 @@ class LanguagesFragment: DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.dialog_fragment_languages, container, false)
 
-        var menuItems = arrayOf<String>("Item_1", "Item_2", "Item_3")
+        var menuItems = arrayListOf<String>()
+
+        for (i in 0 until LocaleList.getDefault().size()) {
+            menuItems.add(LocaleList.getDefault()[i].displayLanguage)
+        }
 
         val listView = view?.findViewById<ListView>(R.id.listLanguages)
 
