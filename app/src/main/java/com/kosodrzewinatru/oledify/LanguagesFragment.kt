@@ -29,6 +29,10 @@ class LanguagesFragment: DialogFragment() {
 
         listView?.adapter = listViewAdapter
 
+        listView?.setOnItemClickListener { adapterView, view, i, l ->
+            (activity as MainActivity).changeLanguage(LocaleList.getDefault()[i])
+        }
+
         return view
     }
 }
