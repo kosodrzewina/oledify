@@ -9,4 +9,9 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!-- Style for text -->
+    <style name="TextAppearance">
+        <item name="android:ellipsize">end</item>
+    </style>
+
 </resources>
