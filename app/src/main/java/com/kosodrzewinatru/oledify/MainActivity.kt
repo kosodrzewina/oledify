@@ -10,11 +10,9 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.SwitchCompat
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
-
-private var switchDefaultState = true
+import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var selectedFileEdit: String
@@ -98,5 +96,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             magicButton.isEnabled = true
         }
+    }
+
+    fun changeLanguage(locale: Locale) {
+        val config = resources.configuration
+
+        Locale.setDefault(locale)
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        finish()
+        startActivity(intent)
     }
 }
