@@ -1,0 +1,27 @@
+<resources>
+
+    <!--accessibility for navigation drawer-->
+    <string name="navigation_drawer_open">Tiroir de navigation ouvert</string>
+    <string name="navigation_drawer_close">Tiroir de navigation fermé</string>
+
+    <!--menu of navigation drawer-->
+    <string name="real_time_processing">Traitement en temps réel</string>
+    <string name="gallery">Galerie</string>
+    <string name="editing">Édition</string>
+    <string name="settings">Paramètres</string>
+    <string name="change_language">Changer de langue</string>
+    <string name="RGB_sliders">Curseurs RVB</string>
+
+    <!--main activity-->
+    <string name="upload_image">télécharger une image</string>
+    <string name="trick">continuez</string>
+    <string name="clear">clair</string>
+
+    <!--edit activity-->
+    <string name="save">sauver</string>
+
+    <!--toast messages-->
+    <string name="saved">Image enregistrée!</string>
+    <string name="not_saved">Quelque chose s\'est mal passé. L\'image ne peut pas être enregistrée!</string>
+
+</resources>
