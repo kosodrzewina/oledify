@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Oledify</string>
-
     <!--accessibility for navigation drawer-->
     <string name="navigation_drawer_open">Otworzono szufladę</string>
     <string name="navigation_drawer_close">Zamknięto szufladę</string>
