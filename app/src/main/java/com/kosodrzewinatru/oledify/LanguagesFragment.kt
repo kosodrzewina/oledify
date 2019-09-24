@@ -1,22 +1,23 @@
 package com.kosodrzewinatru.oledify
 
 import android.os.Bundle
-import android.os.LocaleList
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import java.util.*
 
 class LanguagesFragment: DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.dialog_fragment_languages, container, false)
 
-        var menuItems = arrayListOf<String>()
+        val supportedLocales = arrayOf(Locale.ENGLISH, Locale.FRENCH, Locale("pl", "PL"))
+        val menuItems = arrayListOf<String>()
 
-        for (i in 0 until LocaleList.getDefault().size()) {
-            menuItems.add(LocaleList.getDefault()[i].displayLanguage)
+        for (i in 0 until supportedLocales.size) {
+            menuItems.add(supportedLocales[i].displayLanguage)
         }
 
         val listView = view?.findViewById<ListView>(R.id.listLanguages)
@@ -30,7 +31,7 @@ class LanguagesFragment: DialogFragment() {
         listView?.adapter = listViewAdapter
 
         listView?.setOnItemClickListener { adapterView, view, i, l ->
-            (activity as MainActivity).changeLanguage(LocaleList.getDefault()[i])
+            (activity as MainActivity).changeLanguage(supportedLocales[i])
         }
 
         return view
