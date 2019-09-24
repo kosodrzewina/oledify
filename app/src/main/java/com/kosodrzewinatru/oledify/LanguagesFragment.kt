@@ -16,8 +16,8 @@ class LanguagesFragment: DialogFragment() {
         val supportedLocales = arrayOf(Locale.ENGLISH, Locale.FRENCH, Locale("pl", "PL"))
         val menuItems = arrayListOf<String>()
 
-        for (i in 0 until supportedLocales.size) {
-            menuItems.add(supportedLocales[i].displayLanguage)
+        (supportedLocales.indices).forEach {
+            menuItems.add(supportedLocales[it].displayLanguage)
         }
 
         val listView = view?.findViewById<ListView>(R.id.listLanguages)
@@ -30,7 +30,7 @@ class LanguagesFragment: DialogFragment() {
 
         listView?.adapter = listViewAdapter
 
-        listView?.setOnItemClickListener { adapterView, view, i, l ->
+        listView?.setOnItemClickListener { _, _, i, _ ->
             (activity as MainActivity).changeLanguage(supportedLocales[i])
         }
 

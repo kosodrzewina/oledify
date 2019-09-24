@@ -223,13 +223,13 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-                for (i in pixels.indices) {
-                    val red = Color.red(pixels[i])
-                    val green = Color.green(pixels[i])
-                    val blue = Color.blue(pixels[i])
+                (pixels.indices).forEach {
+                    val red = Color.red(pixels[it])
+                    val green = Color.green(pixels[it])
+                    val blue = Color.blue(pixels[it])
 
                     if (red + green + blue <= intensity) {
-                        pixels[i] = -16777214
+                        pixels[it] = -16777214
                     }
                 }
 
@@ -249,13 +249,13 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-                for (i in pixels.indices) {
-                    val red = Color.red(pixels[i])
-                    val green = Color.green(pixels[i])
-                    val blue = Color.blue(pixels[i])
+                (pixels.indices).forEach {
+                    val red = Color.red(pixels[it])
+                    val green = Color.green(pixels[it])
+                    val blue = Color.blue(pixels[it])
 
                     if (red <= intensityRed && green <= intensityGreen && blue <= intensityBlue) {
-                        pixels[i] = -16777214
+                        pixels[it] = -16777214
                     }
                 }
 
