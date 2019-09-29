@@ -26,4 +26,7 @@
     <string name="saved">Image saved!</string>
     <string name="not_saved">Something went wrong. Image cannot be saved!</string>
 
+    <!--welcome fragment-->
+    <string name="welcome_title">Welcome to Oledify!</string>
+
 </resources>
