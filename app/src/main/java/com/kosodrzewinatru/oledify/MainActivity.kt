@@ -1,6 +1,7 @@
 package com.kosodrzewinatru.oledify
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -19,12 +20,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawer: DrawerLayout
 
-    private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
+    private val welcomeFragment = WelcomeFragment()
+
+    val SHARED_PREFS = "sharedPrefs"
+    val IS_FIRST_LAUNCH = "isFirstLaunch"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // display welcome fragment on the first launch
+        if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_FIRST_LAUNCH, true)) {
+            welcomeFragment.show(supportFragmentManager, "WELCOME")
+
+            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
+        }
 
         drawer = findViewById(R.id.drawerMain)
         val navigationView = findViewById<NavigationView>(R.id.navViewMain)
@@ -63,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // back-end for stuff in the drawer
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
-            R.id.language -> languagesFragment.show(fragmentManager, "LIST")
+            R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
         }
 
         return true
