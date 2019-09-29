@@ -6,7 +6,9 @@
     <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/welcome_title">
+            android:text="@string/welcome_title"
+            android:textSize="30sp"
+            android:textColor="#000000">
     </android.support.v7.widget.AppCompatTextView>
 
 </android.support.v7.widget.LinearLayoutCompat>
