@@ -47,7 +47,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         intensitySeekBarBlue.isEnabled = false
 
         // hamburger icon
-        var toggle = ActionBarDrawerToggle(this, drawerEdit, toolbarEdit, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        var toggle = ActionBarDrawerToggle(
+            this,
+            drawerEdit,
+            toolbarEdit,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close)
         drawerEdit.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -167,6 +172,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // listener for rgbSwitch
         rgbSwitch.actionView.setOnClickListener {
+            Log.d("RGB_SWITCH_STATE", rgbSwitch.actionView.isPressed.toString())
+            rgbSwitch.actionView.isPressed = false
+
             if (isRGBChecked) {
                 intensitySeekBarGreen.isEnabled = false
                 intensitySeekBarBlue.isEnabled = false
@@ -201,7 +209,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             when (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked) {
-                true -> return Editing().makeBlackRGB(params[0]!!, blacknessOrRedValue.text.toString().toFloat(), greenValue.text.toString().toFloat(), blueValue.text.toString().toFloat())
+                true -> return Editing().makeBlackRGB(
+                    params[0]!!,
+                    blacknessOrRedValue.text.toString().toFloat(),
+                    greenValue.text.toString().toFloat(),
+                    blueValue.text.toString().toFloat())
                 false -> return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
             }
         }
@@ -270,7 +282,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // asynchronous class for saving
     internal inner class Saving : AsyncTask<Bitmap, Void, Void?>() {
-        private var bitmapToSave = MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.getStringExtra("selectedFileEdit")))
+        private var bitmapToSave = MediaStore.Images.Media.getBitmap(
+            contentResolver,
+            Uri.parse(intent.getStringExtra("selectedFileEdit")))
 
         override fun doInBackground(vararg p0: Bitmap?): Void? {
             bitmapToSave = p0[0]!!
@@ -283,7 +297,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         private fun saveToStorage(bitmap: Bitmap): Void? {
-            if (ActivityCompat.checkSelfPermission(this@EditActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(
+                    this@EditActivity,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 val storageDirectory = Environment.getExternalStorageDirectory().toString()
                 Log.d("PATH", storageDirectory)
 
@@ -298,7 +314,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 stream.close()
             } else {
 //                ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
-                ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+                ActivityCompat.requestPermissions(
+                    this@EditActivity,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    100)
             }
 
             return null
@@ -308,7 +327,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            Saving().execute(MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.getStringExtra("selectedFileEdit"))))
+            Saving().execute(MediaStore.Images.Media.getBitmap(
+                contentResolver,
+                Uri.parse(intent.getStringExtra("selectedFileEdit"))))
         } else {
             Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }

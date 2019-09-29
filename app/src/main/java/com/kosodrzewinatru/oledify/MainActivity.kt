@@ -46,7 +46,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toolbarMain.title = getString(R.string.app_name)
 
         // hamburger icon
-        val toggle = ActionBarDrawerToggle(this, drawerMain, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawerMain,
+            toolbarMain,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close)
         drawerMain.addDrawerListener(toggle)
         toggle.syncState()
 
