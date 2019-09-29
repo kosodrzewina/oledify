@@ -24,4 +24,7 @@
     <string name="saved">Image enregistrée!</string>
     <string name="not_saved">Quelque chose s\'est mal passé. L\'image ne peut pas être enregistrée!</string>
 
+    <!--welcome fragment-->
+    <string name="welcome_title">Bienvenue à Oledify!</string>
+
 </resources>
