@@ -29,5 +29,6 @@
     <!--welcome fragment-->
     <string name="welcome_title">Welcome to Oledify!</string>
     <string name="welcome_description">Here will be some description later</string>
+    <string name="ok">OK</string>
 
 </resources>
