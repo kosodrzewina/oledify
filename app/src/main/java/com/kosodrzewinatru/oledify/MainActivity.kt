@@ -24,17 +24,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val welcomeFragment = WelcomeFragment()
 
     val SHARED_PREFS = "sharedPrefs"
+
+    //shared prefs elements
     val IS_FIRST_LAUNCH = "isFirstLaunch"
+    val IS_RGB = "isRgb"
+    val IS_REAL_TIME_PROCESSING = "isRealTimeProcessing"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // display welcome fragment on the first launch
+        // things set on the first launch
         if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_FIRST_LAUNCH, true)) {
+            //welcome fragment
             welcomeFragment.show(supportFragmentManager, "WELCOME")
-
             getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
+
+            //rgb sliders
+            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_RGB, false)
+
+            //real time processing
+            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_REAL_TIME_PROCESSING, true)
         }
 
         drawer = findViewById(R.id.drawerMain)
