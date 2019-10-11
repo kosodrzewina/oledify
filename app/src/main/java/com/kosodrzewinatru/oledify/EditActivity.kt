@@ -1,6 +1,7 @@
 package com.kosodrzewinatru.oledify
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -19,6 +20,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
+import android.view.ContextMenu
 import android.view.MenuItem
 import android.widget.SeekBar
 import java.io.File
@@ -30,6 +32,14 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
+
+    val SHARED_PREFS = "sharedPrefs"
+
+    //shared prefs elements
+    val IS_FIRST_LAUNCH = "isFirstLaunch"
+    val IS_RGB = "isRgb"
+    val IS_REAL_TIME_PROCESSING = "isRealTimeProcessing"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,9 +97,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
 
-                if (switchRealTime.isChecked) {
+                if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_REAL_TIME_PROCESSING, false)) {
                     blacknessOrRedValue.text = p1.toString()
                     Processing().execute(thumbnail)
                 } else {
@@ -98,9 +107,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                val switchRealTime = findViewById<SwitchCompat>(R.id.realTime)
 
-                if (switchRealTime.isChecked) {
+                if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_REAL_TIME_PROCESSING, false)) {
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
@@ -208,7 +216,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            when (findViewById<SwitchCompat>(R.id.rgbSliders).isChecked) {
+            when (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_RGB, false)) {
                 true -> return Editing().makeBlackRGB(
                     params[0]!!,
                     blacknessOrRedValue.text.toString().toFloat(),
@@ -280,51 +288,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    // asynchronous class for saving
-    internal inner class Saving : AsyncTask<Bitmap, Void, Void?>() {
-        private var bitmapToSave = MediaStore.Images.Media.getBitmap(
-            contentResolver,
-            Uri.parse(intent.getStringExtra("selectedFileEdit")))
-
-        override fun doInBackground(vararg p0: Bitmap?): Void? {
-            bitmapToSave = p0[0]!!
-
-            return saveToStorage(bitmapToSave)
-        }
-
-        override fun onPostExecute(result: Void?) {
-            Snackbar.make(drawerEdit, getString(R.string.saved), Snackbar.LENGTH_SHORT).show()
-        }
-
-        private fun saveToStorage(bitmap: Bitmap): Void? {
-            if (ActivityCompat.checkSelfPermission(
-                    this@EditActivity,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                val storageDirectory = Environment.getExternalStorageDirectory().toString()
-                Log.d("PATH", storageDirectory)
-
-                val file = File(storageDirectory, "test.jpg")
-                val stream: OutputStream = FileOutputStream(file)
-
-                val bitmap = Processing().Editing().makeBlack(bitmap, blacknessOrRedValue.text.toString().toFloat())
-
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-
-                stream.flush()
-                stream.close()
-            } else {
-//                ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
-                ActivityCompat.requestPermissions(
-                    this@EditActivity,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    100)
-            }
-
-            return null
-        }
-
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             Saving().execute(MediaStore.Images.Media.getBitmap(
@@ -334,4 +297,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
     }
+
+    
 }
