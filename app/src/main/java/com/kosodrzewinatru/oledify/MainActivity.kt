@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
 
             //rgb sliders
-            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_RGB, false)
+            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_RGB, false).apply()
 
             //real time processing
-            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_REAL_TIME_PROCESSING, true)
+            getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putBoolean(IS_REAL_TIME_PROCESSING, true).apply()
         }
 
         drawer = findViewById(R.id.drawerMain)
