@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -23,6 +24,7 @@ import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.widget.SeekBar
+import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -87,7 +89,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         imageEditView.setImageBitmap(thumbnail)
 
         saveButton.setOnClickListener {
-            Saving().execute(bitmap)
+            val drawable = imageEditView.drawable
+            val bitmap = (drawable as BitmapDrawable).bitmap
+
+            save(bitmap)
         }
 
         // seekbar for general or red intensity
@@ -290,13 +295,28 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            Saving().execute(MediaStore.Images.Media.getBitmap(
-                contentResolver,
-                Uri.parse(intent.getStringExtra("selectedFileEdit"))))
+            save(MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.getStringExtra("selectedFileEdit"))))
         } else {
             Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
     }
 
-    
+    fun save(bitmap: Bitmap) {
+        val filePath = Environment.getExternalStorageDirectory().absolutePath + "/Oledify"
+        val directory = File(filePath)
+
+        if (!directory.exists()) {
+            directory.mkdir()
+        }
+
+        val file = File(directory, "oledify_testowanko.png")
+        val fileOutputStream = FileOutputStream(file)
+
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+
+        fileOutputStream.flush()
+        fileOutputStream.close()
+
+        Toast.makeText(baseContext, "It went ok, I guess?", Toast.LENGTH_SHORT).show()
+    }
 }
