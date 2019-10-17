@@ -295,7 +295,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            save(MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.getStringExtra("selectedFileEdit"))))
+            val drawable = imageEditView.drawable
+            val bitmap = (drawable as BitmapDrawable).bitmap
+
+            save(bitmap)
         } else {
             Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
