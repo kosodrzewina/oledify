@@ -28,6 +28,7 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import kotlin.random.Random
 
 class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
@@ -312,7 +313,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             directory.mkdir()
         }
 
-        val file = File(directory, "oledify_testowanko.png")
+        val id = (Math.abs(Random.nextDouble()) * 10000).toInt()
+
+        val file = File(directory, "oledify_$id.png")
         val fileOutputStream = FileOutputStream(file)
 
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
@@ -320,6 +323,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fileOutputStream.flush()
         fileOutputStream.close()
 
-        Toast.makeText(baseContext, "It went ok, I guess?", Toast.LENGTH_SHORT).show()
+        Toast.makeText(baseContext, "Image saved successfully!", Toast.LENGTH_SHORT).show()
     }
 }
