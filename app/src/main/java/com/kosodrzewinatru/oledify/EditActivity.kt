@@ -294,6 +294,33 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    fun save(bitmap: Bitmap) {
+        if (ActivityCompat.checkSelfPermission(
+                this@EditActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            val filePath = Environment.getExternalStorageDirectory().absolutePath + "/Oledify"
+            val directory = File(filePath)
+
+            if (!directory.exists()) {
+                directory.mkdir()
+            }
+
+            val id = (Math.abs(Random.nextDouble()) * 10000).toInt()
+
+            val file = File(directory, "oledify_$id.png")
+            val fileOutputStream = FileOutputStream(file)
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+
+            fileOutputStream.flush()
+            fileOutputStream.close()
+
+            Toast.makeText(baseContext, "Image saved successfully!", Toast.LENGTH_SHORT).show()
+        } else {
+            ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             val drawable = imageEditView.drawable
@@ -303,26 +330,5 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
-    }
-
-    fun save(bitmap: Bitmap) {
-        val filePath = Environment.getExternalStorageDirectory().absolutePath + "/Oledify"
-        val directory = File(filePath)
-
-        if (!directory.exists()) {
-            directory.mkdir()
-        }
-
-        val id = (Math.abs(Random.nextDouble()) * 10000).toInt()
-
-        val file = File(directory, "oledify_$id.png")
-        val fileOutputStream = FileOutputStream(file)
-
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
-
-        fileOutputStream.flush()
-        fileOutputStream.close()
-
-        Toast.makeText(baseContext, "Image saved successfully!", Toast.LENGTH_SHORT).show()
     }
 }
