@@ -20,8 +20,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawer: DrawerLayout
 
+    // fragments
     private val languagesFragment = LanguagesFragment()
     private val welcomeFragment = WelcomeFragment()
+    private val comingSoonFragment = ComingSoonFragment()
 
     val SHARED_PREFS = "sharedPrefs"
 
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
+            R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
         }
 
         return true

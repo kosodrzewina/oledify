@@ -35,6 +35,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
+    private val comingSoonFragment = ComingSoonFragment()
 
     val SHARED_PREFS = "sharedPrefs"
 
@@ -201,6 +202,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
+            R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
         }
 
         return true
