@@ -31,4 +31,7 @@
     <string name="welcome_description">Here will be some description later</string>
     <string name="ok">OK</string>
 
+    <!--other-->
+    <string name="feature">This feature will be available soon!</string>
+
 </resources>
