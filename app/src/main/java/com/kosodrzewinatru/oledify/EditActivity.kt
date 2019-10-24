@@ -91,9 +91,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         saveButton.setOnClickListener {
             val drawable = imageEditView.drawable
-            val bitmap = (drawable as BitmapDrawable).bitmap
 
-            save(bitmap)
+            save((drawable as BitmapDrawable).bitmap)
         }
 
         // seekbar for general or red intensity
@@ -103,7 +102,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-
                 if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_REAL_TIME_PROCESSING, false)) {
                     blacknessOrRedValue.text = p1.toString()
                     Processing().execute(thumbnail)
@@ -113,7 +111,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-
                 if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_REAL_TIME_PROCESSING, false)) {
                     saveButton.isEnabled = true
                 } else {
