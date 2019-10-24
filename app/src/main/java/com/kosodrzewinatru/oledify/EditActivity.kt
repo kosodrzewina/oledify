@@ -315,7 +315,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             fileOutputStream.flush()
             fileOutputStream.close()
 
-            Toast.makeText(baseContext, "Image saved successfully!", Toast.LENGTH_SHORT).show()
+            Snackbar.make(drawerEdit, "Image saved successfully!", Snackbar.LENGTH_SHORT).show()
         } else {
             ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
         }
