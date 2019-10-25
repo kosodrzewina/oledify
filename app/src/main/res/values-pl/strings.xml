@@ -27,5 +27,8 @@
     <!--welcome fragment-->
     <string name="welcome_title">Witaj w Oledify!</string>
     <string name="ok">OK</string>
+    <string name="welcome_description">Dziękuję za wybranie Oledify!
+    Aplikacja pozwoli ci na dostosowanie twoich tapet w najprostszy możliwy sposób!
+    Miłego użytkowania!</string>
 
 </resources>

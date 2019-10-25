@@ -28,7 +28,9 @@
 
     <!--welcome fragment-->
     <string name="welcome_title">Welcome to Oledify!</string>
-    <string name="welcome_description">Here will be some description later</string>
+    <string name="welcome_description">Thank you for choosing Oledify!
+        This app will help you pimp your wallpapers the simplest way possible.
+        Enjoy!</string>
     <string name="ok">OK</string>
 
     <!--other-->
