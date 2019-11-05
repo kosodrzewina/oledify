@@ -11,6 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/welcome_title"
+            android:theme="@style/TextBold"
             android:textSize="30sp"
             android:textColor="#ffffff"
             android:layout_margin="16dp">
@@ -20,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/welcome_description"
+            android:theme="@style/TextSemiBold"
             android:textColor="#EEEEEE"
             android:layout_margin="16dp">
     </android.support.v7.widget.AppCompatTextView>

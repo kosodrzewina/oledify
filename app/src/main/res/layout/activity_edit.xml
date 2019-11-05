@@ -8,7 +8,7 @@
         tools:context=".MainActivity"
         android:fitsSystemWindows="true"
         android:id="@+id/drawerEdit"
-        android:theme="@style/TextAppearance">
+        android:theme="@style/TextBold">
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="fill_parent"
@@ -47,6 +47,7 @@
 
                 <android.support.v7.widget.AppCompatButton
                         android:id="@+id/saveButton"
+                        android:theme="@style/TextSemiBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -112,6 +113,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
+        app:menu="@menu/drawer_menu"
+        android:theme="@style/TextSemiBold"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -8,7 +8,7 @@
         tools:context=".MainActivity"
         android:fitsSystemWindows="true"
         android:id="@+id/drawerMain"
-        android:theme="@style/TextAppearance">
+        android:theme="@style/TextBold">
 
     <android.support.constraint.ConstraintLayout
                 android:id="@+id/constrainLayout"
@@ -39,34 +39,36 @@
                         android:orientation="vertical"
                         android:layout_gravity="center">
 
-                        <com.github.chrisbanes.photoview.PhotoView
-                                android:id="@+id/imagePreviewView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:minHeight="300dp"
-                                android:layout_marginBottom="16dp"/>
-                    
-                        <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/magicButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textSize="12sp"
-                                android:background="@drawable/rounded_button"
-                                android:layout_marginTop="16dp"
-                                android:width="100dp"
-                                android:text="@string/trick"/>
+                    <com.github.chrisbanes.photoview.PhotoView
+                            android:id="@+id/imagePreviewView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="300dp"
+                            android:layout_marginBottom="16dp"/>
 
-                        <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/clearButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@drawable/rounded_button"
-                                android:layout_marginTop="16dp"
-                                android:textSize="12sp"
-                                android:width="100dp"
-                                android:text="@string/clear"/>
+                    <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/magicButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="16dp"
+                            android:width="100dp"
+                            android:background="@drawable/rounded_button"
+                            android:theme="@style/TextSemiBold"
+                            android:text="@string/trick"
+                            android:textSize="12sp" />
+
+                    <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/clearButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="16dp"
+                            android:width="100dp"
+                            android:background="@drawable/rounded_button"
+                            android:theme="@style/TextSemiBold"
+                            android:text="@string/clear"
+                            android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -90,7 +92,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header"
-            app:menu="@menu/drawer_menu"/>
+            app:menu="@menu/drawer_menu"
+            android:theme="@style/TextSemiBold"/>
 
 </android.support.v4.widget.DrawerLayout>
 
