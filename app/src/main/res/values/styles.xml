@@ -9,9 +9,16 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <!-- Style for text -->
-    <style name="TextAppearance">
+    <!-- Styles for text -->
+    <style name="TextSemiBold">
         <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
     </style>
+
+    <style name="TextBold">
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
 
 </resources>
