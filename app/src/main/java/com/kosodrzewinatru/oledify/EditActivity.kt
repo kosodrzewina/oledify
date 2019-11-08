@@ -28,6 +28,7 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import kotlin.math.abs
 import kotlin.random.Random
 
 class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -304,7 +305,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 directory.mkdir()
             }
 
-            val id = (Math.abs(Random.nextDouble()) * 10000).toInt()
+            val id = (abs(Random.nextDouble()) * 10000).toInt()
 
             val file = File(directory, "oledify_$id.png")
             val fileOutputStream = FileOutputStream(file)
