@@ -297,7 +297,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (ActivityCompat.checkSelfPermission(
                 this@EditActivity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            val filePath = Environment.getExternalStorageDirectory().absolutePath + "/Oledify"
+            val filePath = Environment.getExternalStorageDirectory().absolutePath + "/Pictures/Oledify"
             val directory = File(filePath)
 
             if (!directory.exists()) {
