@@ -11,6 +11,7 @@
     <string name="settings">Ustawienia</string>
     <string name="change_language">Zmiana języka</string>
     <string name="RGB_sliders">suwaki RGB</string>
+    <string name="processing_settings">UStawienia przetwarzania obrazu</string>
 
     <!--main activity-->
     <string name="upload_image">załaduj zdjęcie</string>
