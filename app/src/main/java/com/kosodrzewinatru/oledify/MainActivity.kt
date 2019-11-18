@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val languagesFragment = LanguagesFragment()
     private val welcomeFragment = WelcomeFragment()
     private val comingSoonFragment = ComingSoonFragment()
+    private val settingsFragment = SettingsFragment()
 
     val SHARED_PREFS = "sharedPrefs"
 
@@ -93,6 +94,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(p0.itemId) {
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
             R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
+            R.id.processingSettings -> {
+                supportFragmentManager.beginTransaction().replace(R.id.drawerMain, settingsFragment)
+                    .addToBackStack(null).commit()
+                drawerMain.closeDrawer(GravityCompat.START)
+            }
         }
 
         return true
