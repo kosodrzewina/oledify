@@ -20,5 +20,11 @@
         <item name="android:fontFamily">@font/open_sans_bold</item>
     </style>
 
+    <style name="TextHuge">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
 
 </resources>
