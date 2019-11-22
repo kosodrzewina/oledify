@@ -10,6 +10,8 @@
     <string name="editing">Édition</string>
     <string name="settings">Paramètres</string>
     <string name="change_language">Changer de langue</string>
+
+    <!--image processing settings-->
     <string name="RGB_sliders">Curseurs RVB</string>
 
     <!--main activity-->

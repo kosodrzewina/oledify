@@ -10,8 +10,11 @@
     <string name="editing">Edytowanie</string>
     <string name="settings">Ustawienia</string>
     <string name="change_language">Zmiana języka</string>
+
+    <!--image processing settings-->
     <string name="RGB_sliders">suwaki RGB</string>
     <string name="processing_settings">UStawienia przetwarzania obrazu</string>
+    <string name="high_res">Podgląd w wysokiej rozdzielczości</string>
 
     <!--main activity-->
     <string name="upload_image">załaduj zdjęcie</string>
