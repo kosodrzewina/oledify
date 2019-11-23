@@ -21,13 +21,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
-import android.view.ContextMenu
 import android.view.MenuItem
 import android.widget.SeekBar
-import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
-import java.io.OutputStream
 import kotlin.math.abs
 import kotlin.random.Random
 
@@ -62,7 +59,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         intensitySeekBarBlue.isEnabled = false
 
         // hamburger icon
-        var toggle = ActionBarDrawerToggle(
+        val toggle = ActionBarDrawerToggle(
             this,
             drawerEdit,
             toolbarEdit,
@@ -222,13 +219,13 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            when (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_RGB, false)) {
-                true -> return Editing().makeBlackRGB(
+            return when (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_RGB, false)) {
+                true -> Editing().makeBlackRGB(
                     params[0]!!,
                     blacknessOrRedValue.text.toString().toFloat(),
                     greenValue.text.toString().toFloat(),
                     blueValue.text.toString().toFloat())
-                false -> return Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+                false -> Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
             }
         }
 
@@ -294,7 +291,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun save(bitmap: Bitmap) {
+    private fun save(bitmap: Bitmap) {
         if (ActivityCompat.checkSelfPermission(
                 this@EditActivity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {

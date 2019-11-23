@@ -11,7 +11,7 @@ import java.util.*
 
 class LanguagesFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.dialog_fragment_languages, container, false)
+        val view = inflater.inflate(R.layout.dialog_fragment_languages, container, false)
 
         val supportedLocales = arrayOf(Locale.ENGLISH, Locale.FRENCH, Locale("pl", "PL"))
         val menuItems = arrayListOf<String>()
@@ -22,7 +22,7 @@ class LanguagesFragment : DialogFragment() {
 
         val listView = view?.findViewById<ListView>(R.id.listLanguages)
 
-        var listViewAdapter = ArrayAdapter<String>(
+        val listViewAdapter = ArrayAdapter<String>(
             activity,
             android.R.layout.simple_list_item_1,
             menuItems
