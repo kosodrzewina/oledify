@@ -22,11 +22,11 @@
               xmlns:android="http://schemas.android.com/apk/res/android">
 
             <item android:id="@+id/realTime"
-                  app:actionViewClass="android.support.v7.widget.SwitchCompat"
+                  app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
                   android:title="@string/real_time_processing"/>
 
             <item android:id="@+id/rgbSliders"
-                  app:actionViewClass="android.support.v7.widget.SwitchCompat"
+                  app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
                   android:title="@string/RGB_sliders"/>
 
             <item android:id="@+id/language"

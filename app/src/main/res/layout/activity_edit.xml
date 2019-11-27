@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<androidx.drawerlayout.widget.DrawerLayout
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -10,13 +10,13 @@
         android:id="@+id/drawerEdit"
         android:theme="@style/TextBold">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:background="@color/colorPrimaryLight">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbarEdit"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -45,7 +45,7 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="16dp"/>
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/saveButton"
                         android:theme="@style/TextSemiBold"
                         android:layout_width="wrap_content"
@@ -57,28 +57,28 @@
                         android:width="100dp"
                         android:text="@string/save"/>
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/blacknessOrRedValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="@color/colorAccent"/>
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                         android:id="@+id/intensitySeekBarMaybeRed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="250dp"
                         android:layout_gravity="center"/>
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/greenValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="@android:color/holo_green_light"/>
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                         android:id="@+id/intensitySeekBarGreen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,14 +87,14 @@
                         android:progressTint="@android:color/holo_green_light"
                         android:thumbTint="@android:color/holo_green_dark"/>
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/blueValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="@android:color/holo_blue_light"/>
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                         android:id="@+id/intensitySeekBarBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -105,9 +105,9 @@
             </LinearLayout>
         </ScrollView>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/navViewEdit"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -116,4 +116,4 @@
         app:menu="@menu/drawer_menu"
         android:theme="@style/TextSemiBold"/>
 
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

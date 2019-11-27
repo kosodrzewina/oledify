@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<androidx.drawerlayout.widget.DrawerLayout
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -10,14 +10,14 @@
         android:id="@+id/drawerMain"
         android:theme="@style/TextBold">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constrainLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
                 android:background="@color/colorPrimaryLight">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbarMain"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -46,7 +46,7 @@
                             android:minHeight="300dp"
                             android:layout_marginBottom="16dp"/>
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/magicButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                             android:text="@string/trick"
                             android:textSize="12sp" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/clearButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 
         </ScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/uploadButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,9 +84,9 @@
                 android:layout_marginRight="16dp"
                 android:src="@drawable/ic_add"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
             android:id="@+id/navViewMain"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -95,6 +95,6 @@
             app:menu="@menu/drawer_menu"
             android:theme="@style/TextSemiBold"/>
 
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
 
 
