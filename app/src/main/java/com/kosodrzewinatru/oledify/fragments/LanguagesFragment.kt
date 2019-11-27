@@ -1,4 +1,4 @@
-package com.kosodrzewinatru.oledify
+package com.kosodrzewinatru.oledify.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.kosodrzewinatru.oledify.activities.MainActivity
+import com.kosodrzewinatru.oledify.R
 import java.util.*
 
 class LanguagesFragment : DialogFragment() {

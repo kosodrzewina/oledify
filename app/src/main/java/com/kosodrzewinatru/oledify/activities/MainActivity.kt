@@ -1,4 +1,4 @@
-package com.kosodrzewinatru.oledify
+package com.kosodrzewinatru.oledify.activities
 
 import android.app.Activity
 import android.content.Context
@@ -12,6 +12,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.kosodrzewinatru.oledify.R
+import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
+import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
+import com.kosodrzewinatru.oledify.fragments.SettingsFragment
+import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -21,10 +26,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
 
     // fragments
-    private val languagesFragment = LanguagesFragment()
-    private val welcomeFragment = WelcomeFragment()
-    private val comingSoonFragment = ComingSoonFragment()
-    private val settingsFragment = SettingsFragment()
+    private val languagesFragment =
+        LanguagesFragment()
+    private val welcomeFragment =
+        WelcomeFragment()
+    private val comingSoonFragment =
+        ComingSoonFragment()
+    private val settingsFragment =
+        SettingsFragment()
 
     private val sharedPrefs = "sharedPrefs"
     private val isFirstLaunch = "isFirstLaunch"
@@ -54,7 +63,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawerMain,
             toolbarMain,
             R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close)
+            R.string.navigation_drawer_close
+        )
         drawerMain.addDrawerListener(toggle)
         toggle.syncState()
 

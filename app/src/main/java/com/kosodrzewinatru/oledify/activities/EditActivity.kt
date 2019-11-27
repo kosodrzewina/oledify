@@ -1,10 +1,9 @@
-package com.kosodrzewinatru.oledify
+package com.kosodrzewinatru.oledify.activities
 
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.AsyncTask
@@ -23,6 +22,10 @@ import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import android.view.MenuItem
 import android.widget.SeekBar
+import com.kosodrzewinatru.oledify.Editing
+import com.kosodrzewinatru.oledify.R
+import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
+import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.abs
@@ -32,8 +35,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
 
     private val fragmentManager = supportFragmentManager
-    private val languagesFragment = LanguagesFragment()
-    private val comingSoonFragment = ComingSoonFragment()
+    private val languagesFragment =
+        LanguagesFragment()
+    private val comingSoonFragment =
+        ComingSoonFragment()
 
     val SHARED_PREFS = "sharedPrefs"
 
@@ -64,7 +69,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawerEdit,
             toolbarEdit,
             R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close)
+            R.string.navigation_drawer_close
+        )
         drawerEdit.addDrawerListener(toggle)
         toggle.syncState()
 
