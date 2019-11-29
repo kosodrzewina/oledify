@@ -26,14 +26,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
 
     // fragments
-    private val languagesFragment =
-        LanguagesFragment()
-    private val welcomeFragment =
-        WelcomeFragment()
-    private val comingSoonFragment =
-        ComingSoonFragment()
-    private val settingsFragment =
-        SettingsFragment()
+    private val languagesFragment = LanguagesFragment()
+    private val welcomeFragment = WelcomeFragment()
+    private val comingSoonFragment = ComingSoonFragment()
+    private val settingsFragment = SettingsFragment()
 
     private val sharedPrefs = "sharedPrefs"
     private val isFirstLaunch = "isFirstLaunch"

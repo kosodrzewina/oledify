@@ -35,10 +35,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
 
     private val fragmentManager = supportFragmentManager
-    private val languagesFragment =
-        LanguagesFragment()
-    private val comingSoonFragment =
-        ComingSoonFragment()
+    private val languagesFragment = LanguagesFragment()
+    private val comingSoonFragment = ComingSoonFragment()
 
     val SHARED_PREFS = "sharedPrefs"
 
