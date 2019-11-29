@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    implementation 'com.android.support:preferences-v14:28.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
