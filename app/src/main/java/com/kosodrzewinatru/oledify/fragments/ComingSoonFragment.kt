@@ -13,6 +13,6 @@ class ComingSoonFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.coming_soon_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_coming_soon, container, false)
     }
 }
