@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.MediaStore
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
@@ -15,7 +16,6 @@ import android.view.MenuItem
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
-import com.kosodrzewinatru.oledify.fragments.SettingsFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -29,20 +29,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val languagesFragment = LanguagesFragment()
     private val welcomeFragment = WelcomeFragment()
     private val comingSoonFragment = ComingSoonFragment()
-    private val settingsFragment = SettingsFragment()
 
     private val sharedPrefs = "sharedPrefs"
-    private val isFirstLaunch = "isFirstLaunch"
+    private val IS_FIRST_LAUNCH = "isFirstLaunch"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
+
         // things set on the first launch
-        if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).getBoolean(isFirstLaunch, true)) {
+        if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).getBoolean(IS_FIRST_LAUNCH, true)) {
             //welcome fragment
             welcomeFragment.show(supportFragmentManager, "WELCOME")
-            getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).edit().putBoolean(isFirstLaunch, false).apply()
+            getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
         }
 
         drawer = findViewById(R.id.drawerMain)
@@ -91,9 +92,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
             R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
             R.id.processingSettings -> {
-                supportFragmentManager.beginTransaction().replace(R.id.drawerMain, settingsFragment)
-                    .addToBackStack(null).commit()
-                drawerMain.closeDrawer(GravityCompat.START)
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
             }
         }
 

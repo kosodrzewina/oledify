@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+            android:defaultValue="true"
+            android:key="real_time_switch"
+            android:title="@string/real_time_processing"/>
+
+    <SwitchPreference
+            android:defaultValue="false"
+            android:key="rgb_sliders_switch"
+            android:title="@string/RGB_sliders"/>
+
+    <SwitchPreference
+            android:defaultValue="false"
+            android:key="high_res_switch"
+            android:title="@string/high_res"/>
+
+</PreferenceScreen>
