@@ -2,6 +2,7 @@ package com.kosodrzewinatru.oledify.activities
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -38,13 +39,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val languagesFragment = LanguagesFragment()
     private val comingSoonFragment = ComingSoonFragment()
 
-    val SHARED_PREFS = "sharedPrefs"
-
-    //shared prefs elements
-    val IS_FIRST_LAUNCH = "isFirstLaunch"
-    val IS_RGB = "isRgb"
-    val IS_REAL_TIME_PROCESSING = "isRealTimeProcessing"
-
+    val sharedPrefs = "sharedPrefs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,7 +100,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_REAL_TIME_PROCESSING, false)) {
+                if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
                     blacknessOrRedValue.text = p1.toString()
                     Processing().execute(thumbnail)
                 } else {
@@ -114,7 +109,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_REAL_TIME_PROCESSING, false)) {
+                if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
@@ -205,6 +200,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(p0.itemId) {
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
             R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
+            R.id.processingSettings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         return true
@@ -223,7 +222,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return when (getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getBoolean(IS_RGB, false)) {
+            return when (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
                 true -> Editing().makeBlackRGB(
                     params[0]!!,
                     blacknessOrRedValue.text.toString().toFloat(),
