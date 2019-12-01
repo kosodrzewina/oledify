@@ -1,5 +1,6 @@
 package com.kosodrzewinatru.oledify.activities
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
@@ -14,13 +15,6 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         supportFragmentManager.beginTransaction().replace(android.R.id.content, SettingsFragment()).commit()
-
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-
-        val realTime = sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)
-        val rgbSliders = sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)
-        val highRes = sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)
     }
 }
