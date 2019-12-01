@@ -18,17 +18,7 @@
 
     <item android:title="@string/settings">
 
-        <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:android="http://schemas.android.com/apk/res/android">
-
-            <item android:id="@+id/realTime"
-                  app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
-                  android:title="@string/real_time_processing"/>
-
-            <item android:id="@+id/rgbSliders"
-                  app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
-                  android:title="@string/RGB_sliders"/>
-
+        <menu>
             <item android:id="@+id/language"
                     android:icon="@drawable/ic_language"
                     android:title="@string/change_language"/>
