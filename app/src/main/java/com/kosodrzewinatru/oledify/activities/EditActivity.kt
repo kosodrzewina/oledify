@@ -87,7 +87,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
         val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
 
-        imageEditView.setImageBitmap(thumbnail)
+        if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+            imageEditView.setImageBitmap(bitmap)
+        } else {
+            imageEditView.setImageBitmap(thumbnail)
+        }
 
         saveButton.setOnClickListener {
             val drawable = imageEditView.drawable
