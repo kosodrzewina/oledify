@@ -108,7 +108,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     blacknessOrRedValue.text = p1.toString()
-                    Processing().execute(thumbnail)
+
+                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+                        Processing().execute(bitmap)
+                    } else {
+                        Processing().execute(thumbnail)
+                    }
                 } else {
                     blacknessOrRedValue.text = p1.toString()
                 }
@@ -119,7 +124,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
-                    Processing().execute(thumbnail)
+
+                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+                        Processing().execute(bitmap)
+                    } else {
+                        Processing().execute(thumbnail)
+                    }
                 }
             }
         })
@@ -133,7 +143,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     greenValue.text = p1.toString()
-                    Processing().execute(thumbnail)
+
+                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+                        Processing().execute(bitmap)
+                    } else {
+                        Processing().execute(thumbnail)
+                    }
                 } else {
                     greenValue.text = p1.toString()
                 }
@@ -144,7 +159,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
-                    Processing().execute(thumbnail)
+
+                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+                        Processing().execute(bitmap)
+                    } else {
+                        Processing().execute(thumbnail)
+                    }
                 }
             }
         })
@@ -158,7 +178,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     blueValue.text = p1.toString()
-                    Processing().execute(thumbnail)
+
+                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+                        Processing().execute(bitmap)
+                    } else {
+                        Processing().execute(thumbnail)
+                    }
                 } else {
                     blueValue.text = p1.toString()
                 }
@@ -169,7 +194,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
-                    Processing().execute(thumbnail)
+
+                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+                        Processing().execute(bitmap)
+                    } else {
+                        Processing().execute(thumbnail)
+                    }
                 }
             }
         })
