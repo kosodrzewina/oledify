@@ -31,6 +31,10 @@ import kotlin.math.abs
 import kotlin.random.Random
 
 class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    companion object {
+        val TAG = "EditActivity"
+    }
+
     private lateinit var drawer: DrawerLayout
 
     private val fragmentManager = supportFragmentManager
