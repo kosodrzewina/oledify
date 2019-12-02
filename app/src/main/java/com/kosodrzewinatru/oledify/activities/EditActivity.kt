@@ -208,7 +208,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                true -> Editing().makeBlackRGB(
+                true -> Editing().makeBlack(
                     params[0]!!,
                     blacknessOrRedValue.text.toString().toFloat(),
                     greenValue.text.toString().toFloat(),
