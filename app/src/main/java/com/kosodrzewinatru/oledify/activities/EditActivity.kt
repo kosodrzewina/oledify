@@ -186,6 +186,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.processingSettings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
+                drawerEdit.closeDrawer(GravityCompat.START)
             }
         }
 
