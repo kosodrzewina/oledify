@@ -37,11 +37,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val languagesFragment = LanguagesFragment()
     private val comingSoonFragment = ComingSoonFragment()
 
-    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(SettingsActivity())
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         // drawer itself
         drawer = findViewById(R.id.drawerEdit)
@@ -98,7 +98,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     blacknessOrRedValue.text = p1.toString()
                     Processing().execute(thumbnail)
                 } else {
@@ -107,7 +107,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
@@ -123,7 +123,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     greenValue.text = p1.toString()
                     Processing().execute(thumbnail)
                 } else {
@@ -132,7 +132,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
@@ -148,7 +148,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     blueValue.text = p1.toString()
                     Processing().execute(thumbnail)
                 } else {
@@ -157,7 +157,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, false)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
@@ -200,6 +200,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
                 true -> Editing().makeBlackRGB(
@@ -213,7 +215,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun onPostExecute(result: Bitmap?) {
             imageEditView.setImageBitmap(result)
-
             saveButton.isEnabled = true
         }
     }
