@@ -13,7 +13,7 @@
 
     <!--image processing settings-->
     <string name="RGB_sliders">suwaki RGB</string>
-    <string name="processing_settings">UStawienia przetwarzania obrazu</string>
+    <string name="processing_settings">Ustawienia przetwarzania obrazu</string>
     <string name="high_res">Podgląd w wysokiej rozdzielczości</string>
 
     <!--main activity-->
