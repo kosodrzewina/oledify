@@ -186,6 +186,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
+            R.id.switchEditing -> drawerEdit.closeDrawer(GravityCompat.START)
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
             R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
             R.id.processingSettings -> {

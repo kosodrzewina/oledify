@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // back-end for stuff in the drawer
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
+            R.id.switchEditing -> drawerMain.closeDrawer(GravityCompat.START)
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
             R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
             R.id.processingSettings -> {
