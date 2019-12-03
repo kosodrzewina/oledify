@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_edit.*
 import android.view.MenuItem
 import android.widget.SeekBar
 import com.kosodrzewinatru.oledify.Edit
-import com.kosodrzewinatru.oledify.ImplementChanges
+import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
@@ -44,6 +44,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var bitmap: Bitmap
     lateinit var thumbnail: Bitmap
+    lateinit var currentBitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -172,14 +173,14 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
 
-        ImplementChanges(this,
+        ImplementStates(this,
             intensitySeekBarGreen, intensitySeekBarBlue,
             imageEditView, bitmap, thumbnail)
     }
 
     override fun onResume() {
         super.onResume()
-        ImplementChanges(this,
+        ImplementStates(this,
             intensitySeekBarGreen, intensitySeekBarBlue,
             imageEditView, bitmap, thumbnail)
     }

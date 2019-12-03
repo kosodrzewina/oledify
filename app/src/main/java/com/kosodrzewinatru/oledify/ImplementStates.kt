@@ -7,9 +7,9 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import com.github.chrisbanes.photoview.PhotoView
 
-class ImplementChanges(context: Context,
-                       green: AppCompatSeekBar, blue: AppCompatSeekBar,
-                       photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap) {
+class ImplementStates(context: Context,
+                      green: AppCompatSeekBar, blue: AppCompatSeekBar,
+                      photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap) {
     init {
         seekbarsState(context, green, blue)
         resState(context, photoView, bitmap, thumbnail)
