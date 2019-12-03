@@ -21,7 +21,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.view.MenuItem
 import android.widget.SeekBar
-import com.kosodrzewinatru.oledify.Editing
+import com.kosodrzewinatru.oledify.Edit
+import com.kosodrzewinatru.oledify.ImplementChanges
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
@@ -204,13 +205,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
 
-        if (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-            intensitySeekBarGreen.isEnabled = false
-            intensitySeekBarBlue.isEnabled = false
-        } else {
-            intensitySeekBarGreen.isEnabled = true
-            intensitySeekBarBlue.isEnabled = true
-        }
+        ImplementChanges(this, intensitySeekBarGreen, intensitySeekBarBlue)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImplementChanges(this, intensitySeekBarGreen, intensitySeekBarBlue)
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
@@ -243,12 +243,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                true -> Editing().makeBlack(
+                true -> Edit().makeBlack(
                     params[0]!!,
                     blacknessOrRedValue.text.toString().toFloat(),
                     greenValue.text.toString().toFloat(),
                     blueValue.text.toString().toFloat())
-                false -> Editing().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+                false -> Edit().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
             }
         }
 
