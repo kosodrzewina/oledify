@@ -42,6 +42,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val languagesFragment = LanguagesFragment()
     private val comingSoonFragment = ComingSoonFragment()
 
+    lateinit var bitmap: Bitmap
+    lateinit var thumbnail: Bitmap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
@@ -85,14 +88,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
-        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
-        val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
-
-        if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-            imageEditView.setImageBitmap(bitmap)
-        } else {
-            imageEditView.setImageBitmap(thumbnail)
-        }
+        bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
+        thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
 
         saveButton.setOnClickListener {
             val drawable = imageEditView.drawable
@@ -109,12 +106,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     blacknessOrRedValue.text = p1.toString()
-
-                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-                        Processing().execute(bitmap)
-                    } else {
-                        Processing().execute(thumbnail)
-                    }
+                    Processing().execute((imageEditView.drawable as BitmapDrawable).bitmap)
                 } else {
                     blacknessOrRedValue.text = p1.toString()
                 }
@@ -125,12 +117,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
-
-                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-                        Processing().execute(bitmap)
-                    } else {
-                        Processing().execute(thumbnail)
-                    }
+                    Processing().execute((imageEditView.drawable as BitmapDrawable).bitmap)
                 }
             }
         })
@@ -144,12 +131,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     greenValue.text = p1.toString()
-
-                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-                        Processing().execute(bitmap)
-                    } else {
-                        Processing().execute(thumbnail)
-                    }
+                    Processing().execute((imageEditView.drawable as BitmapDrawable).bitmap)
                 } else {
                     greenValue.text = p1.toString()
                 }
@@ -160,12 +142,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
-
-                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-                        Processing().execute(bitmap)
-                    } else {
-                        Processing().execute(thumbnail)
-                    }
+                    Processing().execute((imageEditView.drawable as BitmapDrawable).bitmap)
                 }
             }
         })
@@ -179,12 +156,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
                     blueValue.text = p1.toString()
-
-                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-                        Processing().execute(bitmap)
-                    } else {
-                        Processing().execute(thumbnail)
-                    }
+                    Processing().execute((imageEditView.drawable as BitmapDrawable).bitmap)
                 } else {
                     blueValue.text = p1.toString()
                 }
@@ -195,22 +167,21 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     saveButton.isEnabled = true
                 } else {
                     saveButton.isEnabled = true
-
-                    if (sharedPrefs.getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
-                        Processing().execute(bitmap)
-                    } else {
-                        Processing().execute(thumbnail)
-                    }
+                    Processing().execute((imageEditView.drawable as BitmapDrawable).bitmap)
                 }
             }
         })
 
-        ImplementChanges(this, intensitySeekBarGreen, intensitySeekBarBlue)
+        ImplementChanges(this,
+            intensitySeekBarGreen, intensitySeekBarBlue,
+            imageEditView, bitmap, thumbnail)
     }
 
     override fun onResume() {
         super.onResume()
-        ImplementChanges(this, intensitySeekBarGreen, intensitySeekBarBlue)
+        ImplementChanges(this,
+            intensitySeekBarGreen, intensitySeekBarBlue,
+            imageEditView, bitmap, thumbnail)
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
