@@ -1,9 +1,7 @@
 package com.kosodrzewinatru.oledify.activities
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.kosodrzewinatru.oledify.fragments.SettingsFragment
 
 class SettingsActivity : AppCompatActivity() {
