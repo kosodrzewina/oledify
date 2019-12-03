@@ -3,7 +3,7 @@ package com.kosodrzewinatru.oledify
 import android.graphics.Bitmap
 import android.graphics.Color
 
-class Editing {
+class Edit {
 
     // main function responsible for processing bitmap
     fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
