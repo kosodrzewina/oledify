@@ -1,5 +1,7 @@
 # App for making your wallpapers perfect for oled/amoled displays
 
+![](https://www.codefactor.io/repository/github/Kosodrzewinatru/oledify/badge?style=flat-square)
+
 Oledify is a simple app for processing images which include dark colors, but not pitch black. It's great if you don't want to use pre-prepared wallpapers for amoled panels, but use one of your fovorite instead and still benefit from this delightful deep blackness.
 
 ## Installation
