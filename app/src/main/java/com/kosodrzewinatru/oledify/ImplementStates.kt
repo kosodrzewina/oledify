@@ -1,18 +1,35 @@
 package com.kosodrzewinatru.oledify
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import com.github.chrisbanes.photoview.PhotoView
+import java.util.*
 
-class ImplementStates(context: Context,
-                      green: AppCompatSeekBar, blue: AppCompatSeekBar,
-                      photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap) {
-    init {
+class ImplementStates {
+
+    constructor()
+
+    constructor(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar,
+                photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap) {
         seekbarsState(context, green, blue)
         resState(context, photoView, bitmap, thumbnail)
+    }
+
+    fun changeLanguage(activity: Activity, intent: Intent, resources: Resources, locale: Locale) {
+        val config = resources.configuration
+
+        Locale.setDefault(locale)
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        activity.finish()
+        activity.startActivity(intent)
     }
 
     private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
