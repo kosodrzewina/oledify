@@ -13,7 +13,7 @@ class Edit {
 
         bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-        (pixels.indices).forEach {
+        pixels.indices.forEach {
             val red = Color.red(pixels[it])
             val green = Color.green(pixels[it])
             val blue = Color.blue(pixels[it])
@@ -39,7 +39,7 @@ class Edit {
 
         bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-        (pixels.indices).forEach {
+        pixels.indices.forEach {
             val red = Color.red(pixels[it])
             val green = Color.green(pixels[it])
             val blue = Color.blue(pixels[it])

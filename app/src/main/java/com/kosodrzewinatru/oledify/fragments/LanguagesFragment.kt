@@ -18,7 +18,7 @@ class LanguagesFragment : DialogFragment() {
         val supportedLocales = arrayOf(Locale.ENGLISH, Locale.FRENCH, Locale("pl", "PL"))
         val menuItems = arrayListOf<String>()
 
-        (supportedLocales.indices).forEach {
+        supportedLocales.indices.forEach {
             menuItems.add(supportedLocales[it].displayLanguage)
         }
 
