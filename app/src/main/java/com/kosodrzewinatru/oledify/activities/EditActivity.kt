@@ -111,6 +111,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 } else {
                     blacknessOrRedValue.text = p1.toString()
                 }
+
+                if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+                    intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
+                    intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
+                }
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
@@ -198,8 +203,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-            intensitySeekBarGreen.progress = 0
-            intensitySeekBarBlue.progress = 0
+            intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
+            intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
         }
     }
 
