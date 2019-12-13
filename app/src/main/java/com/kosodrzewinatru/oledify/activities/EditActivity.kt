@@ -193,6 +193,14 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             true -> currentBitmap = bitmap
             false -> currentBitmap = thumbnail
         }
+
+        Processing().execute(currentBitmap)
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+            intensitySeekBarGreen.progress = 0
+            intensitySeekBarBlue.progress = 0
+        }
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
