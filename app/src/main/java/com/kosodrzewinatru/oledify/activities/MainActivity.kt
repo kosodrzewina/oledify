@@ -130,15 +130,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             magicButton.isEnabled = true
         }
     }
-
-    fun changeLanguage(locale: Locale) {
-        val config = resources.configuration
-
-        Locale.setDefault(locale)
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        finish()
-        startActivity(intent)
-    }
 }

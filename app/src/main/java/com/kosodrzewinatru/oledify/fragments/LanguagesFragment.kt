@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.kosodrzewinatru.oledify.activities.MainActivity
+import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import java.util.*
 
@@ -33,7 +33,8 @@ class LanguagesFragment : DialogFragment() {
         listView?.adapter = listViewAdapter
 
         listView?.setOnItemClickListener { _, _, i, _ ->
-            (activity as MainActivity).changeLanguage(supportedLocales[i])
+            ImplementStates().changeLanguage(activity!!, activity!!.intent, resources,
+                supportedLocales[i])
         }
 
         return view
