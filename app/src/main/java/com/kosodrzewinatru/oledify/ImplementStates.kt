@@ -12,7 +12,6 @@ import com.github.chrisbanes.photoview.PhotoView
 import java.util.*
 
 class ImplementStates {
-
     constructor()
 
     constructor(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar,
@@ -30,6 +29,24 @@ class ImplementStates {
 
         activity.finish()
         activity.startActivity(intent)
+    }
+
+    // probably doesn't work... for now
+    fun languageState(context: Context, activity: Activity) {
+        val currentLocale = context.resources.getString(R.string.language)
+        val targetLocale = PreferenceManager.getDefaultSharedPreferences(context).
+            getString(SettingsActivity.LOCALE, "en")
+
+        if (currentLocale != targetLocale) {
+            val config = activity.resources.configuration
+
+            Locale.setDefault(Locale.forLanguageTag(targetLocale))
+            config.setLocale(Locale.forLanguageTag(targetLocale))
+            activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
+
+            activity.finish()
+            activity.startActivity(activity.intent)
+        }
     }
 
     private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
