@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="language">fr</string>
+
     <!--accessibility for navigation drawer-->
     <string name="navigation_drawer_open">Tiroir de navigation ouvert</string>
     <string name="navigation_drawer_close">Tiroir de navigation fermé</string>

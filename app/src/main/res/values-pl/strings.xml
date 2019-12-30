@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="language">pl_PL</string>
+
     <!--accessibility for navigation drawer-->
     <string name="navigation_drawer_open">Otworzono szufladę</string>
     <string name="navigation_drawer_close">Zamknięto szufladę</string>
@@ -32,7 +34,7 @@
     <!--welcome fragment-->
     <string name="welcome_title">Witaj w Oledify!</string>
     <string name="ok">OK</string>
-    <string name="welcome_description">Dziękuję za wybranie Oledify!
+    <string name="welcome_description">Dzięki za wybranie Oledify!
     Aplikacja pozwoli ci na dostosowanie twoich tapet w najprostszy możliwy sposób!
     Miłego użytkowania!</string>
 

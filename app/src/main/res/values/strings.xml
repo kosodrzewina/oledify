@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name" translatable="false">Oledify</string>
+    <string name="language">en</string>
 
     <!--accessibility for navigation drawer-->
     <string name="navigation_drawer_open">Navigation drawer opened</string>
