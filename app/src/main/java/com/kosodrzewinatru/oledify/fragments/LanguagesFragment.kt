@@ -1,9 +1,6 @@
 package com.kosodrzewinatru.oledify.fragments
 
-import android.content.Context
 import android.os.Bundle
-import android.os.LocaleList
-import android.util.Log
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +21,6 @@ class LanguagesFragment : DialogFragment() {
 
         supportedLocales.indices.forEach {
             menuItems.add(supportedLocales[it].displayLanguage)
-            Log.d("sdfg", supportedLocales[it].toString())
         }
 
         val listView = view?.findViewById<ListView>(R.id.listLanguages)
@@ -38,11 +34,7 @@ class LanguagesFragment : DialogFragment() {
         listView?.adapter = listViewAdapter
 
         listView?.setOnItemClickListener { _, _, i, _ ->
-            val editor = activity?.getSharedPreferences(SettingsActivity.LOCALE,
-                Context.MODE_PRIVATE)?.edit()
-
-            editor?.putString(SettingsActivity.LOCALE, supportedLocales[i].toString())
-            editor?.apply()
+            SettingsActivity().localeToSharedPreferences(context!!, supportedLocales[i])
 
             ImplementStates().changeLanguage(activity!!, activity!!.intent, resources,
                 supportedLocales[i])
