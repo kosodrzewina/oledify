@@ -186,6 +186,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             true -> currentBitmap = bitmap
             false -> currentBitmap = thumbnail
         }
+
+        ImplementStates().languageState(this)
     }
 
     override fun onResume() {

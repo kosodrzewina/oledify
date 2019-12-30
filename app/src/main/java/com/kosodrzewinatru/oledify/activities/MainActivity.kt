@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
@@ -87,6 +88,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             imagePreviewView.setImageDrawable(null)
             magicButton.isEnabled = false
         }
+
+        ImplementStates().languageState(this)
     }
 
     // back-end for stuff in the drawer
