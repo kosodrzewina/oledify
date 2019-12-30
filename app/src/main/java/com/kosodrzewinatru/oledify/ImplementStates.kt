@@ -31,9 +31,9 @@ class ImplementStates {
         activity.startActivity(intent)
     }
 
-    fun languageState(context: Context, activity: Activity) {
-        val currentLocale = context.resources.getString(R.string.language)
-        val targetLocale = PreferenceManager.getDefaultSharedPreferences(context).
+    fun languageState(activity: Activity) {
+        val currentLocale = activity.resources.getString(R.string.language)
+        val targetLocale = PreferenceManager.getDefaultSharedPreferences(activity).
             getString(SettingsActivity.LOCALE, "en")
 
         if (currentLocale != targetLocale) {
