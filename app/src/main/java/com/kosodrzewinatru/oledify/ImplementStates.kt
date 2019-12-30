@@ -31,7 +31,6 @@ class ImplementStates {
         activity.startActivity(intent)
     }
 
-    // probably doesn't work... for now
     fun languageState(context: Context, activity: Activity) {
         val currentLocale = context.resources.getString(R.string.language)
         val targetLocale = PreferenceManager.getDefaultSharedPreferences(context).
@@ -39,15 +38,51 @@ class ImplementStates {
 
         if (currentLocale != targetLocale) {
             val config = activity.resources.configuration
+            var isCountry = false
 
-            Locale.setDefault(Locale.forLanguageTag(targetLocale))
-            config.setLocale(Locale.forLanguageTag(targetLocale))
+            for (char in targetLocale) {
+                if (char == '_') {
+                    isCountry = true
+                }
+            }
+
+            if (isCountry) {
+                val splitted = splitLocale(targetLocale)
+
+                Locale.setDefault(Locale(splitted[0], splitted[1]))
+                config.setLocale(Locale(splitted[0], splitted[1]))
+            } else {
+                Locale.setDefault(Locale(targetLocale))
+                config.setLocale(Locale(targetLocale))
+            }
+
             activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
 
             activity.finish()
             activity.startActivity(activity.intent)
         }
     }
+
+    private fun splitLocale(localeString: String): Array<String> {
+        var language = ""
+        var country = ""
+        var switchString = false
+
+        for (char in localeString) {
+            if (!switchString) {
+                if (char != '_') {
+                    language += char
+                } else {
+                    switchString = true
+                }
+            } else {
+                country += char
+            }
+        }
+
+        return arrayOf(language, country)
+    }
+
 
     private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
