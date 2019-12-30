@@ -38,4 +38,8 @@
     Aplikacja pozwoli ci na dostosowanie twoich tapet w najprostszy możliwy sposób!
     Miłego użytkowania!</string>
 
+    <!--other-->
+    <string name="feature">Ta funkcja będzie dostępna wkrótce!</string>
+    <string name="title_activity_settings">Ustawienia</string>
+
 </resources>
