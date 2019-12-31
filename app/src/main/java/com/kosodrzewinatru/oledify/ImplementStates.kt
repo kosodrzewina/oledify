@@ -38,22 +38,15 @@ class ImplementStates {
 
         if (currentLocale != targetLocale) {
             val config = activity.resources.configuration
-            var isCountry = false
 
-            for (char in targetLocale) {
-                if (char == '_') {
-                    isCountry = true
-                }
-            }
+            val targetLocaleList= targetLocale?.split('_')
 
-            if (isCountry) {
-                val splitted = splitLocale(targetLocale)
-
-                Locale.setDefault(Locale(splitted[0], splitted[1]))
-                config.setLocale(Locale(splitted[0], splitted[1]))
+            if (targetLocaleList!!.size > 1) {
+                Locale.setDefault(Locale(targetLocaleList[0], targetLocaleList[1]))
+                config.setLocale(Locale(targetLocaleList[0], targetLocaleList[1]))
             } else {
-                Locale.setDefault(Locale(targetLocale))
-                config.setLocale(Locale(targetLocale))
+                Locale.setDefault(Locale(targetLocaleList[0]))
+                config.setLocale(Locale(targetLocaleList[0]))
             }
 
             activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
@@ -62,27 +55,6 @@ class ImplementStates {
             activity.startActivity(activity.intent)
         }
     }
-
-    private fun splitLocale(localeString: String): Array<String> {
-        var language = ""
-        var country = ""
-        var switchString = false
-
-        for (char in localeString) {
-            if (!switchString) {
-                if (char != '_') {
-                    language += char
-                } else {
-                    switchString = true
-                }
-            } else {
-                country += char
-            }
-        }
-
-        return arrayOf(language, country)
-    }
-
 
     private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
