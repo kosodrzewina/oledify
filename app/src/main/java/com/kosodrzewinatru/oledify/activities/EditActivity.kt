@@ -90,7 +90,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
         bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
-        thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+        thumbnail = Bitmap.createScaledBitmap(
+            bitmap,
+            bitmap.width / 2,
+            bitmap.height / 2,
+            true)
 
         saveButton.setOnClickListener {
             val drawable = imageEditView.drawable
@@ -99,7 +103,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         // seekbar for general or red intensity
-        intensitySeekBarMaybeRed.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        intensitySeekBarMaybeRed.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener{
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 saveButton.isEnabled = false
             }
@@ -203,7 +208,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         Processing().execute(currentBitmap)
 
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val sharedPrefs = PreferenceManager
+            .getDefaultSharedPreferences(applicationContext)
         if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
             intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
             intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
@@ -237,7 +243,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val sharedPrefs = PreferenceManager
+            .getDefaultSharedPreferences(applicationContext)
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
@@ -246,7 +253,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     blacknessOrRedValue.text.toString().toFloat(),
                     greenValue.text.toString().toFloat(),
                     blueValue.text.toString().toFloat())
-                false -> Edit().makeBlack(params[0]!!, blacknessOrRedValue.text.toString().toFloat())
+                false -> Edit().makeBlack(params[0]!!, blacknessOrRedValue
+                    .text
+                    .toString()
+                    .toFloat())
             }
         }
 
@@ -260,7 +270,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (ActivityCompat.checkSelfPermission(
                 this@EditActivity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            val filePath = Environment.getExternalStorageDirectory().absolutePath + "/Pictures/Oledify"
+            val filePath = Environment
+                .getExternalStorageDirectory()
+                .absolutePath + "/Pictures/Oledify"
             val directory = File(filePath)
 
             if (!directory.exists()) {
@@ -279,12 +291,19 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             Snackbar.make(drawerEdit, "Image saved successfully!", Snackbar.LENGTH_SHORT).show()
         } else {
-            ActivityCompat.requestPermissions(this@EditActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+            ActivityCompat.requestPermissions(
+                this@EditActivity,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                100)
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (!(requestCode == 100 && Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED)) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray) {
+        if (!(requestCode == 100 && Environment
+                .getExternalStorageState() == Environment.MEDIA_MOUNTED)) {
             Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
         }
     }

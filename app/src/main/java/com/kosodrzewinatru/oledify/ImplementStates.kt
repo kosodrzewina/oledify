@@ -57,7 +57,9 @@ class ImplementStates {
     }
 
     private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
-        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                SettingsActivity.RGB_SLIDERS_SWITCH,
+                false)) {
             green.isEnabled = true
             blue.isEnabled = true
         } else {
@@ -66,8 +68,14 @@ class ImplementStates {
         }
     }
 
-    private fun resState(context: Context, photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap) {
-        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(SettingsActivity.HIGH_RESOLUTION_SWITCH, false)) {
+    private fun resState(
+        context: Context,
+        photoView: PhotoView,
+        bitmap: Bitmap,
+        thumbnail: Bitmap) {
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                SettingsActivity.HIGH_RESOLUTION_SWITCH,
+                false)) {
             photoView.setImageBitmap(bitmap)
         } else {
             photoView.setImageBitmap(thumbnail)

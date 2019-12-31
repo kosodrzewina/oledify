@@ -44,10 +44,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
 
         // things set on the first launch
-        if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).getBoolean(IS_FIRST_LAUNCH, true)) {
+        if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
+                .getBoolean(IS_FIRST_LAUNCH, true)) {
             //welcome fragment
             welcomeFragment.show(supportFragmentManager, "WELCOME")
-            getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE).edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
+            getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(IS_FIRST_LAUNCH, false)
+                .apply()
         }
 
         drawer = findViewById(R.id.drawerMain)
@@ -73,7 +77,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         uploadButton.setOnClickListener {
             val intent= Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
 
-            startActivityForResult(Intent.createChooser(intent, "Select a file"), 100)
+            startActivityForResult(Intent.createChooser(
+                intent,
+                "Select a file"),
+                100)
         }
 
         // go to EditActivity
@@ -129,7 +136,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             // image showed via URI
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFile)
-            val thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+            val thumbnail = Bitmap.createScaledBitmap(
+                bitmap,
+                bitmap.width / 2,
+                bitmap.height / 2,
+                true)
 
             imagePreviewView.setImageBitmap(thumbnail)
 

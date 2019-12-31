@@ -30,7 +30,11 @@ class Edit {
         return processed
     }
 
-    fun makeBlack(bitmap: Bitmap, intensityRed: Float, intensityGreen: Float, intensityBlue: Float): Bitmap {
+    fun makeBlack(
+        bitmap: Bitmap,
+        intensityRed: Float,
+        intensityGreen: Float,
+        intensityBlue: Float): Bitmap {
         val intensityRed = intensityRed * 765 / 100
         val intensityGreen = intensityGreen * 765 / 100
         val intensityBlue = intensityBlue * 765 / 100

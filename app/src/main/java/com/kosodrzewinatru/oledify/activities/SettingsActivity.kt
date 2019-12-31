@@ -17,11 +17,16 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportFragmentManager.beginTransaction().replace(android.R.id.content, SettingsFragment()).commit()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(android.R.id.content, SettingsFragment())
+            .commit()
     }
 
     fun localeToSharedPreferences(context: Context, locale: Locale) {
-        val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+        val editor = PreferenceManager
+            .getDefaultSharedPreferences(context)
+            .edit()
 
         editor.putString(LOCALE, locale.toString())
         editor.apply()

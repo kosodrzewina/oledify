@@ -13,10 +13,19 @@ import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import java.util.*
 
 class LanguagesFragment : DialogFragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.dialog_fragment_languages, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(
+            R.layout.dialog_fragment_languages,
+            container,
+            false)
 
-        val supportedLocales = arrayOf(Locale.ENGLISH, Locale.FRENCH, Locale("pl", "PL"))
+        val supportedLocales = arrayOf(
+            Locale.ENGLISH,
+            Locale.FRENCH,
+            Locale("pl", "PL"))
         val menuItems = arrayListOf<String>()
 
         supportedLocales.indices.forEach {
