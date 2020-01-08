@@ -2,7 +2,7 @@
     <img
         style="float: left"
         src="https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/app/src/main/ic_launcher-web.png"
-        width="43"/>
+        width="40"/>
         <p>&nbsp;&nbsp;App for making your wallpapers perfect for oled/amoled displays</p>
 </h1>
 
