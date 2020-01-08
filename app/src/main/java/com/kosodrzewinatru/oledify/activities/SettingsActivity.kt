@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
+import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.SettingsFragment
 import java.util.*
 
@@ -16,6 +17,8 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme_SettingsScreen)
+
         super.onCreate(savedInstanceState)
         supportFragmentManager
             .beginTransaction()
