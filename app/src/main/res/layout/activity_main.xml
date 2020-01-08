@@ -93,6 +93,8 @@
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header"
             app:menu="@menu/drawer_menu"
+            app:itemIconTint="@color/colorPrimaryDark"
+            app:itemTextColor="@android:color/white"
             android:theme="@style/TextSemiBold"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
