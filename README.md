@@ -1,10 +1,9 @@
-<h1>
-    <img
-        style="float: left"
-        src="https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/app/src/main/ic_launcher-web.png"
-        width="40"/>
-        <p>&nbsp;&nbsp;App for making your wallpapers perfect for oled/amoled displays</p>
-</h1>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/app/src/main/ic_launcher-web.png"
+        width="50"/>
+</p>
+
+# App for making your wallpapers perfect for oled/amoled displays
 
 [![CodeFactor](https://www.codefactor.io/repository/github/Kosodrzewinatru/oledify/badge?style=flat-square)](https://www.codefactor.io/repository/github/Kosodrzewinatru/oledify)
 
