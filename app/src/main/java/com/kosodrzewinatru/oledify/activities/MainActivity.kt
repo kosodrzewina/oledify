@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
         magicButton.isEnabled = false
+        clearButton.isEnabled = false
 
         toolbarMain.title = getString(R.string.app_name)
 
@@ -99,6 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         clearButton.setOnClickListener {
             imagePreviewView.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
             magicButton.isEnabled = false
+            clearButton.isEnabled = false
         }
 
         ImplementStates().languageState(this)
@@ -150,6 +152,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             imagePreviewView.setImageBitmap(thumbnail)
 
             magicButton.isEnabled = true
+            clearButton.isEnabled = true
         }
     }
 }
