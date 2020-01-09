@@ -15,6 +15,21 @@ Just go to the "release" tab and download the latest apk. You may encounter a pr
 
 ## Examples
 
-![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/city.jpg)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/city.jpg"
+        height="500"/>
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/sky.jpg"
+        height="500"/>
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/coffe.jpg"
+        height="500"/>
+</p>
+
+<!-- ![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/city.jpg)
 ![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/sky.jpg)
-![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/coffe.jpg)
+![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/coffe.jpg) -->
