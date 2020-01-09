@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/app/src/main/ic_launcher-web.png"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/app/src/main/ic_launcher-web.png"
         width="50"/>
 </p>
 
@@ -15,6 +15,6 @@ Just go to the "release" tab and download the latest apk. You may encounter a pr
 
 ## Examples
 
-![picture alt](https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/showcase/city.jpg)
-![picture alt](https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/showcase/sky.jpg)
-![picture alt](https://raw.githubusercontent.com/Kosodrzewinatru/oledify/master/showcase/coffe.jpg)
+![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/city.jpg)
+![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/sky.jpg)
+![picture alt](https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/coffe.jpg)
