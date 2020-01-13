@@ -5,12 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
+import android.util.Log
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.app.ActivityCompat
@@ -290,6 +292,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             fileOutputStream.flush()
             fileOutputStream.close()
+
+            val intentMediaScannerConnection = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+
+            intentMediaScannerConnection.data = Uri.fromFile(file)
+            sendBroadcast(intentMediaScannerConnection)
 
             Snackbar.make(drawerEdit, "Image saved successfully!", Snackbar.LENGTH_SHORT).show()
         } else {
