@@ -14,14 +14,13 @@
                 android:id="@+id/constrainLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:background="@color/colorPrimaryLight">
+                android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbarMain"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorPrimary"
+                    android:background="?attr/colorPrimary"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     android:elevation="4dp"
@@ -94,7 +93,7 @@
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header"
             app:menu="@menu/drawer_menu"
-            app:itemIconTint="@color/colorPrimaryDark"
+            app:itemIconTint="?attr/colorPrimaryDark"
             app:itemTextColor="@android:color/white"
             android:theme="@style/TextSemiBold"/>
 

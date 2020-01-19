@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Dark theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/colorBackgroundDark</item>
+        <item name="colorPrimary">@color/colorMainDark</item>
+        <item name="colorPrimaryDark">@color/colorAdditionalDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundDark</item>
+    </style>
+
+</resources>
+
