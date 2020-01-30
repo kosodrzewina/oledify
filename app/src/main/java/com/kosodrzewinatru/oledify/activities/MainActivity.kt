@@ -17,6 +17,7 @@ import android.view.MenuItem
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
+import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // fragments
     private val languagesFragment = LanguagesFragment()
     private val welcomeFragment = WelcomeFragment()
-    private val comingSoonFragment = ComingSoonFragment()
+    private val galleryFragment = GalleryFragment()
 
     private val sharedPrefs = "sharedPrefs"
     private val IS_FIRST_LAUNCH = "isFirstLaunch"
@@ -111,7 +112,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(p0.itemId) {
             R.id.switchEditing -> drawerMain.closeDrawer(GravityCompat.START)
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
-            R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
+            R.id.switchGallery -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, galleryFragment).commit()
+                drawerMain.closeDrawer(GravityCompat.START)
+            }
             R.id.processingSettings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
