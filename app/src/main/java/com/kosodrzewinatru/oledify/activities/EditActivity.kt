@@ -5,14 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
-import android.util.Log
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.app.ActivityCompat
@@ -27,6 +25,7 @@ import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
+import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import java.io.File
 import java.io.FileOutputStream
@@ -40,9 +39,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawer: DrawerLayout
 
+    // fragments
     private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
     private val comingSoonFragment = ComingSoonFragment()
+    private val galleryFragment = GalleryFragment()
 
     lateinit var bitmap: Bitmap
     lateinit var thumbnail: Bitmap
@@ -224,7 +225,11 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(p0.itemId) {
             R.id.switchEditing -> drawerEdit.closeDrawer(GravityCompat.START)
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
-            R.id.switchGallery -> comingSoonFragment.show(supportFragmentManager, "FEATURE")
+            R.id.switchGallery -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, galleryFragment).commit()
+                drawerEdit.closeDrawer(GravityCompat.START)
+            }
             R.id.processingSettings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
@@ -237,11 +242,15 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // if back button is pressed and the drawer is open, close the drawer
     override fun onBackPressed() {
-        if (drawerEdit.isDrawerOpen(GravityCompat.START)) {
-            drawerEdit.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+        when {
+            drawerEdit.isDrawerOpen(GravityCompat.START) -> drawerEdit.closeDrawer(GravityCompat.START)
+            galleryFragment.isVisible -> {
+                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+                navViewEdit.menu.getItem(0).isChecked = true
+            }
+            else -> super.onBackPressed()
         }
+
     }
 
 

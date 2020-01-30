@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
@@ -16,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
-import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
@@ -129,10 +127,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // if back button is pressed and the drawer is open, close the drawer
     override fun onBackPressed() {
-        if (drawerMain.isDrawerOpen(GravityCompat.START)) {
-            drawerMain.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+        when {
+            drawerMain.isDrawerOpen(GravityCompat.START) -> drawerMain.closeDrawer(GravityCompat.START)
+             galleryFragment.isVisible -> {
+                 supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+                 navViewMain.menu.getItem(0).isChecked = true
+             }
+            else -> super.onBackPressed()
         }
     }
 
