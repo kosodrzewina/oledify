@@ -223,7 +223,12 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId) {
-            R.id.switchEditing -> drawerEdit.closeDrawer(GravityCompat.START)
+            R.id.switchEditing -> {
+                if (galleryFragment.isVisible)
+                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+
+                drawerEdit.closeDrawer(GravityCompat.START)
+            }
             R.id.language -> languagesFragment.show(fragmentManager, "LIST")
             R.id.switchGallery -> {
                 supportFragmentManager.beginTransaction()
@@ -250,9 +255,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             else -> super.onBackPressed()
         }
-
     }
-
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
