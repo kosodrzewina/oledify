@@ -15,5 +15,9 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.GalleryFragment">
+        <item name="android:background">@color/colorBackgroundDark</item>
+    </style>
+
 </resources>
 

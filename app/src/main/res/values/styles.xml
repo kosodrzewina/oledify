@@ -19,6 +19,10 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.GalleryFragment">
+        <item name="android:background">@color/colorBackground</item>
+    </style>
+
     <!-- Styles for text -->
     <style name="TextSemiBold">
         <item name="android:ellipsize">end</item>
