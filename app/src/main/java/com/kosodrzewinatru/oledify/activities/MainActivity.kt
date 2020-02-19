@@ -114,12 +114,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 drawerMain.closeDrawer(GravityCompat.START)
             }
+
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
+
             R.id.switchGallery -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainer, galleryFragment).commit()
                 drawerMain.closeDrawer(GravityCompat.START)
             }
+
             R.id.processingSettings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
