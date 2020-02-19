@@ -21,8 +21,8 @@ class GalleryFragment : Fragment() {
         val files = File(imagesPath).listFiles().toList()
         val galleryItems = mutableListOf<GalleryItem>()
 
-        files.indices.forEach {
-            val currentBitmap = BitmapFactory.decodeFile(files[it].path)
+        for (file in files) {
+            val currentBitmap = BitmapFactory.decodeFile(file.path)
 
             galleryItems.add(GalleryItem(currentBitmap))
         }
