@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
+import com.kosodrzewinatru.oledify.RecyclerAdapter
+import kotlinx.android.synthetic.main.fragment_gallery.*
 import java.io.File
 
 class GalleryFragment : Fragment() {
@@ -16,6 +19,12 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        return inflater.inflate(R.layout.fragment_gallery, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val imagesPath =
             Environment.getExternalStorageDirectory().toString() + "/Pictures/Oledify"
         val files = File(imagesPath).listFiles().toList()
@@ -27,6 +36,8 @@ class GalleryFragment : Fragment() {
             galleryItems.add(GalleryItem(currentBitmap))
         }
 
-        return inflater.inflate(R.layout.fragment_gallery, container, false)
+        imagesRecyclerView.adapter = RecyclerAdapter(galleryItems)
+        imagesRecyclerView.layoutManager = LinearLayoutManager(activity)
+        imagesRecyclerView.setHasFixedSize(true)
     }
 }
