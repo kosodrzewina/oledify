@@ -86,7 +86,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/constrainLayout"
                 app:layout_constraintRight_toRightOf="@+id/constrainLayout"
                 android:layout_marginBottom="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_add"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
