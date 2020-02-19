@@ -24,7 +24,6 @@ import android.widget.SeekBar
 import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
-import com.kosodrzewinatru.oledify.fragments.ComingSoonFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import java.io.File
@@ -42,7 +41,6 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // fragments
     private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
-    private val comingSoonFragment = ComingSoonFragment()
     private val galleryFragment = GalleryFragment()
 
     lateinit var bitmap: Bitmap
