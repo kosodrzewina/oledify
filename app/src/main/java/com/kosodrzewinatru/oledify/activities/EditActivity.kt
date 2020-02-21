@@ -43,8 +43,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val languagesFragment = LanguagesFragment()
     private val galleryFragment = GalleryFragment()
 
-    lateinit var bitmap: Bitmap
-    lateinit var thumbnail: Bitmap
+    private lateinit var bitmap: Bitmap
+    private lateinit var thumbnail: Bitmap
     lateinit var currentBitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
