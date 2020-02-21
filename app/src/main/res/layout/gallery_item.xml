@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.chrisbanes.photoview.PhotoView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/photoView"
-        android:layout_width="match_parent" android:layout_height="match_parent"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoView0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"/>
+
+    <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"/>
+</LinearLayout>
