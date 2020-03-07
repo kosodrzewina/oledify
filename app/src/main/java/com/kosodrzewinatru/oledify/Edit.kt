@@ -3,9 +3,19 @@ package com.kosodrzewinatru.oledify
 import android.graphics.Bitmap
 import android.graphics.Color
 
+/**
+ * A class containing every function related to image processing.
+ */
+@Suppress("NAME_SHADOWING")
 class Edit {
 
-    // main function responsible for processing bitmap
+    /**
+     * A function responsible for processing bitmap with single value of processing intensity.
+     *
+     * @param bitmap Bitmap that will be processed.
+     * @param intensity Float value indicating how intense processing should be.
+     * @return Processed bitmap.
+     */
     fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
         val intensity = intensity * 765 / 100
 
@@ -30,11 +40,22 @@ class Edit {
         return processed
     }
 
+    /**
+     * A function responsible for processing bitmap with three different values of intensity. Each
+     * indcating intensity of a different primary color (RGB).
+     *
+     * @param bitmap Bitmap that will be processed.
+     * @param intensityRed Float value indicating intensity of red color.
+     * @param intensityGreen Float value indicating intensity of green color.
+     * @param intensityBlue Float value indicating intensity of blue color.
+     * @return Processed bitmap.
+     */
     fun makeBlack(
         bitmap: Bitmap,
         intensityRed: Float,
         intensityGreen: Float,
-        intensityBlue: Float): Bitmap {
+        intensityBlue: Float
+    ): Bitmap {
         val intensityRed = intensityRed * 765 / 100
         val intensityGreen = intensityGreen * 765 / 100
         val intensityBlue = intensityBlue * 765 / 100
