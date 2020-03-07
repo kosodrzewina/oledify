@@ -12,9 +12,9 @@ class Edit {
     /**
      * A function responsible for processing bitmap with single value of processing intensity.
      *
-     * @param bitmap Bitmap that will be processed.
-     * @param intensity Float value indicating how intense processing should be.
-     * @return Processed bitmap.
+     * @param bitmap bitmap that will be processed
+     * @param intensity float value indicating how intense processing should be
+     * @return processed bitmap
      */
     fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
         val intensity = intensity * 765 / 100
@@ -44,11 +44,11 @@ class Edit {
      * A function responsible for processing bitmap with three different values of intensity. Each
      * indcating intensity of a different primary color (RGB).
      *
-     * @param bitmap Bitmap that will be processed.
-     * @param intensityRed Float value indicating intensity of red color.
-     * @param intensityGreen Float value indicating intensity of green color.
-     * @param intensityBlue Float value indicating intensity of blue color.
-     * @return Processed bitmap.
+     * @param bitmap bitmap that will be processed
+     * @param intensityRed float value indicating intensity of red color
+     * @param intensityGreen float value indicating intensity of green color
+     * @param intensityBlue float value indicating intensity of blue color
+     * @return processed bitmap
      */
     fun makeBlack(
         bitmap: Bitmap,
