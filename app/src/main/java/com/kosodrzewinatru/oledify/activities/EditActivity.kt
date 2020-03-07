@@ -31,11 +31,10 @@ import java.io.FileOutputStream
 import kotlin.math.abs
 import kotlin.random.Random
 
+/**
+ * A class for the EditActivity.
+ */
 class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    companion object {
-        val TAG = "EditActivity"
-    }
-
     private lateinit var drawer: DrawerLayout
 
     // fragments
@@ -45,8 +44,18 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var bitmap: Bitmap
     private lateinit var thumbnail: Bitmap
+
+    /**
+     * A variable keeping the current bitmap placed in the photoView.
+     */
     lateinit var currentBitmap: Bitmap
 
+    /**
+     * An override function creating all of the most important things for the activity.
+     *
+     * @param savedInstanceState contains recent data in case of re-initializing the activity after
+     * being shut down
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
 
@@ -97,7 +106,8 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             bitmap,
             bitmap.width / 2,
             bitmap.height / 2,
-            true)
+            true
+        )
 
         saveButton.setOnClickListener {
             val drawable = imageEditView.drawable
@@ -107,37 +117,45 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // seekbar for general or red intensity
         intensitySeekBarMaybeRed.setOnSeekBarChangeListener(
-            object : SeekBar.OnSeekBarChangeListener{
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                saveButton.isEnabled = false
-            }
-
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
-                    blacknessOrRedValue.text = p1.toString()
-                    Processing().execute(currentBitmap)
-                } else {
-                    blacknessOrRedValue.text = p1.toString()
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    saveButton.isEnabled = false
                 }
 
-                if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                    intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
-                    intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
-                }
-            }
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                    if (sharedPrefs.getBoolean(
+                            SettingsActivity.REAL_TIME_PROCESSING_SWITCH,
+                            true
+                        )
+                    ) {
+                        blacknessOrRedValue.text = p1.toString()
+                        Processing().execute(currentBitmap)
+                    } else {
+                        blacknessOrRedValue.text = p1.toString()
+                    }
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
-                    saveButton.isEnabled = true
-                } else {
-                    saveButton.isEnabled = true
-                    Processing().execute(currentBitmap)
+                    if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+                        intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
+                        intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
+                    }
                 }
-            }
-        })
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                    if (sharedPrefs.getBoolean(
+                            SettingsActivity.REAL_TIME_PROCESSING_SWITCH,
+                            true
+                        )
+                    ) {
+                        saveButton.isEnabled = true
+                    } else {
+                        saveButton.isEnabled = true
+                        Processing().execute(currentBitmap)
+                    }
+                }
+            })
 
         // seekbar for green intensity
-        intensitySeekBarGreen.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        intensitySeekBarGreen.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(p0: SeekBar?) {
                 saveButton.isEnabled = false
             }
@@ -162,7 +180,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         // seekbar for blue intensity
-        intensitySeekBarBlue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        intensitySeekBarBlue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(p0: SeekBar?) {
                 saveButton.isEnabled = false
             }
@@ -186,27 +204,40 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
 
-        ImplementStates(this,
+        ImplementStates(
+            this,
             intensitySeekBarGreen, intensitySeekBarBlue,
-            imageEditView, bitmap, thumbnail)
+            imageEditView, bitmap, thumbnail
+        )
 
-        when ((imageEditView.drawable as BitmapDrawable).bitmap == bitmap) {
-            true -> currentBitmap = bitmap
-            false -> currentBitmap = thumbnail
+        currentBitmap = when ((imageEditView.drawable as BitmapDrawable).bitmap == bitmap) {
+            true -> bitmap
+            false -> thumbnail
         }
 
         ImplementStates().languageState(this)
     }
 
+    /**
+     * An override function called when the app has to be resumed. E.g. if user go back to the
+     * activity from the SettingsActivity, this function retrieves states of the sliders and
+     * processes the image once again.
+     *
+     * It eliminates the issue when the image was processed in the single slider mode and after
+     * switching to the rgb the image is in its previous state.
+     */
     override fun onResume() {
         super.onResume()
-        ImplementStates(this,
-            intensitySeekBarGreen, intensitySeekBarBlue,
-            imageEditView, bitmap, thumbnail)
 
-        when ((imageEditView.drawable as BitmapDrawable).bitmap == bitmap) {
-            true -> currentBitmap = bitmap
-            false -> currentBitmap = thumbnail
+        ImplementStates(
+            this,
+            intensitySeekBarGreen, intensitySeekBarBlue,
+            imageEditView, bitmap, thumbnail
+        )
+
+        currentBitmap = when ((imageEditView.drawable as BitmapDrawable).bitmap == bitmap) {
+            true -> bitmap
+            false -> thumbnail
         }
 
         Processing().execute(currentBitmap)
@@ -219,8 +250,14 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    /**
+     * An override function for selecting items from the drawer.
+     *
+     * @param p0 selected item
+     * @return true if the chosen item should be displayed as a selected item or false if not
+     */
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when(p0.itemId) {
+        when (p0.itemId) {
             R.id.switchEditing -> {
                 if (galleryFragment.isVisible)
                     supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
@@ -246,7 +283,10 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    // if back button is pressed and the drawer is open, close the drawer
+    /**
+     * An override function called when back button is pressed. If so, the drawer is being closed
+     * if it's open.
+     */
     override fun onBackPressed() {
         when {
             drawerEdit.isDrawerOpen(GravityCompat.START) -> drawerEdit.closeDrawer(GravityCompat.START)
@@ -260,20 +300,23 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
-        val sharedPrefs = PreferenceManager
-            .getDefaultSharedPreferences(applicationContext)
+        private val sharedPrefs = PreferenceManager
+            .getDefaultSharedPreferences(applicationContext)!!
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
                 true -> Edit().makeBlack(
-                    params[0]!!,
+                    params[0] ?: return null,
                     blacknessOrRedValue.text.toString().toFloat(),
                     greenValue.text.toString().toFloat(),
-                    blueValue.text.toString().toFloat())
-                false -> Edit().makeBlack(params[0]!!, blacknessOrRedValue
-                    .text
-                    .toString()
-                    .toFloat())
+                    blueValue.text.toString().toFloat()
+                )
+                false -> Edit().makeBlack(
+                    params[0] ?: return null, blacknessOrRedValue
+                        .text
+                        .toString()
+                        .toFloat()
+                )
             }
         }
 
@@ -286,7 +329,9 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun save(bitmap: Bitmap) {
         if (ActivityCompat.checkSelfPermission(
                 this@EditActivity,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             val filePath = Environment
                 .getExternalStorageDirectory()
                 .absolutePath + "/Pictures/Oledify"
@@ -316,17 +361,32 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ActivityCompat.requestPermissions(
                 this@EditActivity,
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                100)
+                100
+            )
         }
     }
 
+    /**
+     * An override function to inform user if the permission for writing in storage was granted.
+     *
+     * @param requestCode code passed from requestPermissions
+     * @param permissions array of requested permissions
+     * @param grantResults array with information if permissions were granted
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray) {
-        if (!(requestCode == 100 && Environment
-                .getExternalStorageState() == Environment.MEDIA_MOUNTED)) {
-            Snackbar.make(drawerEdit, getString(R.string.not_saved), Snackbar.LENGTH_SHORT).show()
+        grantResults: IntArray
+    ) {
+        if (
+            !(requestCode == 100 && Environment.getExternalStorageState() ==
+                    Environment.MEDIA_MOUNTED)
+        ) {
+            Snackbar.make(
+                drawerEdit,
+                getString(R.string.not_saved),
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 }
