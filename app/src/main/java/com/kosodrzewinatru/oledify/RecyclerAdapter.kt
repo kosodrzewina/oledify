@@ -6,14 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
-class RecyclerAdapter(private val itemList: List<GalleryItem>)
-    : RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>() {
 
-    override fun getItemCount() = itemList.size
+class RecyclerAdapter(private val itemList: List<GalleryItem>) :
+    RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>() {
+
+    override fun getItemCount(): Int = itemList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.gallery_item,
-            parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.gallery_item,
+            parent, false
+        )
 
         return RecyclerViewHolder(itemView)
     }
