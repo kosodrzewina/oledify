@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.RecyclerAdapter
@@ -32,7 +33,6 @@ class GalleryFragment : Fragment() {
 
         for (file in files) {
             val currentBitmap = BitmapFactory.decodeFile(file.path)
-
             galleryItems.add(GalleryItem(currentBitmap))
         }
 

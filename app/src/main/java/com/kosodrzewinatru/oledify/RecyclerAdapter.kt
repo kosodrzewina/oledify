@@ -23,8 +23,8 @@ class RecyclerAdapter(private val itemList: List<GalleryItem>) :
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentItem = itemList[position]
-
         holder.photoView0.setImageBitmap(currentItem.bitmap)
+
         if (position + 1 <= itemList.size - 1) {
             holder.photoView1.setImageBitmap(itemList[position + 1].bitmap)
         }
