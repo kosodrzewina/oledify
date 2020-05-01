@@ -3,17 +3,17 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-    <com.github.chrisbanes.photoview.PhotoView
+    <ImageView
             android:id="@+id/photoView0"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
 
-    <com.github.chrisbanes.photoview.PhotoView
+    <ImageView
             android:id="@+id/photoView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
 </LinearLayout>
