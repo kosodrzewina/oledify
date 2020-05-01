@@ -14,8 +14,10 @@ import java.util.*
 class ImplementStates {
     constructor()
 
-    constructor(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar,
-                photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap) {
+    constructor(
+        context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar,
+        photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap
+    ) {
         seekbarsState(context, green, blue)
         resState(context, photoView, bitmap, thumbnail)
     }
@@ -33,13 +35,13 @@ class ImplementStates {
 
     fun languageState(activity: Activity) {
         val currentLocale = activity.resources.getString(R.string.language)
-        val targetLocale = PreferenceManager.getDefaultSharedPreferences(activity).
-            getString(SettingsActivity.LOCALE, "en")
+        val targetLocale = PreferenceManager.getDefaultSharedPreferences(activity)
+            .getString(SettingsActivity.LOCALE, "en")
 
         if (currentLocale != targetLocale) {
             val config = activity.resources.configuration
 
-            val targetLocaleList= targetLocale?.split('_')
+            val targetLocaleList = targetLocale?.split('_')
 
             if (targetLocaleList!!.size > 1) {
                 Locale.setDefault(Locale(targetLocaleList[0], targetLocaleList[1]))
@@ -59,7 +61,9 @@ class ImplementStates {
     private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 SettingsActivity.RGB_SLIDERS_SWITCH,
-                false)) {
+                false
+            )
+        ) {
             green.isEnabled = true
             blue.isEnabled = true
         } else {
@@ -72,10 +76,13 @@ class ImplementStates {
         context: Context,
         photoView: PhotoView,
         bitmap: Bitmap,
-        thumbnail: Bitmap) {
+        thumbnail: Bitmap
+    ) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 SettingsActivity.HIGH_RESOLUTION_SWITCH,
-                false)) {
+                false
+            )
+        ) {
             photoView.setImageBitmap(bitmap)
         } else {
             photoView.setImageBitmap(thumbnail)
