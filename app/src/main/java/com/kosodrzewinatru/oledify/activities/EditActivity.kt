@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
+import android.util.Log
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.app.ActivityCompat
@@ -341,11 +342,25 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 directory.mkdir()
             }
 
-            val id = (abs(Random.nextDouble()) * 10000).toInt()
+            var id = (abs(Random.nextDouble()) * 10000).toInt()
+            var file = File(directory, "oledify_$id.png")
+            var idExists = true
 
-            val file = File(directory, "oledify_$id.png")
+            while (idExists) {
+                idExists = false
+
+                for (currentFile in directory.listFiles()) {
+                    if (currentFile == file) {
+                        idExists = true
+                        break
+                    }
+                }
+
+                id = (abs(Random.nextDouble()) * 10000).toInt()
+                file = File(directory, "oledify_$id.png")
+            }
+
             val fileOutputStream = FileOutputStream(file)
-
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
 
             fileOutputStream.flush()
