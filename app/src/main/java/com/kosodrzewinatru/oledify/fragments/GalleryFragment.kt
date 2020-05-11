@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.RecyclerAdapter
+import com.kosodrzewinatru.oledify.activities.MainActivity
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import java.io.File
 

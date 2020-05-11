@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // things set on the first launch
         if (getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
-                .getBoolean(IS_FIRST_LAUNCH, true)) {
+                .getBoolean(IS_FIRST_LAUNCH, true)
+        ) {
             //welcome fragment
             welcomeFragment.show(supportFragmentManager, "WELCOME")
             getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
@@ -78,12 +79,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // open file picker
         uploadButton.setOnClickListener {
-            val intent= Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
+            val intent = Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
 
-            startActivityForResult(Intent.createChooser(
-                intent,
-                "Select a file"),
-                100)
+            startActivityForResult(
+                Intent.createChooser(
+                    intent,
+                    "Select a file"
+                ),
+                100
+            )
         }
 
         // go to EditActivity
@@ -107,7 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // back-end for stuff in the drawer
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when(p0.itemId) {
+        when (p0.itemId) {
             R.id.switchEditing -> {
                 if (galleryFragment.isVisible)
                     supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
@@ -118,6 +122,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
 
             R.id.switchGallery -> {
+                uploadButton.hide()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainer, galleryFragment).commit()
                 drawerMain.closeDrawer(GravityCompat.START)
@@ -137,10 +142,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
         when {
             drawerMain.isDrawerOpen(GravityCompat.START) -> drawerMain.closeDrawer(GravityCompat.START)
-             galleryFragment.isVisible -> {
-                 supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-                 navViewMain.menu.getItem(0).isChecked = true
-             }
+            galleryFragment.isVisible -> {
+                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+                uploadButton.show()
+                navViewMain.menu.getItem(0).isChecked = true
+            }
             else -> super.onBackPressed()
         }
     }
@@ -161,7 +167,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 bitmap,
                 bitmap.width / 2,
                 bitmap.height / 2,
-                true)
+                true
+            )
 
             imagePreviewView.setImageBitmap(thumbnail)
 
