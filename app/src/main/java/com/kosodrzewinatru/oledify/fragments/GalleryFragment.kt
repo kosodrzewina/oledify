@@ -1,8 +1,10 @@
 package com.kosodrzewinatru.oledify.fragments
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,9 +37,14 @@ class GalleryFragment : Fragment() {
             val files = directory.listFiles().toList()
             val galleryItems = mutableListOf<GalleryItem>()
 
-            for (file in files) {
-                val currentBitmap = BitmapFactory.decodeFile(file.path)
-                galleryItems.add(GalleryItem(currentBitmap))
+            var previousBitmap = BitmapFactory.decodeFile(files[0].path)
+            files.indices.forEach {
+                val currentBitmap = BitmapFactory.decodeFile(files[it].path)
+
+                if (it % 2 != 0)
+                    galleryItems.add(GalleryItem(previousBitmap, currentBitmap))
+                else if (it != 0)
+                    previousBitmap = BitmapFactory.decodeFile(files[it].path)
             }
 
             imagesRecyclerView.adapter = RecyclerAdapter(galleryItems)
