@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
-
 class RecyclerAdapter(private val itemList: List<GalleryItem>) :
     RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>() {
 

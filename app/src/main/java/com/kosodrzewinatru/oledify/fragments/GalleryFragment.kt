@@ -40,11 +40,16 @@ class GalleryFragment : Fragment() {
             var previousBitmap = BitmapFactory.decodeFile(files[0].path)
             files.indices.forEach {
                 val currentBitmap = BitmapFactory.decodeFile(files[it].path)
+                Log.d("IT", it.toString())
 
                 if (it % 2 != 0)
                     galleryItems.add(GalleryItem(previousBitmap, currentBitmap))
-                else if (it != 0)
+                else if (it != 0) {
                     previousBitmap = BitmapFactory.decodeFile(files[it].path)
+
+                    if (it == files.size - 1)
+                        galleryItems.add(GalleryItem(previousBitmap))
+                }
             }
 
             imagesRecyclerView.adapter = RecyclerAdapter(galleryItems)
