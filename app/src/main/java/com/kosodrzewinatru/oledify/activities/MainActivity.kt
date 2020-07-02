@@ -113,8 +113,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId) {
             R.id.switchEditing -> {
-                if (galleryFragment.isVisible)
+                if (galleryFragment.isVisible) {
                     supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+                    uploadButton.show()
+                }
 
                 drawerMain.closeDrawer(GravityCompat.START)
             }
