@@ -29,7 +29,7 @@ class Edit {
             val blue = Color.blue(pixels[it])
 
             if (red + green + blue <= intensity) {
-                pixels[it] = -16777214
+                pixels[it] = Color.BLACK
             }
         }
 
@@ -70,7 +70,7 @@ class Edit {
             val blue = Color.blue(pixels[it])
 
             if (red <= intensityRed && green <= intensityGreen && blue <= intensityBlue) {
-                pixels[it] = -16777214
+                pixels[it] = Color.BLACK
             }
         }
 
@@ -79,5 +79,9 @@ class Edit {
         processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
         return processed
+    }
+
+    fun makeBlackToneCurve() {
+        // TODO
     }
 }
