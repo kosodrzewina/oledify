@@ -1,6 +1,5 @@
 package com.kosodrzewinatru.oledify.fragments
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
@@ -44,7 +43,7 @@ class GalleryFragment : Fragment() {
 
                 if (it % 2 != 0)
                     galleryItems.add(GalleryItem(previousBitmap, currentBitmap))
-                else if (it != 0) {
+                else {
                     previousBitmap = BitmapFactory.decodeFile(files[it].path)
 
                     if (it == files.size - 1)
