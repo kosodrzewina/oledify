@@ -16,16 +16,18 @@ class LanguagesFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(
             R.layout.dialog_fragment_languages,
             container,
-            false)
+            false
+        )
 
         val supportedLocales = arrayOf(
             Locale.ENGLISH,
-            Locale.FRENCH,
-            Locale("pl", "PL"))
+            Locale("pl", "PL")
+        )
         val menuItems = arrayListOf<String>()
 
         supportedLocales.indices.forEach {
@@ -45,8 +47,10 @@ class LanguagesFragment : DialogFragment() {
         listView?.setOnItemClickListener { _, _, i, _ ->
             SettingsActivity().localeToSharedPreferences(context!!, supportedLocales[i])
 
-            ImplementStates().changeLanguage(activity!!, activity!!.intent, resources,
-                supportedLocales[i])
+            ImplementStates().changeLanguage(
+                activity!!, activity!!.intent, resources,
+                supportedLocales[i]
+            )
         }
 
         return view
