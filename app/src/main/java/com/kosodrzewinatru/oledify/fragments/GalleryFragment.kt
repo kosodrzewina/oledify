@@ -1,5 +1,7 @@
 package com.kosodrzewinatru.oledify.fragments
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
@@ -26,6 +28,29 @@ class GalleryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val storagePermission =
+            context?.checkCallingOrSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        if (storagePermission == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                101
+            )
+        } else {
+            showGallery()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 101)
+            showGallery()
+    }
+
+    fun showGallery() {
         val directory =
             File(Environment.getExternalStorageDirectory().toString() + "/Pictures/Oledify")
 
