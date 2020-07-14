@@ -81,7 +81,30 @@ class Edit {
         return processed
     }
 
-    fun makeBlackToneCurve() {
-        // TODO
+    fun makeBlackToneCurve(bitmap: Bitmap, intensity: Float): Bitmap {
+        val topRange = intensity * 765 / 100
+        val bottomRange = topRange - 100
+
+        val pixels = IntArray(bitmap.height * bitmap.width)
+        bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        pixels.indices.forEach {
+            val totalValue =
+                Color.red(pixels[it]) + Color.green(pixels[it]) + Color.blue(pixels[it])
+
+            if (totalValue < (bottomRange + (topRange - bottomRange) / 2)) {
+                pixels[it] = Color.BLACK
+            } else if (totalValue >= (bottomRange + (topRange - bottomRange) / 2) && totalValue <= topRange) {
+                val index = totalValue - (topRange - bottomRange) / 2
+                val newValue = topRange / ((topRange - bottomRange) / 2) * index
+
+                pixels[it] = Color.rgb(newValue / 3, newValue / 3, newValue / 3)
+            }
+        }
+
+        val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+        processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        return processed
     }
 }
