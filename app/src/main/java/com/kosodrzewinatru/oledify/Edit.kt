@@ -2,6 +2,7 @@ package com.kosodrzewinatru.oledify
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.util.Log
 
 /**
  * A class containing every function related to image processing.
@@ -83,22 +84,31 @@ class Edit {
 
     fun makeBlackToneCurve(bitmap: Bitmap, intensity: Float): Bitmap {
         val topRange = intensity * 765 / 100
-        val bottomRange = topRange - 100
+        val bottomRange = topRange - 175
 
         val pixels = IntArray(bitmap.height * bitmap.width)
         bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
         pixels.indices.forEach {
-            val totalValue =
-                Color.red(pixels[it]) + Color.green(pixels[it]) + Color.blue(pixels[it])
+            val red = Color.red(pixels[it])
+            val green = Color.green(pixels[it])
+            val blue = Color.blue(pixels[it])
+            val totalValue = red + green + blue
 
             if (totalValue < (bottomRange + (topRange - bottomRange) / 2)) {
                 pixels[it] = Color.BLACK
             } else if (totalValue >= (bottomRange + (topRange - bottomRange) / 2) && totalValue <= topRange) {
-                val index = totalValue - (topRange - bottomRange) / 2
-                val newValue = topRange / ((topRange - bottomRange) / 2) * index
+                val degradationRate = totalValue / topRange
 
-                pixels[it] = Color.rgb(newValue / 3, newValue / 3, newValue / 3)
+                val newRed = (red * degradationRate).toInt()
+                val newGreen = (green * degradationRate).toInt()
+                val newBlue = (blue * degradationRate).toInt()
+
+                pixels[it] = Color.rgb(
+                    newRed,
+                    newGreen,
+                    newBlue
+                )
             }
         }
 
