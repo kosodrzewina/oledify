@@ -312,7 +312,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     greenValue.text.toString().toFloat(),
                     blueValue.text.toString().toFloat()
                 )
-                false -> Edit().makeBlack(
+                false -> Edit().makeBlackToneCurve(
                     params[0] ?: return null, blacknessOrRedValue
                         .text
                         .toString()

@@ -84,7 +84,7 @@ class Edit {
 
     fun makeBlackToneCurve(bitmap: Bitmap, intensity: Float): Bitmap {
         val topRange = intensity * 765 / 100
-        val bottomRange = topRange - 175
+        val bottomRange = topRange - 300
 
         val pixels = IntArray(bitmap.height * bitmap.width)
         bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
