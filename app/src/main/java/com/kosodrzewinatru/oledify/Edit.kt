@@ -97,7 +97,7 @@ class Edit {
 
             if (totalValue < (bottomRange + (topRange - bottomRange) / 2)) {
                 pixels[it] = Color.BLACK
-            } else if (totalValue >= (bottomRange + (topRange - bottomRange) / 2) && totalValue <= topRange) {
+            } else if (totalValue <= topRange) {
                 val degradationRate = totalValue / topRange
 
                 val newRed = (red * degradationRate).toInt()
