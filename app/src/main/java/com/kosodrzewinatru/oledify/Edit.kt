@@ -117,4 +117,61 @@ class Edit {
 
         return processed
     }
+
+
+    fun makeBlackToneCurve(
+        bitmap: Bitmap,
+        intensityRed: Float,
+        intensityGreen: Float,
+        intensityBlue: Float
+    ): Bitmap {
+        val intensityRed = intensityRed * 765 / 100
+        val intensityGreen = intensityGreen * 765 / 100
+        val intensityBlue = intensityBlue * 765 / 100
+
+        val topRangeRed = intensityRed * 765 / 100
+        val bottomRangeRed = topRangeRed - 300
+        val topRangeGreen = intensityGreen * 765 / 100
+        val bottomRangeGreen = topRangeGreen - 300
+        val topRangeBlue = intensityBlue * 765 / 100
+        val bottomRangeBlue = topRangeBlue - 300
+
+        val pixels = IntArray(bitmap.height * bitmap.width)
+
+        bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        pixels.indices.forEach {
+            val red = Color.red(pixels[it])
+            val green = Color.green(pixels[it])
+            val blue = Color.blue(pixels[it])
+
+            if (
+                red < (bottomRangeRed + (topRangeRed - bottomRangeRed) / 2)
+                && green < (bottomRangeGreen + (topRangeGreen - bottomRangeGreen) / 2)
+                && blue < (bottomRangeBlue + (topRangeBlue - bottomRangeBlue) / 2)
+            ) {
+                pixels[it] = Color.BLACK
+            } else if (red <= topRangeRed && green <= topRangeGreen && blue <= topRangeBlue) {
+                val degradationRate =
+                    (red + green + blue) / (topRangeRed + topRangeGreen + topRangeBlue)
+
+                val newRed = (red * degradationRate).toInt()
+                val newGreen = (green * degradationRate).toInt()
+                val newBlue = (blue * degradationRate).toInt()
+
+
+                pixels[it] = Color.rgb(
+                    newRed,
+                    newGreen,
+                    newBlue
+                )
+            }
+        }
+
+
+        val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+        processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
+        return processed
+    }
 }
