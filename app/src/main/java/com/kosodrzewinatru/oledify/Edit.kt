@@ -57,9 +57,9 @@ class Edit {
         intensityGreen: Float,
         intensityBlue: Float
     ): Bitmap {
-        val intensityRed = intensityRed * 765 / 100
-        val intensityGreen = intensityGreen * 765 / 100
-        val intensityBlue = intensityBlue * 765 / 100
+        val intensityRed = intensityRed * 255 / 100
+        val intensityGreen = intensityGreen * 255 / 100
+        val intensityBlue = intensityBlue * 255 / 100
 
         val pixels = IntArray(bitmap.height * bitmap.width)
 
