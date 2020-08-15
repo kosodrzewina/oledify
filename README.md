@@ -16,16 +16,16 @@ Just go to the "release" tab and download the latest apk. You may encounter a pr
 ## Examples
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/city.jpg"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/car.jpg"
         height="500"/>
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/sky.jpg"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/nagoya.jpg"
         height="500"/>
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/coffe.jpg"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/highway.jpg"
         height="500"/>
 </p>
