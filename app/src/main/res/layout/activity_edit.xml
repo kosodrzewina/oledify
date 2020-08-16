@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/constrainLayout"
+        android:id="@+id/constraint_layout_edit"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarEdit"
+                android:id="@+id/toolbar_edit"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -20,7 +20,7 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarEdit"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_edit"
             android:layout_marginTop="16dp">
 
         <LinearLayout
@@ -30,7 +30,7 @@
                 android:layout_gravity="center">
 
             <com.github.chrisbanes.photoview.PhotoView
-                    android:id="@+id/imageEditView"
+                    android:id="@+id/image_edit_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -38,7 +38,7 @@
                     android:adjustViewBounds="true"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/saveButton"
+                    android:id="@+id/save_button"
                     android:theme="@style/TextSemiBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -50,28 +50,28 @@
                     android:text="@string/save"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/blacknessOrRedValue"
+                    android:id="@+id/blackness_or_red_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="?attr/colorAccent"/>
 
             <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/intensitySeekBarMaybeRed"
+                    android:id="@+id/intensity_seek_bar_maybe_red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="250dp"
                     android:layout_gravity="center"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/greenValue"
+                    android:id="@+id/green_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@android:color/holo_green_light"/>
 
             <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/intensitySeekBarGreen"
+                    android:id="@+id/intensity_seek_bar_green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="250dp"
@@ -80,14 +80,14 @@
                     android:thumbTint="@android:color/holo_green_dark"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/blueValue"
+                    android:id="@+id/blue_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@android:color/holo_blue_light"/>
 
             <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/intensitySeekBarBlue"
+                    android:id="@+id/intensity_seek_bar_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="250dp"
@@ -102,11 +102,11 @@
             android:id="@+id/bottom_nav_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/constrainLayout"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_layout_edit"
             android:layout_gravity="start"
             app:menu="@menu/navigation_menu"
             android:theme="@style/TextBold"
-            android:background="@color/colorMain"
+            android:background="@color/color_main"
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"/>
 

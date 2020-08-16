@@ -55,13 +55,13 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottom_nav_main)
 
-        magicButton.isEnabled = false
-        clearButton.isEnabled = false
+        magic_button.isEnabled = false
+        clear_button.isEnabled = false
 
-        toolbarMain.title = getString(R.string.app_name)
+        toolbar_main.title = getString(R.string.app_name)
 
         // open file picker
-        uploadButton.setOnClickListener {
+        upload_button.setOnClickListener {
             val intent = Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
 
             startActivityForResult(
@@ -74,19 +74,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         // go to EditActivity
-        magicButton.setOnClickListener {
+        magic_button.setOnClickListener {
             val intent = Intent(this, EditActivity::class.java)
             intent.putExtra("selectedFileEdit", selectedFileEdit)
             startActivity(intent)
         }
 
-        imagePreviewView.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
+        image_preview_view.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
 
         // clear imageView
-        clearButton.setOnClickListener {
-            imagePreviewView.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
-            magicButton.isEnabled = false
-            clearButton.isEnabled = false
+        clear_button.setOnClickListener {
+            image_preview_view.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
+            magic_button.isEnabled = false
+            clear_button.isEnabled = false
         }
 
         ImplementStates().languageState(this)
@@ -155,10 +155,10 @@ class MainActivity : AppCompatActivity() {
                 true
             )
 
-            imagePreviewView.setImageBitmap(thumbnail)
+            image_preview_view.setImageBitmap(thumbnail)
 
-            magicButton.isEnabled = true
-            clearButton.isEnabled = true
+            magic_button.isEnabled = true
+            clear_button.isEnabled = true
         }
     }
 }

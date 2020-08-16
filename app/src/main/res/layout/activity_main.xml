@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrainLayout"
+        android:id="@+id/constraint_layout_main"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
@@ -8,7 +8,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarMain"
+                android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -20,7 +20,7 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarMain"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
             android:layout_marginTop="16dp">
 
             <LinearLayout
@@ -30,7 +30,7 @@
                     android:layout_gravity="center">
 
                 <com.github.chrisbanes.photoview.PhotoView
-                        android:id="@+id/imagePreviewView"
+                        android:id="@+id/image_preview_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:minHeight="300dp"
@@ -38,7 +38,7 @@
                         android:adjustViewBounds="true"/>
 
                 <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/magicButton"
+                        android:id="@+id/magic_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -50,7 +50,7 @@
                         android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/clearButton"
+                        android:id="@+id/clear_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -66,11 +66,11 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/uploadButton"
+            android:id="@+id/upload_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav_main"
-            app:layout_constraintRight_toRightOf="@+id/constrainLayout"
+            app:layout_constraintRight_toRightOf="@+id/constraint_layout_main"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_add"/>
@@ -79,11 +79,11 @@
             android:id="@+id/bottom_nav_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/constrainLayout"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_layout_main"
             android:layout_gravity="start"
             app:menu="@menu/navigation_menu"
             android:theme="@style/TextBold"
-            android:background="@color/colorMain"
+            android:background="@color/color_main"
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"/>
 

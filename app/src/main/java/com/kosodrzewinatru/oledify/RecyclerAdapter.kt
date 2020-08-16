@@ -29,7 +29,7 @@ class RecyclerAdapter(private val itemList: List<GalleryItem>) :
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photoView0 = itemView.photoView0
-        val photoView1 = itemView.photoView1
+        val photoView0 = itemView.photo_view_0
+        val photoView1 = itemView.photo_view_1
     }
 }

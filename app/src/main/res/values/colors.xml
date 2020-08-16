@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Light theme -->
-    <color name="colorMain">#283593</color>
-    <color name="colorBackground">#5C6BC0</color>
-    <color name="colorAdditional">#1A237E</color>
-    <color name="colorAccent">#DD2C00</color>
+    <color name="color_main">#283593</color>
+    <color name="color_background">#5C6BC0</color>
+    <color name="color_additional">#1A237E</color>
+    <color name="color_accent">#DD2C00</color>
 
     <!-- Dark theme -->
-    <color name="colorMainDark">#424242</color>
-    <color name="colorBackgroundDark">@android:color/black</color>
-    <color name="colorAdditionalDark">#212121</color>
-    <color name="colorAccentDark">#DD2C00</color>
+    <color name="color_main_dark">#424242</color>
+    <color name="color_background_dark">@android:color/black</color>
+    <color name="color_addtional_dark">#212121</color>
+    <color name="color_accent_dark">#DD2C00</color>
 </resources>

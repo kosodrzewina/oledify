@@ -76,9 +76,9 @@ class GalleryFragment : Fragment() {
                 }
             }
 
-            imagesRecyclerView.adapter = RecyclerAdapter(galleryItems)
-            imagesRecyclerView.layoutManager = LinearLayoutManager(activity)
-            imagesRecyclerView.setHasFixedSize(true)
+            images_recycler_view.adapter = RecyclerAdapter(galleryItems)
+            images_recycler_view.layoutManager = LinearLayoutManager(activity)
+            images_recycler_view.setHasFixedSize(true)
         }
     }
 }

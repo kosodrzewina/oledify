@@ -3,16 +3,16 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:showIn="navigation_view">
 
-    <item android:id="@+id/switchEditing"
+    <item android:id="@+id/switch_editing"
         android:icon="@drawable/ic_edit"
         android:checked="true"
         android:title="@string/editing"/>
 
-    <item android:id="@+id/switchGallery"
+    <item android:id="@+id/switch_gallery"
         android:icon="@drawable/ic_gallery"
         android:title="@string/gallery"/>
 
-    <item android:id="@+id/processingSettings"
+    <item android:id="@+id/settings"
             android:icon="@drawable/ic_settings"
             android:title="@string/processing_settings"/>
 

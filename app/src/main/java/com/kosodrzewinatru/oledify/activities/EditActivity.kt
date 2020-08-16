@@ -63,23 +63,23 @@ class EditActivity : AppCompatActivity() {
         // drawer itself
         bottomNav = findViewById(R.id.bottom_nav_edit)
 
-        toolbarEdit.title = getString(R.string.app_name)
+        toolbar_edit.title = getString(R.string.app_name)
 
         // seekbars disabled by default
-        intensitySeekBarGreen.isEnabled = false
-        intensitySeekBarBlue.isEnabled = false
+        intensity_seek_bar_green.isEnabled = false
+        intensity_seek_bar_blue.isEnabled = false
 
-        saveButton.isEnabled = false
+        save_button.isEnabled = false
 
         // default value of intensity
-        intensitySeekBarMaybeRed.progress = 0
-        blacknessOrRedValue.text = intensitySeekBarMaybeRed.progress.toString()
+        intensity_seek_bar_maybe_red.progress = 0
+        blackness_or_red_value.text = intensity_seek_bar_maybe_red.progress.toString()
 
-        intensitySeekBarGreen.progress = 0
-        greenValue.text = intensitySeekBarGreen.progress.toString()
+        intensity_seek_bar_green.progress = 0
+        green_value.text = intensity_seek_bar_green.progress.toString()
 
-        intensitySeekBarBlue.progress = 0
-        blueValue.text = intensitySeekBarBlue.progress.toString()
+        intensity_seek_bar_blue.progress = 0
+        blue_value.text = intensity_seek_bar_blue.progress.toString()
 
         // set imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
@@ -92,17 +92,17 @@ class EditActivity : AppCompatActivity() {
             true
         )
 
-        saveButton.setOnClickListener {
-            val drawable = imageEditView.drawable
+        save_button.setOnClickListener {
+            val drawable = image_edit_view.drawable
 
             save((drawable as BitmapDrawable).bitmap)
         }
 
         // seekbar for general or red intensity
-        intensitySeekBarMaybeRed.setOnSeekBarChangeListener(
+        intensity_seek_bar_maybe_red.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                    saveButton.isEnabled = false
+                    save_button.isEnabled = false
                 }
 
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
@@ -111,15 +111,15 @@ class EditActivity : AppCompatActivity() {
                             true
                         )
                     ) {
-                        blacknessOrRedValue.text = p1.toString()
+                        blackness_or_red_value.text = p1.toString()
                         Processing().execute(currentBitmap)
                     } else {
-                        blacknessOrRedValue.text = p1.toString()
+                        blackness_or_red_value.text = p1.toString()
                     }
 
                     if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                        intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
-                        intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
+                        intensity_seek_bar_green.progress = intensity_seek_bar_maybe_red.progress
+                        intensity_seek_bar_blue.progress = intensity_seek_bar_maybe_red.progress
                     }
                 }
 
@@ -129,59 +129,59 @@ class EditActivity : AppCompatActivity() {
                             true
                         )
                     ) {
-                        saveButton.isEnabled = true
+                        save_button.isEnabled = true
                     } else {
-                        saveButton.isEnabled = true
+                        save_button.isEnabled = true
                         Processing().execute(currentBitmap)
                     }
                 }
             })
 
         // seekbar for green intensity
-        intensitySeekBarGreen.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        intensity_seek_bar_green.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(p0: SeekBar?) {
-                saveButton.isEnabled = false
+                save_button.isEnabled = false
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
-                    greenValue.text = p1.toString()
+                    green_value.text = p1.toString()
                     Processing().execute(currentBitmap)
                 } else {
-                    greenValue.text = p1.toString()
+                    green_value.text = p1.toString()
                 }
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
-                    saveButton.isEnabled = true
+                    save_button.isEnabled = true
                 } else {
-                    saveButton.isEnabled = true
+                    save_button.isEnabled = true
                     Processing().execute(currentBitmap)
                 }
             }
         })
 
         // seekbar for blue intensity
-        intensitySeekBarBlue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        intensity_seek_bar_blue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(p0: SeekBar?) {
-                saveButton.isEnabled = false
+                save_button.isEnabled = false
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
-                    blueValue.text = p1.toString()
+                    blue_value.text = p1.toString()
                     Processing().execute(currentBitmap)
                 } else {
-                    blueValue.text = p1.toString()
+                    blue_value.text = p1.toString()
                 }
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
                 if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
-                    saveButton.isEnabled = true
+                    save_button.isEnabled = true
                 } else {
-                    saveButton.isEnabled = true
+                    save_button.isEnabled = true
                     Processing().execute(currentBitmap)
                 }
             }
@@ -189,11 +189,11 @@ class EditActivity : AppCompatActivity() {
 
         ImplementStates(
             this,
-            intensitySeekBarGreen, intensitySeekBarBlue,
-            imageEditView, bitmap, thumbnail
+            intensity_seek_bar_green, intensity_seek_bar_blue,
+            image_edit_view, bitmap, thumbnail
         )
 
-        currentBitmap = when ((imageEditView.drawable as BitmapDrawable).bitmap == bitmap) {
+        currentBitmap = when ((image_edit_view.drawable as BitmapDrawable).bitmap == bitmap) {
             true -> bitmap
             false -> thumbnail
         }
@@ -214,11 +214,11 @@ class EditActivity : AppCompatActivity() {
 
         ImplementStates(
             this,
-            intensitySeekBarGreen, intensitySeekBarBlue,
-            imageEditView, bitmap, thumbnail
+            intensity_seek_bar_green, intensity_seek_bar_blue,
+            image_edit_view, bitmap, thumbnail
         )
 
-        currentBitmap = when ((imageEditView.drawable as BitmapDrawable).bitmap == bitmap) {
+        currentBitmap = when ((image_edit_view.drawable as BitmapDrawable).bitmap == bitmap) {
             true -> bitmap
             false -> thumbnail
         }
@@ -228,8 +228,8 @@ class EditActivity : AppCompatActivity() {
         val sharedPrefs = PreferenceManager
             .getDefaultSharedPreferences(applicationContext)
         if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-            intensitySeekBarGreen.progress = intensitySeekBarMaybeRed.progress
-            intensitySeekBarBlue.progress = intensitySeekBarMaybeRed.progress
+            intensity_seek_bar_green.progress = intensity_seek_bar_maybe_red.progress
+            intensity_seek_bar_blue.progress = intensity_seek_bar_maybe_red.progress
         }
     }
 
@@ -290,12 +290,12 @@ class EditActivity : AppCompatActivity() {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
                 true -> Edit().makeBlackToneCurve(
                     params[0] ?: return null,
-                    blacknessOrRedValue.text.toString().toFloat(),
-                    greenValue.text.toString().toFloat(),
-                    blueValue.text.toString().toFloat()
+                    blackness_or_red_value.text.toString().toFloat(),
+                    green_value.text.toString().toFloat(),
+                    blue_value.text.toString().toFloat()
                 )
                 false -> Edit().makeBlackToneCurve(
-                    params[0] ?: return null, blacknessOrRedValue
+                    params[0] ?: return null, blackness_or_red_value
                         .text
                         .toString()
                         .toFloat()
@@ -304,8 +304,8 @@ class EditActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: Bitmap?) {
-            imageEditView.setImageBitmap(result)
-            saveButton.isEnabled = true
+            image_edit_view.setImageBitmap(result)
+            save_button.isEnabled = true
         }
     }
 

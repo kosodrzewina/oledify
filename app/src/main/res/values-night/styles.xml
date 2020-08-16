@@ -2,21 +2,21 @@
 
     <!-- Dark theme -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowBackground">@color/colorBackgroundDark</item>
-        <item name="colorPrimary">@color/colorMainDark</item>
-        <item name="colorPrimaryDark">@color/colorAdditionalDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/color_background_dark</item>
+        <item name="colorPrimary">@color/color_main_dark</item>
+        <item name="colorPrimaryDark">@color/color_addtional_dark</item>
+        <item name="colorAccent">@color/color_accent_dark</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/colorBackgroundDark</item>
+        <item name="android:navigationBarColor">@color/color_background_dark</item>
     </style>
 
     <style name="AppTheme.SettingsScreen">
-        <item name="android:windowBackground">@color/colorBackgroundDark</item>
+        <item name="android:windowBackground">@color/color_background_dark</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="AppTheme.GalleryFragment">
-        <item name="android:background">@color/colorBackgroundDark</item>
+        <item name="android:background">@color/color_background_dark</item>
     </style>
 
 </resources>

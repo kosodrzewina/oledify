@@ -34,7 +34,7 @@ class LanguagesFragment : DialogFragment() {
             menuItems.add(supportedLocales[it].displayLanguage)
         }
 
-        val listView = view?.findViewById<ListView>(R.id.listLanguages)
+        val listView = view?.findViewById<ListView>(R.id.list_languages)
 
         val listViewAdapter = ArrayAdapter<String>(
             activity,

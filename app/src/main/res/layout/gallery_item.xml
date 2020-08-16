@@ -4,14 +4,14 @@
         android:layout_width="match_parent">
 
     <ImageView
-            android:id="@+id/photoView0"
+            android:id="@+id/photo_view_0"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="centerCrop"/>
 
     <ImageView
-            android:id="@+id/photoView1"
+            android:id="@+id/photo_view_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
