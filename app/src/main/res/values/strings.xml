@@ -17,7 +17,7 @@
     <!--image processing settings-->
     <string name="image_processing">Image processing</string>
     <string name="RGB_sliders">RGB sliders</string>
-    <string name="processing_settings">Image processing settings</string>
+    <string name="processing_settings">Settings</string>
     <string name="high_res">High resolution preview</string>
 
     <!--main activity-->

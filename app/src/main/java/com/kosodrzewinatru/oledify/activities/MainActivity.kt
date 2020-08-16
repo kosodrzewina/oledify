@@ -7,12 +7,8 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.MenuItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
@@ -20,14 +16,14 @@ import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
     companion object {
         val TAG = "MainActivity"
     }
 
     private lateinit var selectedFileEdit: String
 
-    private lateinit var drawer: DrawerLayout
+    private lateinit var bottomNav: BottomNavigationView
 
     // fragments
     private val languagesFragment = LanguagesFragment()
@@ -57,25 +53,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .apply()
         }
 
-        drawer = findViewById(R.id.drawerMain)
-        val navigationView = findViewById<NavigationView>(R.id.navViewMain)
-        navigationView.setNavigationItemSelectedListener(this)
+        bottomNav = findViewById(R.id.bottom_nav_main)
 
         magicButton.isEnabled = false
         clearButton.isEnabled = false
 
         toolbarMain.title = getString(R.string.app_name)
-
-        // hamburger icon
-        val toggle = ActionBarDrawerToggle(
-            this,
-            drawerMain,
-            toolbarMain,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        drawerMain.addDrawerListener(toggle)
-        toggle.syncState()
 
         // open file picker
         uploadButton.setOnClickListener {
@@ -110,48 +93,48 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // back-end for stuff in the drawer
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when (p0.itemId) {
-            R.id.switchEditing -> {
-                if (galleryFragment.isVisible) {
-                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-                    uploadButton.show()
-                }
-
-                drawerMain.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
-
-            R.id.switchGallery -> {
-                uploadButton.hide()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, galleryFragment).commit()
-                drawerMain.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.processingSettings -> {
-                val intent = Intent(this, SettingsActivity::class.java)
-                startActivity(intent)
-                drawerMain.closeDrawer(GravityCompat.START)
-            }
-        }
-
-        return true
-    }
+//    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+//        when (p0.itemId) {
+//            R.id.switchEditing -> {
+//                if (galleryFragment.isVisible) {
+//                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+//                    uploadButton.show()
+//                }
+//
+//                drawerMain.closeDrawer(GravityCompat.START)
+//            }
+//
+//            R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
+//
+//            R.id.switchGallery -> {
+//                uploadButton.hide()
+//                supportFragmentManager.beginTransaction()
+//                    .replace(R.id.fragmentContainer, galleryFragment).commit()
+//                drawerMain.closeDrawer(GravityCompat.START)
+//            }
+//
+//            R.id.processingSettings -> {
+//                val intent = Intent(this, SettingsActivity::class.java)
+//                startActivity(intent)
+//                drawerMain.closeDrawer(GravityCompat.START)
+//            }
+//        }
+//
+//        return true
+//    }
 
     // if back button is pressed and the drawer is open, close the drawer
-    override fun onBackPressed() {
-        when {
-            drawerMain.isDrawerOpen(GravityCompat.START) -> drawerMain.closeDrawer(GravityCompat.START)
-            galleryFragment.isVisible -> {
-                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-                uploadButton.show()
-                navViewMain.menu.getItem(0).isChecked = true
-            }
-            else -> super.onBackPressed()
-        }
-    }
+//    override fun onBackPressed() {
+//        when {
+//            drawerMain.isDrawerOpen(GravityCompat.START) -> drawerMain.closeDrawer(GravityCompat.START)
+//            galleryFragment.isVisible -> {
+//                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+//                uploadButton.show()
+//                navViewMain.menu.getItem(0).isChecked = true
+//            }
+//            else -> super.onBackPressed()
+//        }
+//    }
 
     // result of quitting file picker
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

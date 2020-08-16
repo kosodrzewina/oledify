@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.view.MenuItem
 import android.widget.SeekBar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
@@ -35,8 +36,8 @@ import kotlin.random.Random
 /**
  * A class for the EditActivity.
  */
-class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var drawer: DrawerLayout
+class EditActivity : AppCompatActivity() {
+    private lateinit var bottomNav: BottomNavigationView
 
     // fragments
     private val fragmentManager = supportFragmentManager
@@ -66,26 +67,13 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         // drawer itself
-        drawer = findViewById(R.id.drawerEdit)
-        val navigationView = findViewById<NavigationView>(R.id.navViewEdit)
-        navigationView.setNavigationItemSelectedListener(this)
+        bottomNav = findViewById(R.id.bottom_nav_edit)
 
         toolbarEdit.title = getString(R.string.app_name)
 
         // seekbars disabled by default
         intensitySeekBarGreen.isEnabled = false
         intensitySeekBarBlue.isEnabled = false
-
-        // hamburger icon
-        val toggle = ActionBarDrawerToggle(
-            this,
-            drawerEdit,
-            toolbarEdit,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        drawerEdit.addDrawerListener(toggle)
-        toggle.syncState()
 
         saveButton.isEnabled = false
 
@@ -257,47 +245,47 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      * @param p0 selected item
      * @return true if the chosen item should be displayed as a selected item or false if not
      */
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when (p0.itemId) {
-            R.id.switchEditing -> {
-                if (galleryFragment.isVisible)
-                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-
-                drawerEdit.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.language -> languagesFragment.show(fragmentManager, "LIST")
-
-            R.id.switchGallery -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, galleryFragment).commit()
-                drawerEdit.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.processingSettings -> {
-                val intent = Intent(this, SettingsActivity::class.java)
-                startActivity(intent)
-                drawerEdit.closeDrawer(GravityCompat.START)
-            }
-        }
-
-        return true
-    }
+//    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+//        when (p0.itemId) {
+//            R.id.switchEditing -> {
+//                if (galleryFragment.isVisible)
+//                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+//
+//                drawerEdit.closeDrawer(GravityCompat.START)
+//            }
+//
+//            R.id.language -> languagesFragment.show(fragmentManager, "LIST")
+//
+//            R.id.switchGallery -> {
+//                supportFragmentManager.beginTransaction()
+//                    .replace(R.id.fragmentContainer, galleryFragment).commit()
+//                drawerEdit.closeDrawer(GravityCompat.START)
+//            }
+//
+//            R.id.processingSettings -> {
+//                val intent = Intent(this, SettingsActivity::class.java)
+//                startActivity(intent)
+//                drawerEdit.closeDrawer(GravityCompat.START)
+//            }
+//        }
+//
+//        return true
+//    }
 
     /**
      * An override function called when back button is pressed. If so, the drawer is being closed
      * if it's open.
      */
-    override fun onBackPressed() {
-        when {
-            drawerEdit.isDrawerOpen(GravityCompat.START) -> drawerEdit.closeDrawer(GravityCompat.START)
-            galleryFragment.isVisible -> {
-                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-                navViewEdit.menu.getItem(0).isChecked = true
-            }
-            else -> super.onBackPressed()
-        }
-    }
+//    override fun onBackPressed() {
+//        when {
+//            drawerEdit.isDrawerOpen(GravityCompat.START) -> drawerEdit.closeDrawer(GravityCompat.START)
+//            galleryFragment.isVisible -> {
+//                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+//                navViewEdit.menu.getItem(0).isChecked = true
+//            }
+//            else -> super.onBackPressed()
+//        }
+//    }
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
@@ -371,7 +359,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intentMediaScannerConnection.data = Uri.fromFile(file)
             sendBroadcast(intentMediaScannerConnection)
 
-            Snackbar.make(drawerEdit, "Image saved successfully!", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(bottomNav, "Image saved successfully!", Snackbar.LENGTH_SHORT).show()
         } else {
             ActivityCompat.requestPermissions(
                 this@EditActivity,
@@ -398,7 +386,7 @@ class EditActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Environment.MEDIA_MOUNTED)
         ) {
             Snackbar.make(
-                drawerEdit,
+                bottomNav,
                 getString(R.string.not_saved),
                 Snackbar.LENGTH_SHORT
             ).show()

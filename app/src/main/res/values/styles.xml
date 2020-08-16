@@ -10,8 +10,8 @@
         <item name="colorPrimary">@color/colorMain</item>
         <item name="colorPrimaryDark">@color/colorAdditional</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorAdditional</item>
+        <item name="android:navigationBarColor">@color/colorMain</item>
     </style>
 
     <style name="AppTheme.SettingsScreen">

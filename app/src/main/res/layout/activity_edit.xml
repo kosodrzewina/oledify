@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-        xmlns:tools="http://schemas.android.com/tools"
+<com.google.android.material.bottomnavigation.BottomNavigationView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".activities.MainActivity"
-        android:fitsSystemWindows="true"
-        android:id="@+id/drawerEdit"
+        android:id="@+id/bottom_nav_edit"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu"
         android:theme="@style/TextBold">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,15 +111,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navViewEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"
-        app:itemIconTint="?attr/colorPrimaryDark"
-        app:itemTextColor="@android:color/white"
-        android:theme="@style/TextSemiBold"/>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</com.google.android.material.bottomnavigation.BottomNavigationView>
