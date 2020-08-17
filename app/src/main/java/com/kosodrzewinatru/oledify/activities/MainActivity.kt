@@ -7,8 +7,11 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
+import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
@@ -90,38 +93,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         ImplementStates().languageState(this)
-    }
 
-    // back-end for stuff in the drawer
-//    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-//        when (p0.itemId) {
-//            R.id.switchEditing -> {
-//                if (galleryFragment.isVisible) {
-//                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-//                    uploadButton.show()
-//                }
-//
-//                drawerMain.closeDrawer(GravityCompat.START)
-//            }
-//
-//            R.id.language -> languagesFragment.show(supportFragmentManager, "LIST")
-//
-//            R.id.switchGallery -> {
-//                uploadButton.hide()
-//                supportFragmentManager.beginTransaction()
-//                    .replace(R.id.fragmentContainer, galleryFragment).commit()
-//                drawerMain.closeDrawer(GravityCompat.START)
-//            }
-//
-//            R.id.processingSettings -> {
-//                val intent = Intent(this, SettingsActivity::class.java)
-//                startActivity(intent)
-//                drawerMain.closeDrawer(GravityCompat.START)
-//            }
-//        }
-//
-//        return true
-//    }
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav_main)
+
+        // back-end for stuff in the bottom navigation view
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.switch_editing -> {
+                    if (galleryFragment.isVisible) {
+                        supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+                        upload_button.show()
+                    }
+                }
+
+                R.id.switch_gallery -> {
+                    upload_button.hide()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container_main, galleryFragment).commit()
+                }
+
+                R.id.settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+
+            return@setOnNavigationItemSelectedListener true
+        }
+    }
 
     // if back button is pressed and the drawer is open, close the drawer
 //    override fun onBackPressed() {

@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.abs
@@ -199,6 +201,31 @@ class EditActivity : AppCompatActivity() {
         }
 
         ImplementStates().languageState(this)
+
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav_edit)
+
+        // back-end for stuff in the bottom navigation view
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.switch_editing -> {
+                    if (galleryFragment.isVisible) {
+                        supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+                    }
+                }
+
+                R.id.switch_gallery -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container_edit, galleryFragment).commit()
+                }
+
+                R.id.settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+
+            return@setOnNavigationItemSelectedListener true
+        }
     }
 
     /**
@@ -232,39 +259,6 @@ class EditActivity : AppCompatActivity() {
             intensity_seek_bar_blue.progress = intensity_seek_bar_maybe_red.progress
         }
     }
-
-    /**
-     * An override function for selecting items from the drawer.
-     *
-     * @param p0 selected item
-     * @return true if the chosen item should be displayed as a selected item or false if not
-     */
-//    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-//        when (p0.itemId) {
-//            R.id.switchEditing -> {
-//                if (galleryFragment.isVisible)
-//                    supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-//
-//                drawerEdit.closeDrawer(GravityCompat.START)
-//            }
-//
-//            R.id.language -> languagesFragment.show(fragmentManager, "LIST")
-//
-//            R.id.switchGallery -> {
-//                supportFragmentManager.beginTransaction()
-//                    .replace(R.id.fragmentContainer, galleryFragment).commit()
-//                drawerEdit.closeDrawer(GravityCompat.START)
-//            }
-//
-//            R.id.processingSettings -> {
-//                val intent = Intent(this, SettingsActivity::class.java)
-//                startActivity(intent)
-//                drawerEdit.closeDrawer(GravityCompat.START)
-//            }
-//        }
-//
-//        return true
-//    }
 
     /**
      * An override function called when back button is pressed. If so, the drawer is being closed
