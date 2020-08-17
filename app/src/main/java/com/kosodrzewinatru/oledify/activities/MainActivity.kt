@@ -122,18 +122,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // if back button is pressed and the drawer is open, close the drawer
-//    override fun onBackPressed() {
-//        when {
-//            drawerMain.isDrawerOpen(GravityCompat.START) -> drawerMain.closeDrawer(GravityCompat.START)
-//            galleryFragment.isVisible -> {
-//                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-//                uploadButton.show()
-//                navViewMain.menu.getItem(0).isChecked = true
-//            }
-//            else -> super.onBackPressed()
-//        }
-//    }
+    override fun onBackPressed() {
+        if (galleryFragment.isVisible) {
+            supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+        } else {
+            super.onBackPressed()
+        }
+    }
 
     // result of quitting file picker
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

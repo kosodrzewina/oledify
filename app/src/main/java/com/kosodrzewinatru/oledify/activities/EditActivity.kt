@@ -260,20 +260,13 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * An override function called when back button is pressed. If so, the drawer is being closed
-     * if it's open.
-     */
-//    override fun onBackPressed() {
-//        when {
-//            drawerEdit.isDrawerOpen(GravityCompat.START) -> drawerEdit.closeDrawer(GravityCompat.START)
-//            galleryFragment.isVisible -> {
-//                supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
-//                navViewEdit.menu.getItem(0).isChecked = true
-//            }
-//            else -> super.onBackPressed()
-//        }
-//    }
+    override fun onBackPressed() {
+        if (galleryFragment.isVisible) {
+            supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+        } else {
+            super.onBackPressed()
+        }
+    }
 
     // asynchronous class for heavy processing tasks
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
