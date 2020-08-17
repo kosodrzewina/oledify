@@ -12,8 +12,4 @@
         android:icon="@drawable/ic_gallery"
         android:title="@string/gallery"/>
 
-    <item android:id="@+id/settings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/processing_settings"/>
-
 </menu>

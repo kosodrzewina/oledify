@@ -111,11 +111,6 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container_main, galleryFragment).commit()
                 }
-
-                R.id.settings -> {
-                    val intent = Intent(this, SettingsActivity::class.java)
-                    startActivity(intent)
-                }
             }
 
             return@setOnNavigationItemSelectedListener true
