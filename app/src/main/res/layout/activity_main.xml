@@ -65,6 +65,11 @@
 
     </ScrollView>
 
+    <FrameLayout
+            android:id="@+id/fragment_container_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/upload_button"
             android:layout_width="wrap_content"
