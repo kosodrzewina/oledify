@@ -105,9 +105,6 @@
             app:layout_constraintBottom_toBottomOf="@id/constraint_layout_edit"
             android:layout_gravity="start"
             app:menu="@menu/navigation_menu"
-            android:theme="@style/TextBold"
-            android:background="@color/color_main"
-            app:itemIconTint="@android:color/white"
-            app:itemTextColor="@android:color/white"/>
+            android:theme="@style/AppTheme.BottomNavigationView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

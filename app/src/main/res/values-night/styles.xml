@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/color_addtional_dark</item>
         <item name="colorAccent">@color/color_accent_dark</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/color_background_dark</item>
+        <item name="android:navigationBarColor">@color/color_addtional_dark</item>
     </style>
 
     <style name="AppTheme.SettingsScreen">
@@ -17,6 +17,12 @@
 
     <style name="AppTheme.GalleryFragment">
         <item name="android:background">@color/color_background_dark</item>
+    </style>
+
+    <style name="AppTheme.BottomNavigationView">
+        <item name="android:background">@color/color_addtional_dark</item>
+        <item name="itemIconTint">@android:color/white</item>
+        <item name="itemTextColor">@color/color_accent</item>
     </style>
 
 </resources>

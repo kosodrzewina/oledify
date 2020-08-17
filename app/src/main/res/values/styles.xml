@@ -23,6 +23,12 @@
         <item name="android:background">@color/color_background</item>
     </style>
 
+    <style name="AppTheme.BottomNavigationView">
+        <item name="android:background">@color/color_main</item>
+        <item name="itemIconTint">@android:color/white</item>
+        <item name="itemTextColor">@color/color_accent</item>
+    </style>
+
     <!-- Styles for text -->
     <style name="TextSemiBold">
         <item name="android:ellipsize">end</item>
