@@ -124,6 +124,25 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings_item -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+
+                true
+            }
+
+            R.id.language_item -> {
+                languagesFragment.show(supportFragmentManager, "LIST")
+
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onBackPressed() {
         if (galleryFragment.isVisible) {
             supportFragmentManager.beginTransaction().remove(galleryFragment).commit()

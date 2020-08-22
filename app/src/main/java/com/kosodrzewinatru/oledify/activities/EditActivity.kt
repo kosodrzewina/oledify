@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatActivity
@@ -229,6 +230,27 @@ class EditActivity : AppCompatActivity() {
 
         return true
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings_item -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+
+                true
+            }
+
+            R.id.language_item -> {
+                languagesFragment.show(supportFragmentManager, "LIST")
+
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     /**
      * An override function called when the app has to be resumed. E.g. if user go back to the
