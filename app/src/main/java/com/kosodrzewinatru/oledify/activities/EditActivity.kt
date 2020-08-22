@@ -12,6 +12,8 @@ import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatActivity
@@ -64,8 +66,6 @@ class EditActivity : AppCompatActivity() {
 
         // drawer itself
         bottomNav = findViewById(R.id.bottom_nav_edit)
-
-        toolbar_edit.title = getString(R.string.app_name)
 
         // seekbars disabled by default
         intensity_seek_bar_green.isEnabled = false
@@ -221,6 +221,13 @@ class EditActivity : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener true
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.options_menu, menu)
+
+        return true
     }
 
     /**

@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -61,8 +63,6 @@ class MainActivity : AppCompatActivity() {
         magic_button.isEnabled = false
         clear_button.isEnabled = false
 
-        toolbar_main.title = getString(R.string.app_name)
-
         // open file picker
         upload_button.setOnClickListener {
             val intent = Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
@@ -115,6 +115,13 @@ class MainActivity : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener true
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.options_menu, menu)
+
+        return true
     }
 
     override fun onBackPressed() {
