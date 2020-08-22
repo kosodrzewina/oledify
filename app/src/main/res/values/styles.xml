@@ -12,6 +12,8 @@
         <item name="colorAccent">@color/color_accent</item>
         <item name="android:statusBarColor">@color/color_additional</item>
         <item name="android:navigationBarColor">@color/color_main</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="AppTheme.SettingsScreen">
