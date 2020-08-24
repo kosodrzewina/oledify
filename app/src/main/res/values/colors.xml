@@ -4,11 +4,11 @@
     <color name="color_main">#283593</color>
     <color name="color_background">#5C6BC0</color>
     <color name="color_additional">#1A237E</color>
-    <color name="color_accent">#DD2C00</color>
+    <color name="color_accent">#80CBC4</color>
 
     <!-- Dark theme -->
     <color name="color_main_dark">#424242</color>
     <color name="color_background_dark">@android:color/black</color>
     <color name="color_addtional_dark">#212121</color>
-    <color name="color_accent_dark">#DD2C00</color>
+    <color name="color_accent_dark">#80CBC4</color>
 </resources>
