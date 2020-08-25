@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.AsyncTask
@@ -364,7 +365,11 @@ class EditActivity : AppCompatActivity() {
             intentMediaScannerConnection.data = Uri.fromFile(file)
             sendBroadcast(intentMediaScannerConnection)
 
-            Snackbar.make(bottomNav, getString(R.string.saved), Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(
+                bottomNav,
+                getString(R.string.saved),
+                Snackbar.LENGTH_SHORT
+            ).setTextColor(Color.WHITE).show()
         } else {
             ActivityCompat.requestPermissions(
                 this@EditActivity,
@@ -394,7 +399,7 @@ class EditActivity : AppCompatActivity() {
                 bottomNav,
                 getString(R.string.not_saved),
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).setTextColor(Color.WHITE).show()
         }
     }
 }
