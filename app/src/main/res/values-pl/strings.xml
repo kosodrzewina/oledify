@@ -2,44 +2,36 @@
 
     <string name="language">pl_PL</string>
 
-    <!--accessibility for navigation drawer-->
-    <string name="navigation_drawer_open">Otworzono szufladę</string>
-    <string name="navigation_drawer_close">Zamknięto szufladę</string>
-
-    <!--menu of navigation drawer-->
-    <string name="real_time_processing">Przetwarzanie w czasie rzeczywistym</string>
-    <string name="gallery">Galeria</string>
-    <string name="editing">Edytowanie</string>
+    <!-- three dots menu -->
     <string name="settings">Ustawienia</string>
     <string name="change_language">Zmiana języka</string>
 
-    <!--image processing settings-->
-    <string name="image_processing">Pzetwarzanie obrazu</string>
+    <!-- bottom navigation view menu -->
+    <string name="gallery">Galeria</string>
+    <string name="editing">Edytowanie</string>
+
+    <!-- settings screen -->
+    <string name="image_processing">Przetwarzanie obrazu</string>
+    <string name="real_time_processing">Przetwarzanie w czasie rzeczywistym</string>
     <string name="RGB_sliders">suwaki RGB</string>
-    <string name="processing_settings">Ustawienia</string>
     <string name="high_res">Podgląd w wysokiej rozdzielczości</string>
 
-    <!--main activity-->
+    <!-- main activity -->
     <string name="upload_image">załaduj zdjęcie</string>
-    <string name="trick">przejdź dalej</string>
+    <string name="trick">Przejdź dalej</string>
     <string name="clear">wyczyść</string>
 
-    <!--edit activity-->
+    <!-- edit activity -->
     <string name="save">zapisz</string>
 
-    <!--toast messages-->
-    <string name="saved">Obraz zapisany!</string>
+    <!-- snackbar messages -->
+    <string name="saved">Obraz zapisany pomyślnie!</string>
     <string name="not_saved">Coś poszło nie tak. Obraz nie został zapisany!</string>
 
-    <!--welcome fragment-->
+    <!-- welcome fragment -->
     <string name="welcome_title">Witaj w Oledify!</string>
-    <string name="ok">OK</string>
     <string name="welcome_description">Dzięki za wybranie Oledify!
     Aplikacja pozwoli ci na dostosowanie twoich tapet w najprostszy możliwy sposób!
     Miłego użytkowania!</string>
-
-    <!--other-->
-    <string name="feature">Ta funkcja będzie dostępna wkrótce!</string>
-    <string name="title_activity_settings">Ustawienia</string>
 
 </resources>

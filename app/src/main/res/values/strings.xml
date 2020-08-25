@@ -3,45 +3,38 @@
     <string name="app_name" translatable="false">Oledify</string>
     <string name="language">en</string>
 
-    <!--accessibility for navigation drawer-->
-    <string name="navigation_drawer_open">Navigation drawer opened</string>
-    <string name="navigation_drawer_close">Navigation drawer closed</string>
-
-    <!--menu of navigation drawer-->
-    <string name="real_time_processing">Real time processing</string>
-    <string name="gallery">Gallery</string>
-    <string name="editing">Editing</string>
+    <!-- three dots menu -->
     <string name="settings">Settings</string>
     <string name="change_language">Change language</string>
 
-    <!--image processing settings-->
+    <!-- bottom navigation view menu -->
+    <string name="gallery">Gallery</string>
+    <string name="editing">Editing</string>
+
+    <!-- settings screen -->
     <string name="image_processing">Image processing</string>
+    <string name="real_time_processing">Real time processing</string>
     <string name="RGB_sliders">RGB sliders</string>
-    <string name="processing_settings">Settings</string>
     <string name="high_res">High resolution preview</string>
 
-    <!--main activity-->
+    <!-- main activity -->
     <string name="upload_image">upload an image</string>
     <string name="trick">do the trick</string>
     <string name="clear">clear</string>
 
-    <!--edit activity-->
+    <!-- edit activity -->
     <string name="save">save</string>
 
-    <!--toast messages-->
+    <!-- snackbar messages -->
     <string name="saved">Image saved successfully!</string>
     <string name="not_saved">Something went wrong. Image cannot be saved!</string>
 
-    <!--welcome fragment-->
+    <!-- welcome fragment -->
     <string name="welcome_title">Welcome to Oledify!</string>
     <string name="welcome_description">Thank you for choosing Oledify!
         This app will help you pimp your wallpapers the simplest way possible.
         Enjoy!</string>
-    <string name="ok">OK</string>
-
-    <!--other-->
-    <string name="feature">This feature will be available soon!</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="ok" translatable="false">OK</string>
 
     <!-- Preference Titles -->
     <string name="messages_header" translatable="false">Messages</string>
