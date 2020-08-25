@@ -29,7 +29,7 @@
     <string name="save">save</string>
 
     <!--toast messages-->
-    <string name="saved">Image saved!</string>
+    <string name="saved">Image saved successfully!</string>
     <string name="not_saved">Something went wrong. Image cannot be saved!</string>
 
     <!--welcome fragment-->

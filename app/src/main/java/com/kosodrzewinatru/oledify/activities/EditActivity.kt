@@ -364,7 +364,7 @@ class EditActivity : AppCompatActivity() {
             intentMediaScannerConnection.data = Uri.fromFile(file)
             sendBroadcast(intentMediaScannerConnection)
 
-            Snackbar.make(bottomNav, "Image saved successfully!", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(bottomNav, getString(R.string.saved), Snackbar.LENGTH_SHORT).show()
         } else {
             ActivityCompat.requestPermissions(
                 this@EditActivity,
