@@ -13,6 +13,7 @@
     <style name="AppTheme.SettingsScreen">
         <item name="android:windowBackground">@color/color_background_dark</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:navigationBarColor">@color/color_background_dark</item>
     </style>
 
     <style name="AppTheme.GalleryFragment">
