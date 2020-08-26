@@ -366,7 +366,7 @@ class EditActivity : AppCompatActivity() {
             sendBroadcast(intentMediaScannerConnection)
 
             Snackbar.make(
-                bottomNav,
+                snackbar_container,
                 getString(R.string.saved),
                 Snackbar.LENGTH_SHORT
             ).setTextColor(Color.WHITE).show()
@@ -396,7 +396,7 @@ class EditActivity : AppCompatActivity() {
                     Environment.MEDIA_MOUNTED)
         ) {
             Snackbar.make(
-                bottomNav,
+                snackbar_container,
                 getString(R.string.not_saved),
                 Snackbar.LENGTH_SHORT
             ).setTextColor(Color.WHITE).show()

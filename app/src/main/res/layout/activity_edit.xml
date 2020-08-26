@@ -94,6 +94,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/snackbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_edit" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_edit"
             android:layout_width="match_parent"
