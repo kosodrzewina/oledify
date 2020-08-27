@@ -7,19 +7,19 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -88,8 +88,9 @@ class MainActivity : AppCompatActivity() {
         // clear imageView
         clear_button.setOnClickListener {
             image_preview_view.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
-            magic_button.isEnabled = false
-            clear_button.isEnabled = false
+
+            switchButtonState(magic_button, false)
+            switchButtonState(clear_button, false)
         }
 
         ImplementStates().languageState(this)
@@ -172,8 +173,20 @@ class MainActivity : AppCompatActivity() {
 
             image_preview_view.setImageBitmap(thumbnail)
 
-            magic_button.isEnabled = true
-            clear_button.isEnabled = true
+            switchButtonState(magic_button, true)
+            switchButtonState(clear_button, true)
+        }
+    }
+
+    fun switchButtonState(button: AppCompatButton, state: Boolean) {
+        if (state) {
+            button.isEnabled = true
+            button.setBackgroundResource(R.drawable.button_enabled)
+            // set theme
+        } else {
+            button.isEnabled = false
+            button.setBackgroundResource(R.drawable.button_disabled)
+            // set theme
         }
     }
 }

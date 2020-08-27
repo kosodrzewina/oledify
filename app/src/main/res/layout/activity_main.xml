@@ -33,9 +33,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="16dp"
-                        android:width="100dp"
-                        android:background="@drawable/rounded_button"
-                        android:theme="@style/TextSemiBold"
+                        android:width="150dp"
+                        android:background="@drawable/button_disabled"
+                        android:theme="@style/ButtonTextDisabled"
                         android:text="@string/trick"
                         android:textSize="12sp" />
 
@@ -45,9 +45,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="16dp"
-                        android:width="100dp"
-                        android:background="@drawable/rounded_button"
-                        android:theme="@style/TextSemiBold"
+                        android:width="150dp"
+                        android:background="@drawable/button_disabled"
+                        android:theme="@style/ButtonTextDisabled"
                         android:text="@string/clear"
                         android:textSize="12sp" />
 

@@ -30,14 +30,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/save_button"
-                    android:theme="@style/TextSemiBold"
+                    android:theme="@style/ButtonTextEnabled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/rounded_button"
+                    android:background="@drawable/button_enabled"
                     android:layout_marginBottom="16dp"
                     android:textSize="12sp"
-                    android:width="100dp"
+                    android:width="150dp"
                     android:text="@string/save"/>
 
             <androidx.appcompat.widget.AppCompatTextView
