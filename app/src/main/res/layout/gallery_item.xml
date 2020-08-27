@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="300dp"
-        android:layout_width="match_parent">
+        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-    <ImageView
-            android:id="@+id/photo_view_0"
+    <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"/>
+            android:columnCount="2"
+            android:rowCount="1">
 
-    <ImageView
-            android:id="@+id/photo_view_1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"/>
+        <androidx.cardview.widget.CardView
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp">
+
+            <ImageView
+                    android:id="@+id/photo_view_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp">
+
+            <ImageView
+                    android:id="@+id/photo_view_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
 </LinearLayout>
