@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
@@ -182,11 +183,11 @@ class MainActivity : AppCompatActivity() {
         if (state) {
             button.isEnabled = true
             button.setBackgroundResource(R.drawable.button_enabled)
-            // set theme
+            button.setTextColor(Color.parseColor("#212121"))
         } else {
             button.isEnabled = false
             button.setBackgroundResource(R.drawable.button_disabled)
-            // set theme
+            button.setTextColor(Color.parseColor("#B0BEC5"))
         }
     }
 }

@@ -11,4 +11,7 @@
     <color name="color_background_dark">@android:color/black</color>
     <color name="color_addtional_dark">#212121</color>
     <color name="color_accent_dark">#80CBC4</color>
+
+    <color name="color_button_text_enabled">#212121</color>
+    <color name="color_button_text_disabled">#B0BEC5</color>
 </resources>
