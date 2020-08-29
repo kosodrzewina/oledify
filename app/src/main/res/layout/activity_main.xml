@@ -7,6 +7,20 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*">
+        <TableRow>
+            <View
+                android:background="#3F51B5" />
+
+            <View
+                android:background="@color/color_background"
+                    android:layout_gravity="right" />
+        </TableRow>
+    </TableLayout>
+
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
