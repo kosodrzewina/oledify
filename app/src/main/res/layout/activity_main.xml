@@ -8,16 +8,17 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TableLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:stretchColumns="*">
         <TableRow>
             <View
-                android:background="#3F51B5" />
+                android:theme="@style/ViewBackgroundLeft" />
 
             <View
-                android:background="@color/color_background"
-                    android:layout_gravity="right" />
+                android:theme="@style/ViewBackgroundRight"
+                android:layout_gravity="right" />
         </TableRow>
     </TableLayout>
 

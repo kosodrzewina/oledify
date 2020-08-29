@@ -26,4 +26,12 @@
         <item name="itemTextColor">@color/color_accent</item>
     </style>
 
+    <style name="ViewBackgroundLeft">
+        <item name="android:background">@color/color_background_dark</item>
+    </style>
+
+    <style name="ViewBackgroundRight">
+        <item name="android:background">@color/color_background_additional_dark</item>
+    </style>
+
 </resources>

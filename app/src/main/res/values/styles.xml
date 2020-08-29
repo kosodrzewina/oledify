@@ -48,6 +48,14 @@
         <item name="android:textColor">@color/color_button_text_disabled</item>
     </style>
 
+    <style name="ViewBackgroundLeft">
+        <item name="android:background">@color/color_background_additional</item>
+    </style>
+
+    <style name="ViewBackgroundRight">
+        <item name="android:background">@color/color_background</item>
+    </style>
+
     <style name="TextBold">
         <item name="android:ellipsize">end</item>
         <item name="android:fontFamily">@font/open_sans_bold</item>
