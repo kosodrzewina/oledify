@@ -187,7 +187,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             button.isEnabled = false
             button.setBackgroundResource(R.drawable.button_disabled)
-            button.setTextColor(Color.parseColor("#B0BEC5"))
+            button.setTextColor(Color.parseColor("#616161"))
         }
     }
 }
