@@ -64,7 +64,6 @@ class GalleryFragment : Fragment() {
             var previousBitmap = BitmapFactory.decodeFile(files[0].path)
             files.indices.forEach {
                 val currentBitmap = BitmapFactory.decodeFile(files[it].path)
-                Log.d("IT", it.toString())
 
                 if (it % 2 != 0)
                     galleryItems.add(GalleryItem(previousBitmap, currentBitmap))
