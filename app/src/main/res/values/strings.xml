@@ -27,7 +27,7 @@
 
     <!-- snackbar messages -->
     <string name="saved">Image saved successfully!</string>
-    <string name="not_saved">Something went wrong. Image cannot be saved!</string>
+    <string name="not_saved">Something went wrong!</string>
 
     <!-- welcome fragment -->
     <string name="welcome_title">Welcome to Oledify!</string>
