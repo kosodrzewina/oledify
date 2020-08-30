@@ -10,17 +10,17 @@
 Oledify is a simple app for processing images which include dark colors, but not pitch black. It's great if you don't want to use pre-prepared wallpapers for amoled panels, but use one of your fovorite instead and still benefit from this delightful deep blackness.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/main.jpg"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/main.png"
         height="500"/>
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/edit.jpg"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/edit.png"
         height="500"/>
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/other.jpg"
+    <img src="https://raw.githubusercontent.com/kosodrzewina/oledify/master/showcase/other.png"
         height="500"/>
 </p>
 
