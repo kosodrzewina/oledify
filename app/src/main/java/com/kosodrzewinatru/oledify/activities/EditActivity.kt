@@ -97,9 +97,23 @@ class EditActivity : AppCompatActivity() {
         )
 
         save_button.setOnClickListener {
-            val drawable = image_edit_view.drawable
+            val processedBitmap =
+                when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+                    true -> Edit().makeBlackToneCurve(
+                        bitmap,
+                        blackness_or_red_value.text.toString().toFloat(),
+                        green_value.text.toString().toFloat(),
+                        blue_value.text.toString().toFloat()
+                    )
+                    false -> Edit().makeBlackToneCurve(
+                        bitmap, blackness_or_red_value
+                            .text
+                            .toString()
+                            .toFloat()
+                    )
+                }
 
-            save((drawable as BitmapDrawable).bitmap)
+            save(processedBitmap)
         }
 
         // seekbar for general or red intensity
