@@ -5,8 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import com.github.chrisbanes.photoview.PhotoView
 import java.util.*
@@ -15,10 +19,10 @@ class ImplementStates {
     constructor()
 
     constructor(
-        context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar,
+        context: Context, red: AppCompatSeekBar, green: AppCompatSeekBar, blue: AppCompatSeekBar,
         photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap
     ) {
-        seekbarsState(context, green, blue)
+        seekbarsState(context, red, green, blue)
         resState(context, photoView, bitmap, thumbnail)
     }
 
@@ -58,12 +62,25 @@ class ImplementStates {
         }
     }
 
-    private fun seekbarsState(context: Context, green: AppCompatSeekBar, blue: AppCompatSeekBar) {
+    private fun seekbarsState(
+        context: Context,
+        red: AppCompatSeekBar,
+        green: AppCompatSeekBar,
+        blue: AppCompatSeekBar
+    ) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 SettingsActivity.RGB_SLIDERS_SWITCH,
                 false
             )
         ) {
+            red.progressDrawable.setColorFilter(
+                ContextCompat.getColor(context, R.color.color_red_light),
+                PorterDuff.Mode.SRC_ATOP
+            )
+            red.thumb.setColorFilter(
+                ContextCompat.getColor(context, R.color.color_red_dark),
+                PorterDuff.Mode.SRC_ATOP
+            )
             green.isEnabled = true
             blue.isEnabled = true
         } else {
