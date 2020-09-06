@@ -16,4 +16,7 @@
 
     <color name="color_button_text_enabled">#212121</color>
     <color name="color_button_text_disabled">#616161</color>
+
+    <color name="color_red_light">@android:color/holo_red_light</color>
+    <color name="color_red_dark">@android:color/holo_red_dark</color>
 </resources>
