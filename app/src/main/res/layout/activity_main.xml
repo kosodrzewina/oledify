@@ -90,7 +90,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/constraint_layout_main"
-            android:layout_gravity="start"
             app:menu="@menu/navigation_menu"
             android:theme="@style/AppTheme.BottomNavigationView" />
 
