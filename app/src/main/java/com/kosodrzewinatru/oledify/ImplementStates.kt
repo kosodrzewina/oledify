@@ -84,6 +84,14 @@ class ImplementStates {
             green.isEnabled = true
             blue.isEnabled = true
         } else {
+            red.progressDrawable.setColorFilter(
+                ContextCompat.getColor(context, R.color.color_accent),
+                PorterDuff.Mode.SRC_ATOP
+            )
+            red.thumb.setColorFilter(
+                ContextCompat.getColor(context, R.color.color_accent),
+                PorterDuff.Mode.SRC_ATOP
+            )
             green.isEnabled = false
             blue.isEnabled = false
         }

@@ -67,7 +67,6 @@
                     android:layout_height="wrap_content"
                     android:minWidth="250dp"
                     android:layout_gravity="center"
-                    android:progressTint="@android:color/holo_green_light"
                     android:thumbTint="@android:color/holo_green_dark"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -83,7 +82,6 @@
                     android:layout_height="wrap_content"
                     android:minWidth="250dp"
                     android:layout_gravity="center"
-                    android:progressTint="@android:color/holo_blue_light"
                     android:thumbTint="@android:color/holo_blue_dark"/>
         </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.AsyncTask
@@ -21,6 +22,7 @@ import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.widget.SeekBar
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
@@ -85,7 +87,17 @@ class EditActivity : AppCompatActivity() {
         intensity_seek_bar_blue.progress = 0
         blue_value.text = intensity_seek_bar_blue.progress.toString()
 
-        // set imageView src via URI from MainActivity
+        // sets seekbars color
+        intensity_seek_bar_green.progressDrawable.setColorFilter(
+            ContextCompat.getColor(this, R.color.color_green_light),
+            PorterDuff.Mode.SRC_ATOP
+        )
+        intensity_seek_bar_blue.progressDrawable.setColorFilter(
+            ContextCompat.getColor(this, R.color.color_blue_light),
+            PorterDuff.Mode.SRC_ATOP
+        )
+
+        // sets imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
         bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
