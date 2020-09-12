@@ -19,4 +19,8 @@
 
     <color name="color_red_light">@android:color/holo_red_light</color>
     <color name="color_red_dark">@android:color/holo_red_dark</color>
+    <color name="color_green_light">@android:color/holo_green_light</color>
+    <color name="color_green_dark">@android:color/holo_green_dark</color>
+    <color name="color_blue_light">@android:color/holo_blue_light</color>
+    <color name="color_blue_dark">@android:color/holo_blue_dark</color>
 </resources>
