@@ -22,14 +22,10 @@ class RecyclerAdapter(private val itemList: List<GalleryItem>) :
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentItem = itemList[position]
-        holder.photoView0.setImageBitmap(currentItem.bitmap0)
-
-        if (position < itemCount)
-            holder.photoView1.setImageBitmap(currentItem.bitmap1)
+        holder.imageView.setImageBitmap(currentItem.bitmap)
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photoView0 = itemView.photo_view_0
-        val photoView1 = itemView.photo_view_1
+        val imageView = itemView.image_view
     }
 }
