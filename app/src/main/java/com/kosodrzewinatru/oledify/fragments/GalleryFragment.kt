@@ -61,18 +61,9 @@ class GalleryFragment : Fragment() {
             val files = directory.listFiles().toList()
             val galleryItems = mutableListOf<GalleryItem>()
 
-            var previousBitmap = BitmapFactory.decodeFile(files[0].path)
             files.indices.forEach {
-                val currentBitmap = BitmapFactory.decodeFile(files[it].path)
-
-                if (it % 2 != 0)
-                    galleryItems.add(GalleryItem(previousBitmap, currentBitmap))
-                else {
-                    previousBitmap = BitmapFactory.decodeFile(files[it].path)
-
-                    if (it == files.size - 1)
-                        galleryItems.add(GalleryItem(previousBitmap))
-                }
+                val bitmap = BitmapFactory.decodeFile(files[it].path)
+                galleryItems.add(GalleryItem(bitmap))
             }
 
             images_recycler_view.adapter = RecyclerAdapter(galleryItems)
