@@ -17,8 +17,7 @@
 
         <activity
                 android:name=".activities.SettingsActivity"
-                android:label="@string/settings">
-        </activity>
+                android:label="@string/settings"></activity>
 
         <activity
                 android:name=".activities.MainActivity"

@@ -5,14 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.PorterDuff
 import android.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import com.github.chrisbanes.photoview.PhotoView
+import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import java.util.*
 
 class ImplementStates {

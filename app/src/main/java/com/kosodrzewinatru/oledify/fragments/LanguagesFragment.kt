@@ -1,12 +1,12 @@
 package com.kosodrzewinatru.oledify.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.fragment.app.DialogFragment
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.activities.SettingsActivity

@@ -2,7 +2,6 @@ package com.kosodrzewinatru.oledify
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.util.Log
 
 /**
  * A class containing every function related to image processing.

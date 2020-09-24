@@ -13,23 +13,21 @@ import android.os.Bundle
 import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.app.ActivityCompat
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_edit.*
 import android.widget.SeekBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_edit.*
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.abs
@@ -168,7 +166,8 @@ class EditActivity : AppCompatActivity() {
             })
 
         // seekbar for green intensity
-        intensity_seek_bar_green.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        intensity_seek_bar_green.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(p0: SeekBar?) {
                 save_button.isEnabled = false
             }
@@ -193,7 +192,8 @@ class EditActivity : AppCompatActivity() {
         })
 
         // seekbar for blue intensity
-        intensity_seek_bar_blue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        intensity_seek_bar_blue.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(p0: SeekBar?) {
                 save_button.isEnabled = false
             }
