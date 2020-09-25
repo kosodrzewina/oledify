@@ -3,24 +3,24 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/color_accent">
+        android:background="@color/color_accent"
+        android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="16dp"
             android:text="@string/welcome_title"
-            android:theme="@style/TextBold"
-            android:textSize="30sp"
             android:textColor="#ffffff"
-            android:layout_margin="16dp"></androidx.appcompat.widget.AppCompatTextView>
+            android:textSize="30sp"
+            android:theme="@style/TextBold" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="16dp"
             android:text="@string/welcome_description"
-            android:theme="@style/TextSemiBold"
             android:textColor="#EEEEEE"
-            android:layout_margin="16dp"></androidx.appcompat.widget.AppCompatTextView>
+            android:theme="@style/TextSemiBold" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
