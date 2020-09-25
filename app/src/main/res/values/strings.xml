@@ -6,6 +6,7 @@
     <!-- three dots menu -->
     <string name="settings">Settings</string>
     <string name="change_language">Change language</string>
+    <string name="about">About</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Gallery</string>

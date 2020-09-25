@@ -5,6 +5,7 @@
     <!-- three dots menu -->
     <string name="settings">Ustawienia</string>
     <string name="change_language">Zmiana języka</string>
+    <string name="about">O aplikacji</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>
