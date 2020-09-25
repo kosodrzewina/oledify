@@ -19,7 +19,7 @@
         android:id="@+id/app_version"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
         android:textColor="#EEEEEE"
         android:theme="@style/TextSemiBold" />
 
@@ -32,11 +32,34 @@
             android:theme="@style/TextSemiBold" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/licences_list"
+            android:id="@+id/licence"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
             android:textColor="#EEEEEE"
             android:theme="@style/TextSemiBold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_enabled"
+            android:theme="@style/ButtonTextEnabled"
+            android:text="@string/source"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/button_enabled"
+            android:theme="@style/ButtonTextEnabled"
+            android:layout_marginBottom="16dp"
+            android:text="@string/licence"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

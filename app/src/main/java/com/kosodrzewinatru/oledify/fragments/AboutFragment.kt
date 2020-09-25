@@ -1,6 +1,7 @@
 package com.kosodrzewinatru.oledify.fragments
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,5 +24,6 @@ class AboutFragment : DialogFragment() {
         val versionName = packageInfo?.versionName
 
         app_version.text = "${getString(R.string.version)}: $versionName"
+        licence.text = "- PhotoView"
     }
 }
