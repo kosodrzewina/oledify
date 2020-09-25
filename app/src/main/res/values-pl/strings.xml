@@ -11,6 +11,8 @@
     <string name="about_title">O Oledify</string>
     <string name="version">Wersja aplikacji</string>
     <string name="licences_title">Licencje Open Source:</string>
+    <string name="source">źródło</string>
+    <string name="licence">licencja</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>
