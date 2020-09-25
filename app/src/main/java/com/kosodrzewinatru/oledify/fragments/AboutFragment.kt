@@ -1,7 +1,8 @@
 package com.kosodrzewinatru.oledify.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,5 +26,15 @@ class AboutFragment : DialogFragment() {
 
         app_version.text = "${getString(R.string.version)}: $versionName"
         licence.text = "- PhotoView"
+
+        source_button.setOnClickListener {
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/chrisbanes/PhotoView"))
+            startActivity(browserIntent)
+        }
+
+        licence_button.setOnClickListener {
+            // @TODO open new fragment
+        }
     }
 }
