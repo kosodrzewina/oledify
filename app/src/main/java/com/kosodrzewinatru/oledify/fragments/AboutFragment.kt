@@ -11,6 +11,8 @@ import com.kosodrzewinatru.oledify.R
 import kotlinx.android.synthetic.main.fragment_about.*
 
 class AboutFragment : DialogFragment() {
+    private val licenceFragment = LicenceFragment()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,7 +36,10 @@ class AboutFragment : DialogFragment() {
         }
 
         licence_button.setOnClickListener {
-            // @TODO open new fragment
+            this.dismiss()
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace((view!!.parent as ViewGroup).id, licenceFragment)?.addToBackStack(null)
+                ?.commit()
         }
     }
 }
