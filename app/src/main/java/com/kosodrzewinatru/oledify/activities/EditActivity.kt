@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
+import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import kotlinx.android.synthetic.main.activity_edit.*
@@ -40,9 +41,9 @@ class EditActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
 
     // fragments
-    private val fragmentManager = supportFragmentManager
     private val languagesFragment = LanguagesFragment()
     private val galleryFragment = GalleryFragment()
+    private val aboutFragment = AboutFragment()
 
     private lateinit var bitmap: Bitmap
     private lateinit var thumbnail: Bitmap
@@ -270,6 +271,12 @@ class EditActivity : AppCompatActivity() {
 
             R.id.language_item -> {
                 languagesFragment.show(supportFragmentManager, "LIST")
+
+                true
+            }
+
+            R.id.about_item -> {
+                aboutFragment.show(supportFragmentManager, "ABOUT")
 
                 true
             }
