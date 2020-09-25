@@ -141,6 +141,12 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
+            R.id.about_item -> {
+                // @TODO open about fragment
+
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
