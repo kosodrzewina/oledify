@@ -7,6 +7,11 @@
     <string name="change_language">Zmiana języka</string>
     <string name="about">O aplikacji</string>
 
+    <!-- about menu -->
+    <string name="about_title">O Oledify</string>
+    <string name="version">Wersja aplikacji</string>
+    <string name="licences_title">Licencje Open Source:</string>
+
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>
     <string name="editing">Edytowanie</string>

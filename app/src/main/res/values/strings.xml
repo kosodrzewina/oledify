@@ -11,6 +11,7 @@
     <!-- about menu -->
     <string name="about_title">About Oledify</string>
     <string name="version">App version</string>
+    <string name="licences_title">Open Source Licences:</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Gallery</string>
