@@ -16,7 +16,23 @@
             android:theme="@style/TextBold" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/app_version"
+        android:id="@+id/app_version"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:textColor="#EEEEEE"
+        android:theme="@style/TextSemiBold" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:textColor="#EEEEEE"
+            android:text="@string/licences_title"
+            android:theme="@style/TextSemiBold" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/licences_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
