@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
+import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val languagesFragment = LanguagesFragment()
     private val welcomeFragment = WelcomeFragment()
     private val galleryFragment = GalleryFragment()
+    private val aboutFragment = AboutFragment()
 
     private val sharedPrefs = "sharedPrefs"
     private val IS_FIRST_LAUNCH = "isFirstLaunch"
@@ -142,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.about_item -> {
-                // @TODO open about fragment
+                aboutFragment.show(supportFragmentManager, "ABOUT")
 
                 true
             }
