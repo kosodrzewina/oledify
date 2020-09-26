@@ -37,7 +37,7 @@ class LanguagesFragment : DialogFragment() {
         val listView = view?.findViewById<ListView>(R.id.list_languages)
 
         val listViewAdapter = ArrayAdapter<String>(
-            activity,
+            activity ?: return null,
             android.R.layout.simple_list_item_1,
             menuItems
         )
