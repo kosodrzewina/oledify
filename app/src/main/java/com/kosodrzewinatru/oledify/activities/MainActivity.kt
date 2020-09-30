@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.ImageDecoder
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.provider.MediaStore
+import androidx.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -172,7 +172,8 @@ class MainActivity : AppCompatActivity() {
             selectedFileEdit = selectedFile.toString()
 
             // image showed via URI
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFile)
+            val source = ImageDecoder.createSource(contentResolver, selectedFile ?: return)
+            val bitmap = ImageDecoder.decodeBitmap(source)
             val thumbnail = Bitmap.createScaledBitmap(
                 bitmap,
                 bitmap.width / 2,
