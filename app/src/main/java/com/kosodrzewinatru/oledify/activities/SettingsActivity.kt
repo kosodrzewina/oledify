@@ -2,7 +2,7 @@ package com.kosodrzewinatru.oledify.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.SettingsFragment
