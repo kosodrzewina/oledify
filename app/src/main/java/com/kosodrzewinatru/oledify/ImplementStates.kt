@@ -6,7 +6,7 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
 import com.github.chrisbanes.photoview.PhotoView
@@ -45,7 +45,7 @@ class ImplementStates {
 
             val targetLocaleList = targetLocale?.split('_')
 
-            if (targetLocaleList!!.size > 1) {
+            if ((targetLocaleList ?: return).size > 1) {
                 Locale.setDefault(Locale(targetLocaleList[0], targetLocaleList[1]))
                 config.setLocale(Locale(targetLocaleList[0], targetLocaleList[1]))
             } else {
