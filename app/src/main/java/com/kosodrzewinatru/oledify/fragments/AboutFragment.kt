@@ -1,6 +1,8 @@
 package com.kosodrzewinatru.oledify.fragments
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +20,10 @@ class AboutFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        val view = inflater.inflate(R.layout.fragment_about, container, false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,6 +46,12 @@ class AboutFragment : DialogFragment() {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace((view!!.parent as ViewGroup).id, licenceFragment)?.addToBackStack(null)
                 ?.commit()
+        }
+
+        oledify_source.setOnClickListener {
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kosodrzewina/oledify"))
+            startActivity(browserIntent)
         }
     }
 }

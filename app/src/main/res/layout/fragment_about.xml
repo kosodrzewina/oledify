@@ -1,68 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_accent"
+        android:background="@drawable/dialog_rounded"
         android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/about_title"
             android:textColor="#ffffff"
             android:textSize="30sp"
-            android:theme="@style/TextBold" />
+            android:theme="@style/TextBold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/app_version"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
-        android:textColor="#EEEEEE"
-        android:theme="@style/TextSemiBold" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:textColor="#EEEEEE"
+            android:theme="@style/TextSemiBold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/oledify_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_enabled"
+            android:minWidth="60dp"
+            android:minHeight="30dp"
+            android:text="@string/source"
+            android:textSize="10dp"
+            android:theme="@style/ButtonTextEnabled"
+            app:layout_constraintLeft_toRightOf="@id/app_version"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/licences_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="@string/licences_title"
-            android:theme="@style/TextSemiBold" />
+            android:textColor="#EEEEEE"
+            android:theme="@style/TextSemiBold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oledify_source" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/licence"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:textColor="#EEEEEE"
-            android:theme="@style/TextSemiBold" />
+            android:theme="@style/TextSemiBold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/licences_title" />
 
     <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/source_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:background="@drawable/button_enabled"
+            android:minWidth="60dp"
+            android:minHeight="30dp"
+            android:text="@string/source"
+            android:textSize="10dp"
             android:theme="@style/ButtonTextEnabled"
-            android:text="@string/source"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/licence"
+            app:layout_constraintTop_toBottomOf="@+id/licences_title" />
 
     <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/licence_button"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:background="@drawable/button_enabled"
+            android:minWidth="60dp"
+            android:minHeight="30dp"
+            android:text="@string/licence"
+            android:textSize="10dp"
             android:theme="@style/ButtonTextEnabled"
-            android:layout_marginBottom="16dp"
-            android:text="@string/licence"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/source_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/licences_title" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>
