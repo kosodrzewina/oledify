@@ -10,8 +10,10 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -99,8 +101,13 @@ class EditActivity : AppCompatActivity() {
         // sets imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
-        val source = ImageDecoder.createSource(contentResolver, selectedFileEdit ?: return)
-        bitmap = ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.ARGB_8888, true)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val source = ImageDecoder.createSource(contentResolver, selectedFileEdit ?: return)
+            bitmap = ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.ARGB_8888, true)
+        } else {
+            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
+        }
+
         thumbnail = Bitmap.createScaledBitmap(
             bitmap,
             bitmap.width / 2,
