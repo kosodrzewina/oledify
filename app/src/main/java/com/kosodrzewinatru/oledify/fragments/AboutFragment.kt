@@ -23,7 +23,8 @@ class AboutFragment : DialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val packageInfo = context?.packageManager?.getPackageInfo(context?.packageName, 0)
+        val packageInfo =
+            context?.packageManager?.getPackageInfo((context ?: return).packageName, 0)
         val versionName = packageInfo?.versionName
 
         app_version.text = "${getString(R.string.version)}: $versionName"

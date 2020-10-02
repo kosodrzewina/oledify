@@ -5,14 +5,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.ImageDecoder
 import android.graphics.PorterDuff
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
-import android.preference.PreferenceManager
-import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -20,6 +19,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.kosodrzewinatru.oledify.Edit
@@ -99,7 +99,8 @@ class EditActivity : AppCompatActivity() {
         // sets imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
-        bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
+        val source = ImageDecoder.createSource(contentResolver, selectedFileEdit ?: return)
+        bitmap = ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.ARGB_8888, true)
         thumbnail = Bitmap.createScaledBitmap(
             bitmap,
             bitmap.width / 2,
