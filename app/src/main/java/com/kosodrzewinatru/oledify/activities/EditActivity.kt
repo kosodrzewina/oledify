@@ -220,7 +220,7 @@ class EditActivity : AppCompatActivity() {
         })
 
         ImplementStates(
-            this, intensity_seek_bar_maybe_red,
+            this, blackness_or_red_value, intensity_seek_bar_maybe_red,
             intensity_seek_bar_green, intensity_seek_bar_blue,
             image_edit_view, bitmap, thumbnail
         )
@@ -299,7 +299,7 @@ class EditActivity : AppCompatActivity() {
         super.onResume()
 
         ImplementStates(
-            this, intensity_seek_bar_maybe_red,
+            this, blackness_or_red_value, intensity_seek_bar_maybe_red,
             intensity_seek_bar_green, intensity_seek_bar_blue,
             image_edit_view, bitmap, thumbnail
         )

@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import androidx.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.github.chrisbanes.photoview.PhotoView
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
@@ -17,10 +18,16 @@ class ImplementStates {
     constructor()
 
     constructor(
-        context: Context, red: AppCompatSeekBar, green: AppCompatSeekBar, blue: AppCompatSeekBar,
-        photoView: PhotoView, bitmap: Bitmap, thumbnail: Bitmap
+        context: Context,
+        redIndicator: AppCompatTextView,
+        red: AppCompatSeekBar,
+        green: AppCompatSeekBar,
+        blue: AppCompatSeekBar,
+        photoView: PhotoView,
+        bitmap: Bitmap,
+        thumbnail: Bitmap
     ) {
-        seekbarsState(context, red, green, blue)
+        seekbarsState(context, redIndicator, red, green, blue)
         resState(context, photoView, bitmap, thumbnail)
     }
 
@@ -62,6 +69,7 @@ class ImplementStates {
 
     private fun seekbarsState(
         context: Context,
+        redIndicator: AppCompatTextView,
         red: AppCompatSeekBar,
         green: AppCompatSeekBar,
         blue: AppCompatSeekBar
@@ -71,6 +79,8 @@ class ImplementStates {
                 false
             )
         ) {
+            redIndicator.setTextColor(context.resources.getColor(R.color.color_red_light, null))
+
             red.progressDrawable.setColorFilter(
                 ContextCompat.getColor(context, R.color.color_red_light),
                 PorterDuff.Mode.SRC_ATOP
@@ -82,6 +92,8 @@ class ImplementStates {
             green.isEnabled = true
             blue.isEnabled = true
         } else {
+            redIndicator.setTextColor(context.resources.getColor(R.color.color_accent, null))
+
             red.progressDrawable.setColorFilter(
                 ContextCompat.getColor(context, R.color.color_accent),
                 PorterDuff.Mode.SRC_ATOP
