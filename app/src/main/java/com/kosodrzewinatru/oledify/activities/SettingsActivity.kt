@@ -14,6 +14,7 @@ class SettingsActivity : AppCompatActivity() {
         const val RGB_SLIDERS_SWITCH = "rgb_sliders_switch"
         const val HIGH_RESOLUTION_SWITCH = "high_res_switch"
         const val LOCALE = "locale"
+        const val THEME = "theme_drop_down"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
