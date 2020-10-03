@@ -6,6 +6,9 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
+import android.provider.Settings
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
@@ -121,6 +124,20 @@ class ImplementStates {
             photoView.setImageBitmap(bitmap)
         } else {
             photoView.setImageBitmap(thumbnail)
+        }
+    }
+
+    fun themeState(context: Context) {
+        when (PreferenceManager.getDefaultSharedPreferences(context).getString(SettingsActivity.THEME, "theme_system")) {
+            "theme_light" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "theme_dark" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            else -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
         }
     }
 }
