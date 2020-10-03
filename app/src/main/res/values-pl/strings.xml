@@ -19,10 +19,12 @@
     <string name="editing">Edytowanie</string>
 
     <!-- settings screen -->
-    <string name="image_processing">Przetwarzanie obrazu</string>
-    <string name="real_time_processing">Przetwarzanie w czasie rzeczywistym</string>
-    <string name="RGB_sliders">suwaki RGB</string>
-    <string name="high_res">Podgląd w wysokiej rozdzielczości</string>
+    <string name="image_processing">Przetwarzanie Obrazu</string>
+    <string name="real_time_processing">Przetwarzanie w Czasie Rzeczywistym</string>
+    <string name="RGB_sliders">Suwaki RGB</string>
+    <string name="high_res">Podgląd w Wysokiej Rozdzielczości</string>
+    <string name="other">Pozostałe</string>
+    <string name="theme">Motyw</string>
 
     <!-- main activity -->
     <string name="upload_image">załaduj zdjęcie</string>
