@@ -10,7 +10,7 @@
     <!-- Dark theme -->
     <color name="color_main_dark">#424242</color>
     <color name="color_background_dark">@android:color/black</color>
-    <color name="color_addtional_dark">#212121</color>
+    <color name="color_additional_dark">#212121</color>
     <color name="color_accent_dark">#80CBC4</color>
     <color name="color_background_additional_dark">#171717</color>
 
