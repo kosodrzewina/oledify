@@ -20,6 +20,7 @@
         <item name="android:windowBackground">@color/color_background</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:navigationBarColor">@color/color_background</item>
+        <item name="android:colorBackground">@color/color_main</item>
     </style>
 
     <style name="AppTheme.GalleryFragment">
