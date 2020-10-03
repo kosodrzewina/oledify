@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/image_processing">
 
@@ -18,6 +19,16 @@
                 android:key="high_res_switch"
                 android:title="@string/high_res" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/other">
+
+        <DropDownPreference
+                android:title="@string/theme"
+                android:key="theme_drop_down"
+                android:entryValues="@array/theme_values"
+                app:useSimpleSummaryProvider="true"
+                android:entries="@array/theme_entries" />
     </PreferenceCategory>
 
 </PreferenceScreen>
