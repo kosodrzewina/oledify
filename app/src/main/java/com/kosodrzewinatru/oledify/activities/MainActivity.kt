@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ImplementStates().themeState(this)
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
 
