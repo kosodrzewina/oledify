@@ -3,11 +3,9 @@ package com.kosodrzewinatru.oledify.activities
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.ImageDecoder
-import android.graphics.PorterDuff
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
@@ -69,9 +67,6 @@ class EditActivity : AppCompatActivity() {
 
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-        // drawer itself
-        bottomNav = findViewById(R.id.bottom_nav_edit)
-
         // seekbars disabled by default
         intensity_seek_bar_green.isEnabled = false
         intensity_seek_bar_blue.isEnabled = false
@@ -89,14 +84,29 @@ class EditActivity : AppCompatActivity() {
         blue_value.text = intensity_seek_bar_blue.progress.toString()
 
         // sets seekbars color
-        intensity_seek_bar_green.progressDrawable.setColorFilter(
-            ContextCompat.getColor(this, R.color.color_green_light),
-            PorterDuff.Mode.SRC_ATOP
-        )
-        intensity_seek_bar_blue.progressDrawable.setColorFilter(
-            ContextCompat.getColor(this, R.color.color_blue_light),
-            PorterDuff.Mode.SRC_ATOP
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            intensity_seek_bar_green.progressDrawable.colorFilter = BlendModeColorFilter(
+                this.resources.getColor(
+                    R.color.color_green_light,
+                    null
+                ), BlendMode.SRC_ATOP
+            )
+            intensity_seek_bar_blue.progressDrawable.colorFilter = BlendModeColorFilter(
+                this.resources.getColor(
+                    R.color.color_blue_light,
+                    null
+                ), BlendMode.SRC_ATOP
+            )
+        } else {
+            intensity_seek_bar_green.progressDrawable.setColorFilter(
+                ContextCompat.getColor(this, R.color.color_green_light),
+                PorterDuff.Mode.SRC_ATOP
+            )
+            intensity_seek_bar_blue.progressDrawable.setColorFilter(
+                ContextCompat.getColor(this, R.color.color_blue_light),
+                PorterDuff.Mode.SRC_ATOP
+            )
+        }
 
         // sets imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
@@ -401,10 +411,12 @@ class EditActivity : AppCompatActivity() {
             fileOutputStream.flush()
             fileOutputStream.close()
 
-            val intentMediaScannerConnection = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-
-            intentMediaScannerConnection.data = Uri.fromFile(file)
-            sendBroadcast(intentMediaScannerConnection)
+            MediaScannerConnection.scanFile(
+                this,
+                arrayOf(file.toString()),
+                arrayOf(file.name),
+                null
+            )
 
             Snackbar.make(
                 snackbar_container,
