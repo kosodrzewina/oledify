@@ -5,17 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
 import android.graphics.PorterDuff
-import android.provider.Settings
-import android.util.Log
+import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.PreferenceManager
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import com.github.chrisbanes.photoview.PhotoView
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import java.util.*
+
 
 class ImplementStates {
     constructor()
@@ -84,27 +86,58 @@ class ImplementStates {
         ) {
             redIndicator.setTextColor(context.resources.getColor(R.color.color_red_light, null))
 
-            red.progressDrawable.setColorFilter(
-                ContextCompat.getColor(context, R.color.color_red_light),
-                PorterDuff.Mode.SRC_ATOP
-            )
-            red.thumb.setColorFilter(
-                ContextCompat.getColor(context, R.color.color_red_dark),
-                PorterDuff.Mode.SRC_ATOP
-            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                red.progressDrawable.colorFilter = BlendModeColorFilter(
+                    context.resources.getColor(
+                        R.color.color_red_light,
+                        null
+                    ), BlendMode.SRC_ATOP
+                )
+                red.thumb.colorFilter = BlendModeColorFilter(
+                    context.resources.getColor(
+                        R.color.color_red_dark,
+                        null
+                    ), BlendMode.SRC_ATOP
+                )
+            } else {
+                red.progressDrawable.setColorFilter(
+                    ContextCompat.getColor(context, R.color.color_red_light),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+                red.thumb.setColorFilter(
+                    ContextCompat.getColor(context, R.color.color_red_dark),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
+
             green.isEnabled = true
             blue.isEnabled = true
         } else {
             redIndicator.setTextColor(context.resources.getColor(R.color.color_accent, null))
 
-            red.progressDrawable.setColorFilter(
-                ContextCompat.getColor(context, R.color.color_accent),
-                PorterDuff.Mode.SRC_ATOP
-            )
-            red.thumb.setColorFilter(
-                ContextCompat.getColor(context, R.color.color_accent),
-                PorterDuff.Mode.SRC_ATOP
-            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                red.progressDrawable.colorFilter = BlendModeColorFilter(
+                    context.resources.getColor(
+                        R.color.color_accent,
+                        null
+                    ), BlendMode.SRC_ATOP
+                )
+                red.thumb.colorFilter = BlendModeColorFilter(
+                    context.resources.getColor(
+                        R.color.color_accent,
+                        null
+                    ), BlendMode.SRC_ATOP
+                )
+            } else {
+                red.progressDrawable.setColorFilter(
+                    ContextCompat.getColor(context, R.color.color_accent),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+                red.thumb.setColorFilter(
+                    ContextCompat.getColor(context, R.color.color_accent),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
             green.isEnabled = false
             blue.isEnabled = false
         }
@@ -128,7 +161,10 @@ class ImplementStates {
     }
 
     fun themeState(context: Context) {
-        when (PreferenceManager.getDefaultSharedPreferences(context).getString(SettingsActivity.THEME, "theme_system")) {
+        when (PreferenceManager.getDefaultSharedPreferences(context).getString(
+            SettingsActivity.THEME,
+            "theme_system"
+        )) {
             "theme_light" -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
