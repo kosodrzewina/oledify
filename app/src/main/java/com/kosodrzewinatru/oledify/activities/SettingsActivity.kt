@@ -50,13 +50,4 @@ class SettingsActivity : AppCompatActivity() {
         super.onPause()
         preferences.unregisterOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener)
     }
-
-    fun localeToSharedPreferences(context: Context, locale: Locale) {
-        val editor = PreferenceManager
-            .getDefaultSharedPreferences(context)
-            .edit()
-
-        editor.putString(LOCALE, locale.toString())
-        editor.apply()
-    }
 }

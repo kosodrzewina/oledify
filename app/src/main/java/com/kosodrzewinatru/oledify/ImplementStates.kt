@@ -36,17 +36,6 @@ class ImplementStates {
         resState(context, photoView, bitmap, thumbnail)
     }
 
-    fun changeLanguage(activity: Activity, intent: Intent, resources: Resources, locale: Locale) {
-        val config = resources.configuration
-
-        Locale.setDefault(locale)
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        activity.finish()
-        activity.startActivity(intent)
-    }
-
     fun languageState(activity: Activity) {
         val currentLocale = activity.resources.getString(R.string.language)
         val targetLocale = PreferenceManager.getDefaultSharedPreferences(activity)

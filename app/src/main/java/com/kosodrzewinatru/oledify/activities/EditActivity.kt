@@ -20,14 +20,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.kosodrzewinatru.oledify.Edit
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
-import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import kotlinx.android.synthetic.main.activity_edit.*
 import java.io.File
 import java.io.FileOutputStream
@@ -38,10 +36,7 @@ import kotlin.random.Random
  * A class for the EditActivity.
  */
 class EditActivity : AppCompatActivity() {
-    private lateinit var bottomNav: BottomNavigationView
-
     // fragments
-    private val languagesFragment = LanguagesFragment()
     private val galleryFragment = GalleryFragment()
     private val aboutFragment = AboutFragment()
 
@@ -247,12 +242,8 @@ class EditActivity : AppCompatActivity() {
             false -> thumbnail
         }
 
-        ImplementStates().languageState(this)
-
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav_edit)
-
         // back-end for stuff in the bottom navigation view
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottom_nav_edit.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.switch_editing -> {
                     if (galleryFragment.isVisible) {
@@ -283,12 +274,6 @@ class EditActivity : AppCompatActivity() {
             R.id.settings_item -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
-
-                true
-            }
-
-            R.id.language_item -> {
-                languagesFragment.show(supportFragmentManager, "LIST")
 
                 true
             }

@@ -15,12 +15,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
-import com.kosodrzewinatru.oledify.fragments.LanguagesFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,10 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var selectedFileEdit: String
 
-    private lateinit var bottomNav: BottomNavigationView
-
     // fragments
-    private val languagesFragment = LanguagesFragment()
     private val welcomeFragment = WelcomeFragment()
     private val galleryFragment = GalleryFragment()
     private val aboutFragment = AboutFragment()
@@ -63,8 +58,6 @@ class MainActivity : AppCompatActivity() {
                 .putBoolean(IS_FIRST_LAUNCH, false)
                 .apply()
         }
-
-        bottomNav = findViewById(R.id.bottom_nav_main)
 
         magic_button.isEnabled = false
         clear_button.isEnabled = false
@@ -99,12 +92,8 @@ class MainActivity : AppCompatActivity() {
             switchButtonState(clear_button, false)
         }
 
-        ImplementStates().languageState(this)
-
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav_main)
-
         // back-end for stuff in the bottom navigation view
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottom_nav_main.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.switch_editing -> {
                     if (galleryFragment.isVisible) {
@@ -136,12 +125,6 @@ class MainActivity : AppCompatActivity() {
             R.id.settings_item -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
-
-                true
-            }
-
-            R.id.language_item -> {
-                languagesFragment.show(supportFragmentManager, "LIST")
 
                 true
             }
@@ -198,7 +181,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun switchButtonState(button: AppCompatButton, state: Boolean) {
+    private fun switchButtonState(button: AppCompatButton, state: Boolean) {
         if (state) {
             button.isEnabled = true
             button.setBackgroundResource(R.drawable.button_enabled)

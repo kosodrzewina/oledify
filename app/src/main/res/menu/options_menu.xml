@@ -5,10 +5,6 @@
             android:title="@string/settings" />
 
     <item
-            android:id="@+id/language_item"
-            android:title="@string/change_language" />
-
-    <item
             android:id="@+id/about_item"
             android:title="@string/about" />
 </menu>
