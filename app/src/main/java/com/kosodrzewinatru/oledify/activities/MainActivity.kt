@@ -142,6 +142,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (galleryFragment.isVisible) {
             supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
+            upload_button.show()
         } else {
             super.onBackPressed()
         }
