@@ -49,7 +49,7 @@ class GalleryFragment : Fragment() {
             showGallery()
     }
 
-    fun showGallery() {
+    private fun showGallery() {
         val directory =
             File(Environment.getExternalStorageDirectory().toString() + "/Pictures/Oledify")
 
