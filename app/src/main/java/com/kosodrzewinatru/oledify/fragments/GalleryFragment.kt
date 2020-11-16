@@ -5,11 +5,9 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.RecyclerAdapter
@@ -22,6 +20,7 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_gallery, container, false)
     }
 
@@ -38,6 +37,19 @@ class GalleryFragment : Fragment() {
         } else {
             showGallery()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.gallery_menu, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.column_count_button) {
+            // @TODO open fragment to change column count
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onRequestPermissionsResult(
@@ -66,7 +78,7 @@ class GalleryFragment : Fragment() {
             }
 
             images_recycler_view.adapter = RecyclerAdapter(galleryItems)
-            images_recycler_view.layoutManager = LinearLayoutManager(activity)
+            images_recycler_view.layoutManager = GridLayoutManager(activity, 2)
             images_recycler_view.setHasFixedSize(true)
         }
     }

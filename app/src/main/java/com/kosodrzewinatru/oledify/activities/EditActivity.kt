@@ -288,7 +288,6 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * An override function called when the app has to be resumed. E.g. if user go back to the
      * activity from the SettingsActivity, this function retrieves states of the sliders and
