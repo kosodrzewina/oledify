@@ -6,12 +6,13 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.view.*
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.RecyclerAdapter
+import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import java.io.File
 
@@ -78,8 +79,11 @@ class GalleryFragment : Fragment() {
                 galleryItems.add(GalleryItem(bitmap))
             }
 
+            val columnCount = PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(SettingsActivity.COLUMN_COUNT, 2)
+
             images_recycler_view.adapter = RecyclerAdapter(galleryItems)
-            images_recycler_view.layoutManager = GridLayoutManager(activity, 4)
+            images_recycler_view.layoutManager = GridLayoutManager(activity, columnCount)
             images_recycler_view.setHasFixedSize(true)
         }
     }

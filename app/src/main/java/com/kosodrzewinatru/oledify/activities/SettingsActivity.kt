@@ -1,6 +1,5 @@
 package com.kosodrzewinatru.oledify.activities
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
@@ -9,16 +8,14 @@ import androidx.preference.PreferenceManager
 import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.SettingsFragment
-import java.util.*
-
 
 class SettingsActivity : AppCompatActivity() {
     companion object {
         const val REAL_TIME_PROCESSING_SWITCH = "real_time_switch"
         const val RGB_SLIDERS_SWITCH = "rgb_sliders_switch"
         const val HIGH_RESOLUTION_SWITCH = "high_res_switch"
-        const val LOCALE = "locale"
         const val THEME = "theme_drop_down"
+        const val COLUMN_COUNT = "column_count"
         private lateinit var preferences: SharedPreferences
     }
 
