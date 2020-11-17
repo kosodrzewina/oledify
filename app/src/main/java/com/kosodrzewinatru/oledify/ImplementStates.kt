@@ -1,9 +1,6 @@
 package com.kosodrzewinatru.oledify
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
@@ -16,8 +13,6 @@ import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.github.chrisbanes.photoview.PhotoView
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
-import java.util.*
-
 
 class ImplementStates {
     constructor()
@@ -34,31 +29,6 @@ class ImplementStates {
     ) {
         seekbarsState(context, redIndicator, red, green, blue)
         resState(context, photoView, bitmap, thumbnail)
-    }
-
-    fun languageState(activity: Activity) {
-        val currentLocale = activity.resources.getString(R.string.language)
-        val targetLocale = PreferenceManager.getDefaultSharedPreferences(activity)
-            .getString(SettingsActivity.LOCALE, "en")
-
-        if (currentLocale != targetLocale) {
-            val config = activity.resources.configuration
-
-            val targetLocaleList = targetLocale?.split('_')
-
-            if ((targetLocaleList ?: return).size > 1) {
-                Locale.setDefault(Locale(targetLocaleList[0], targetLocaleList[1]))
-                config.setLocale(Locale(targetLocaleList[0], targetLocaleList[1]))
-            } else {
-                Locale.setDefault(Locale(targetLocaleList[0]))
-                config.setLocale(Locale(targetLocaleList[0]))
-            }
-
-            activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
-
-            activity.finish()
-            activity.startActivity(activity.intent)
-        }
     }
 
     private fun seekbarsState(
