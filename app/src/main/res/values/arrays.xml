@@ -21,4 +21,11 @@
         <item>theme_light</item>
         <item>theme_dark</item>
     </string-array>
+
+    <string-array name="column_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>
