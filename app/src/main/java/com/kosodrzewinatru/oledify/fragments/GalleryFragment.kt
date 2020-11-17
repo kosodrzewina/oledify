@@ -66,10 +66,10 @@ class GalleryFragment : Fragment() {
             }
 
             val columnCount = PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt(SettingsActivity.COLUMN_COUNT, 2)
+                .getString(SettingsActivity.COLUMN_COUNT, "2")
 
             images_recycler_view.adapter = RecyclerAdapter(galleryItems)
-            images_recycler_view.layoutManager = GridLayoutManager(activity, columnCount)
+            images_recycler_view.layoutManager = GridLayoutManager(activity, columnCount!!.toInt())
             images_recycler_view.setHasFixedSize(true)
         }
     }

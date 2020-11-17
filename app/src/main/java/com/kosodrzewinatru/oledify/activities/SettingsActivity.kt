@@ -15,7 +15,7 @@ class SettingsActivity : AppCompatActivity() {
         const val RGB_SLIDERS_SWITCH = "rgb_sliders_switch"
         const val HIGH_RESOLUTION_SWITCH = "high_res_switch"
         const val THEME = "theme_drop_down"
-        const val COLUMN_COUNT = "column_count"
+        const val COLUMN_COUNT = "column_count_drop_down"
         private lateinit var preferences: SharedPreferences
     }
 
