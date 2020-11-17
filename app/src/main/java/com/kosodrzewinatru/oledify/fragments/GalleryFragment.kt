@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.view.*
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kosodrzewinatru.oledify.GalleryItem
@@ -41,12 +42,12 @@ class GalleryFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.gallery_menu, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.column_count_button) {
-            // @TODO open fragment to change column count
+            ColumnCountFragment().show(parentFragmentManager, "COLUMN_COUNT_FRAGMENT")
         }
 
         return super.onOptionsItemSelected(item)
@@ -78,7 +79,7 @@ class GalleryFragment : Fragment() {
             }
 
             images_recycler_view.adapter = RecyclerAdapter(galleryItems)
-            images_recycler_view.layoutManager = GridLayoutManager(activity, 2)
+            images_recycler_view.layoutManager = GridLayoutManager(activity, 4)
             images_recycler_view.setHasFixedSize(true)
         }
     }
