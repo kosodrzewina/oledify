@@ -21,14 +21,24 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/gallery">
+        <DropDownPreference
+                android:entries="@array/column_count"
+                android:entryValues="@array/column_count"
+                android:key="column_count_drop_down"
+                android:title="@string/column_count"
+                app:useSimpleSummaryProvider="true">
+        </DropDownPreference>
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/other">
 
         <DropDownPreference
-                android:title="@string/theme"
-                android:key="theme_drop_down"
+                android:entries="@array/theme_entries"
                 android:entryValues="@array/theme_values"
-                app:useSimpleSummaryProvider="true"
-                android:entries="@array/theme_entries" />
+                android:key="theme_drop_down"
+                android:title="@string/theme"
+                app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
 </PreferenceScreen>
