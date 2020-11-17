@@ -22,13 +22,13 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/gallery">
+
         <DropDownPreference
                 android:entries="@array/column_count"
                 android:entryValues="@array/column_count"
                 android:key="column_count_drop_down"
                 android:title="@string/column_count"
-                app:useSimpleSummaryProvider="true">
-        </DropDownPreference>
+                app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/other">
