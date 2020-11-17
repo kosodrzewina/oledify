@@ -91,6 +91,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/constraint_layout_main"
             app:menu="@menu/navigation_menu"
-            android:theme="@style/AppTheme.BottomNavigationView" />
+            style="@style/AppTheme.BottomNavigationView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

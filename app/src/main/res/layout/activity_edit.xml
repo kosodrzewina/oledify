@@ -104,6 +104,6 @@
             app:layout_constraintBottom_toBottomOf="@id/constraint_layout_edit"
             android:layout_gravity="start"
             app:menu="@menu/navigation_menu"
-            android:theme="@style/AppTheme.BottomNavigationView" />
+            style="@style/AppTheme.BottomNavigationView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
