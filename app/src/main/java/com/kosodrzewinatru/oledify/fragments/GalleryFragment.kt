@@ -22,7 +22,6 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_gallery, container, false)
     }
 
@@ -39,19 +38,6 @@ class GalleryFragment : Fragment() {
         } else {
             showGallery()
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.gallery_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.column_count_button) {
-            ColumnCountFragment().show(parentFragmentManager, "COLUMN_COUNT_FRAGMENT")
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onRequestPermissionsResult(
