@@ -24,6 +24,7 @@
     <string name="real_time_processing">Real Time Processing</string>
     <string name="RGB_sliders">RGB Sliders</string>
     <string name="high_res">High Resolution Preview</string>
+    <string name="column_count">Column Count</string>
     <string name="other">Other</string>
     <string name="theme">Theme</string>
 

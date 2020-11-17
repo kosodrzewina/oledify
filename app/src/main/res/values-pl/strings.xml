@@ -23,6 +23,7 @@
     <string name="real_time_processing">Przetwarzanie w Czasie Rzeczywistym</string>
     <string name="RGB_sliders">Suwaki RGB</string>
     <string name="high_res">Podgląd w Wysokiej Rozdzielczości</string>
+    <string name="column_count">Liczba Kolumn</string>
     <string name="other">Pozostałe</string>
     <string name="theme">Motyw</string>
 
