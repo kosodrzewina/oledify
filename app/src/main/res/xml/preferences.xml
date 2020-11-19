@@ -28,7 +28,8 @@
                 android:entryValues="@array/column_count_values"
                 android:key="column_count_drop_down"
                 android:title="@string/column_count"
-                app:useSimpleSummaryProvider="true" />
+                app:useSimpleSummaryProvider="true"
+                android:defaultValue="2" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/other">
