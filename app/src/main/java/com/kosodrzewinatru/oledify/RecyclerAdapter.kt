@@ -30,6 +30,12 @@ class RecyclerAdapter(private val itemList: MutableList<GalleryItem>) :
         itemList.add(galleryItem)
     }
 
+    fun removeAllItems() {
+        val size = itemList.size
+        itemList.clear()
+        notifyItemRangeRemoved(0, size)
+    }
+
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.image_view
     }

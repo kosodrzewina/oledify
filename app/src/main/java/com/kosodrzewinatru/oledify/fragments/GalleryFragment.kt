@@ -127,6 +127,8 @@ class GalleryFragment : Fragment() {
     }
 
     private fun populateGallery() {
+        (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
+
         files.forEach { file ->
             (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
                 GalleryItem(
