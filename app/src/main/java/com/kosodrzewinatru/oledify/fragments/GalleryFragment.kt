@@ -20,6 +20,11 @@ import kotlinx.android.synthetic.main.fragment_gallery.*
 import java.io.File
 
 class GalleryFragment : Fragment() {
+    companion object {
+        lateinit var files: List<File>
+        var galleryItems = mutableListOf<GalleryItem>()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +45,7 @@ class GalleryFragment : Fragment() {
             )
         } else {
             showGallery()
+            populateGallery()
         }
     }
 
@@ -48,8 +54,10 @@ class GalleryFragment : Fragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if (requestCode == 101)
+        if (requestCode == 101) {
             showGallery()
+            populateGallery()
+        }
     }
 
     override fun onResume() {
@@ -108,21 +116,7 @@ class GalleryFragment : Fragment() {
             directory.listFiles() != null &&
             directory.listFiles().isNotEmpty()
         ) {
-            val files = directory.listFiles().toList()
-            val galleryItems = mutableListOf<GalleryItem>()
-
-            files.forEach { file ->
-                galleryItems.add(
-                    GalleryItem(
-                        decodeSampledBitmapFromFile(
-                            file,
-                            500,
-                            500
-                        )
-                    )
-                )
-            }
-
+            files = directory.listFiles().toList()
             val columnCount = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(SettingsActivity.COLUMN_COUNT, "2")
 
@@ -130,5 +124,22 @@ class GalleryFragment : Fragment() {
             images_recycler_view.layoutManager = GridLayoutManager(activity, columnCount!!.toInt())
             images_recycler_view.setHasFixedSize(true)
         }
+    }
+
+    private fun populateGallery() {
+        files.forEach { file ->
+            (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
+                GalleryItem(
+                    decodeSampledBitmapFromFile(
+                        file,
+                        500,
+                        500
+                    )
+                )
+            )
+
+        }
+
+        images_recycler_view.adapter?.notifyDataSetChanged()
     }
 }
