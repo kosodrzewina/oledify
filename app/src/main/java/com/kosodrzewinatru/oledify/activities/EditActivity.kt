@@ -26,7 +26,11 @@ import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
+import com.kosodrzewinatru.oledify.fragments.LoadingFragment
 import kotlinx.android.synthetic.main.activity_edit.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.abs
@@ -39,6 +43,7 @@ class EditActivity : AppCompatActivity() {
     // fragments
     private val galleryFragment = GalleryFragment()
     private val aboutFragment = AboutFragment()
+    private val loadingFragment = LoadingFragment()
 
     private lateinit var bitmap: Bitmap
     private lateinit var thumbnail: Bitmap
@@ -121,23 +126,28 @@ class EditActivity : AppCompatActivity() {
         )
 
         save_button.setOnClickListener {
-            val processedBitmap =
-                when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                    true -> Edit().makeBlackToneCurve(
-                        bitmap,
-                        blackness_or_red_value.text.toString().toFloat(),
-                        green_value.text.toString().toFloat(),
-                        blue_value.text.toString().toFloat()
-                    )
-                    false -> Edit().makeBlackToneCurve(
-                        bitmap, blackness_or_red_value
-                            .text
-                            .toString()
-                            .toFloat()
-                    )
-                }
+            loadingFragment.show(supportFragmentManager, "LOADING_START")
 
-            save(processedBitmap)
+            CoroutineScope(Dispatchers.Default).launch {
+                val processedBitmap =
+                    when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+                        true -> Edit().makeBlackToneCurve(
+                            bitmap,
+                            blackness_or_red_value.text.toString().toFloat(),
+                            green_value.text.toString().toFloat(),
+                            blue_value.text.toString().toFloat()
+                        )
+                        false -> Edit().makeBlackToneCurve(
+                            bitmap, blackness_or_red_value
+                                .text
+                                .toString()
+                                .toFloat()
+                        )
+                    }
+
+                save(processedBitmap)
+                loadingFragment.dismiss()
+            }
         }
 
         // seekbar for general or red intensity
