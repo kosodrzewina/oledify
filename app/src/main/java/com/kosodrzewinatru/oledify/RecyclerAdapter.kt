@@ -3,6 +3,7 @@ package com.kosodrzewinatru.oledify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
@@ -26,6 +27,6 @@ class RecyclerAdapter(private val itemList: List<GalleryItem>) :
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView = itemView.image_view
+        val imageView: ImageView = itemView.image_view
     }
 }
