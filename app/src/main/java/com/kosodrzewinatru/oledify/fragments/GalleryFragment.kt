@@ -6,6 +6,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -127,21 +130,28 @@ class GalleryFragment : Fragment() {
     }
 
     private fun populateGallery() {
-        (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
+        val runnable = Runnable {
+            (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
 
-        files.forEach { file ->
-            (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
-                GalleryItem(
-                    decodeSampledBitmapFromFile(
-                        file,
-                        500,
-                        500
+            files.forEach { file ->
+                (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
+                    GalleryItem(
+                        decodeSampledBitmapFromFile(
+                            file,
+                            500,
+                            500
+                        )
                     )
                 )
-            )
+            }
 
+            Log.d("GALLERY_FRAGMENT", "populated")
+
+            images_recycler_view.adapter?.notifyDataSetChanged()
+            showGallery()
         }
+        val mHandler = Handler(Looper.getMainLooper())
 
-        images_recycler_view.adapter?.notifyDataSetChanged()
+        mHandler.post(runnable)
     }
 }
