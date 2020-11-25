@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
-class RecyclerAdapter(private val itemList: List<GalleryItem>) :
+class RecyclerAdapter(private val itemList: MutableList<GalleryItem>) :
     RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>() {
 
     override fun getItemCount(): Int = itemList.size
@@ -24,6 +24,11 @@ class RecyclerAdapter(private val itemList: List<GalleryItem>) :
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentItem = itemList[position]
         holder.imageView.setImageBitmap(currentItem.bitmap)
+    }
+
+    fun addNewItem(galleryItem: GalleryItem) {
+        itemList.add(galleryItem)
+        notifyDataSetChanged()
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
