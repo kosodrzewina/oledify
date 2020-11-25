@@ -6,8 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
-import android.os.Handler
-import android.os.Looper
+import android.support.v4.os.IResultReceiver
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +19,9 @@ import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.RecyclerAdapter
 import com.kosodrzewinatru.oledify.activities.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_gallery.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 
 class GalleryFragment : Fragment() {
@@ -48,7 +50,10 @@ class GalleryFragment : Fragment() {
             )
         } else {
             showGallery()
-            populateGallery()
+
+            CoroutineScope(Dispatchers.Main).launch {
+                populateGallery()
+            }
         }
     }
 
@@ -59,7 +64,10 @@ class GalleryFragment : Fragment() {
     ) {
         if (requestCode == 101) {
             showGallery()
-            populateGallery()
+
+            CoroutineScope(Dispatchers.Main).launch {
+                populateGallery()
+            }
         }
     }
 
@@ -130,28 +138,23 @@ class GalleryFragment : Fragment() {
     }
 
     private fun populateGallery() {
-        val runnable = Runnable {
-            (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
+        (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
 
-            files.forEach { file ->
-                (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
-                    GalleryItem(
-                        decodeSampledBitmapFromFile(
-                            file,
-                            500,
-                            500
-                        )
+        files.forEach { file ->
+            (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
+                GalleryItem(
+                    decodeSampledBitmapFromFile(
+                        file,
+                        500,
+                        500
                     )
                 )
-            }
-
-            Log.d("GALLERY_FRAGMENT", "populated")
-
-            images_recycler_view.adapter?.notifyDataSetChanged()
-            showGallery()
+            )
         }
-        val mHandler = Handler(Looper.getMainLooper())
 
-        mHandler.post(runnable)
+        Log.d("GALLERY_FRAGMENT", "populated")
+
+        images_recycler_view.adapter?.notifyDataSetChanged()
+        showGallery()
     }
 }
