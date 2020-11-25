@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_loading_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:minWidth="75dp"
+        android:minHeight="75dp"
+        android:background="@drawable/dialog_rounded"
+        android:orientation="vertical">
+
+    <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@id/fragment_loading_constraint_layout"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_loading_constraint_layout"
+            app:layout_constraintLeft_toLeftOf="@id/fragment_loading_constraint_layout"
+            app:layout_constraintRight_toRightOf="@id/fragment_loading_constraint_layout"
+            android:layout_margin="16dp"
+            android:visibility="visible"
+            android:indeterminateTint="@android:color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
