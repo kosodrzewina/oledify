@@ -2,10 +2,13 @@ package com.kosodrzewinatru.oledify.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
@@ -54,6 +57,49 @@ class GalleryFragment : Fragment() {
         showGallery()
     }
 
+    private fun calculateInSampleSize(
+        options: BitmapFactory.Options,
+        reqWidth: Int,
+        reqHeight: Int
+    ): Int {
+        // Raw height and width of image
+        val (height: Int, width: Int) = options.run { outHeight to outWidth }
+        var inSampleSize = 1
+
+        if (height > reqHeight || width > reqWidth) {
+
+            val halfHeight = height / 2
+            val halfWidth = width / 2
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while (halfHeight / inSampleSize >= reqHeight && halfWidth / inSampleSize >= reqWidth)
+                inSampleSize *= 2
+        }
+
+        return inSampleSize
+    }
+
+    private fun decodeSampledBitmapFromFile(
+        file: File,
+        reqWidth: Int,
+        reqHeight: Int
+    ): Bitmap {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        return BitmapFactory.Options().run {
+            inJustDecodeBounds = true
+            BitmapFactory.decodeFile(file.path, this)
+
+            // Calculate inSampleSize
+            inSampleSize = calculateInSampleSize(this, reqWidth, reqHeight)
+
+            // Decode bitmap with inSampleSize set
+            inJustDecodeBounds = false
+
+            BitmapFactory.decodeFile(file.path, this)
+        }
+    }
+
     private fun showGallery() {
         val directory =
             File(Environment.getExternalStorageDirectory().toString() + "/Pictures/Oledify")
@@ -65,9 +111,16 @@ class GalleryFragment : Fragment() {
             val files = directory.listFiles().toList()
             val galleryItems = mutableListOf<GalleryItem>()
 
-            files.indices.forEach {
-                val bitmap = BitmapFactory.decodeFile(files[it].path)
-                galleryItems.add(GalleryItem(bitmap))
+            files.forEach { file ->
+                galleryItems.add(
+                    GalleryItem(
+                        decodeSampledBitmapFromFile(
+                            file,
+                            500,
+                            500
+                        )
+                    )
+                )
             }
 
             val columnCount = PreferenceManager.getDefaultSharedPreferences(context)
