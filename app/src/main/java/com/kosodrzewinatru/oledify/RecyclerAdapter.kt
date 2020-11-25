@@ -28,7 +28,6 @@ class RecyclerAdapter(private val itemList: MutableList<GalleryItem>) :
 
     fun addNewItem(galleryItem: GalleryItem) {
         itemList.add(galleryItem)
-        notifyDataSetChanged()
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
