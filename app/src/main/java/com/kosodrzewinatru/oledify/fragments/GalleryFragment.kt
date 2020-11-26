@@ -10,9 +10,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kosodrzewinatru.oledify.DataMover
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.RecyclerAdapter
@@ -23,8 +25,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
-class GalleryFragment : Fragment() {
+class GalleryFragment : Fragment(), DataMover<DialogFragment> {
     companion object {
+        private const val TAG = "GALLERY_FRAGMENT"
+        private lateinit var loadingFragment: DialogFragment
         lateinit var files: List<File>
         var galleryItems = mutableListOf<GalleryItem>()
     }
@@ -151,9 +155,14 @@ class GalleryFragment : Fragment() {
             )
         }
 
-        Log.d("GALLERY_FRAGMENT", "populated")
+        Log.i(TAG, "populated")
 
         images_recycler_view.adapter?.notifyDataSetChanged()
         showGallery()
+        loadingFragment.dismiss()
+    }
+
+    override fun manageData(data: DialogFragment) {
+        loadingFragment = data
     }
 }

@@ -19,6 +19,7 @@ import com.kosodrzewinatru.oledify.ImplementStates
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
+import com.kosodrzewinatru.oledify.fragments.LoadingFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private val welcomeFragment = WelcomeFragment()
     private val galleryFragment = GalleryFragment()
     private val aboutFragment = AboutFragment()
+    private val loadingFragment = LoadingFragment()
 
     private val sharedPrefs = "sharedPrefs"
     private val IS_FIRST_LAUNCH = "isFirstLaunch"
@@ -103,6 +105,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.switch_gallery -> {
+                    galleryFragment.manageData(loadingFragment)
+                    loadingFragment.show(supportFragmentManager, "LOADING_START")
+
                     upload_button.hide()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container_main, galleryFragment).commit()
