@@ -151,24 +151,27 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
     }
 
     private fun populateGallery() {
-        (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
+        if (images_recycler_view.adapter != null) {
+            (images_recycler_view.adapter as RecyclerAdapter).removeAllItems()
 
-        files.forEach { file ->
-            (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
-                GalleryItem(
-                    decodeSampledBitmapFromFile(
-                        file,
-                        500,
-                        500
+            files.forEach { file ->
+                (images_recycler_view.adapter as RecyclerAdapter).addNewItem(
+                    GalleryItem(
+                        decodeSampledBitmapFromFile(
+                            file,
+                            500,
+                            500
+                        )
                     )
                 )
-            )
+            }
+
+            Log.i(TAG, "populated")
+
+            images_recycler_view.adapter?.notifyDataSetChanged()
+            showGallery()
         }
 
-        Log.i(TAG, "populated")
-
-        images_recycler_view.adapter?.notifyDataSetChanged()
-        showGallery()
         loadingFragment.dismiss()
     }
 
