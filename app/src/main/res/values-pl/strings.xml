@@ -14,6 +14,10 @@
     <string name="source">źródło</string>
     <string name="licence">licencja</string>
 
+    <!-- loading screen -->
+    <string name="gallery_loading">Odświeżanie Galerii...</string>
+    <string name="saving_loading">Zapisywanie...</string>
+
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>
     <string name="editing">Edytowanie</string>

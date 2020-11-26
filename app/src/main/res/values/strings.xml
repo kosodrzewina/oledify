@@ -15,6 +15,10 @@
     <string name="source">source</string>
     <string name="licence">licence</string>
 
+    <!-- loading screen -->
+    <string name="gallery_loading">Refreshing Gallery...</string>
+    <string name="saving_loading">Saving...</string>
+
     <!-- bottom navigation view menu -->
     <string name="gallery">Gallery</string>
     <string name="editing">Editing</string>
