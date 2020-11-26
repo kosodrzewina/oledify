@@ -10,8 +10,8 @@ android {
         applicationId "com.kosodrzewinatru.oledify"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 17
-        versionName '1.4.12'
+        versionCode 18
+        versionName '1.5.12'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
