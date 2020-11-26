@@ -264,12 +264,14 @@ class EditActivity : AppCompatActivity() {
                 }
 
                 R.id.switch_gallery -> {
-                    galleryFragment.manageData(loadingFragment)
-                    loadingFragment.manageData(resources.getString(R.string.gallery_loading))
-                    loadingFragment.show(supportFragmentManager, "LOADING_START")
+                    if (!galleryFragment.isVisible) {
+                        galleryFragment.manageData(loadingFragment)
+                        loadingFragment.manageData(resources.getString(R.string.gallery_loading))
+                        loadingFragment.show(supportFragmentManager, "LOADING_START")
 
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container_edit, galleryFragment).commit()
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container_edit, galleryFragment).commit()
+                    }
                 }
             }
 
