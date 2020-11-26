@@ -22,6 +22,7 @@ import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LoadingFragment
 import com.kosodrzewinatru.oledify.fragments.WelcomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_loading.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -106,6 +107,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.switch_gallery -> {
                     galleryFragment.manageData(loadingFragment)
+                    loadingFragment.manageData(resources.getString(R.string.gallery_loading))
                     loadingFragment.show(supportFragmentManager, "LOADING_START")
 
                     upload_button.hide()

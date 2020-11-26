@@ -28,6 +28,7 @@ import com.kosodrzewinatru.oledify.fragments.AboutFragment
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import com.kosodrzewinatru.oledify.fragments.LoadingFragment
 import kotlinx.android.synthetic.main.activity_edit.*
+import kotlinx.android.synthetic.main.fragment_loading.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -126,6 +127,7 @@ class EditActivity : AppCompatActivity() {
         )
 
         save_button.setOnClickListener {
+            loadingFragment.manageData(resources.getString(R.string.saving_loading))
             loadingFragment.show(supportFragmentManager, "LOADING_START")
 
             CoroutineScope(Dispatchers.Default).launch {
@@ -263,6 +265,7 @@ class EditActivity : AppCompatActivity() {
 
                 R.id.switch_gallery -> {
                     galleryFragment.manageData(loadingFragment)
+                    loadingFragment.manageData(resources.getString(R.string.gallery_loading))
                     loadingFragment.show(supportFragmentManager, "LOADING_START")
 
                     supportFragmentManager.beginTransaction()
