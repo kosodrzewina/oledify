@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -51,6 +53,8 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 101
             )
+
+            loadingFragment.dismiss()
         } else {
             showGallery()
 
@@ -65,12 +69,18 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if (requestCode == 101) {
+        if (requestCode == 101 && context?.let {
+                ActivityCompat.checkSelfPermission(
+                    it,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+            } == PackageManager.PERMISSION_GRANTED) {
             showGallery()
-
-            CoroutineScope(Dispatchers.Main).launch {
-                populateGallery()
-            }
+            populateGallery()
+        } else {
+            loadingFragment.dismiss()
+            Toast.makeText(context, resources.getString(R.string.no_permissions), Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

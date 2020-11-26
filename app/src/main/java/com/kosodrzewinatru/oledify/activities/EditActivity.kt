@@ -446,13 +446,14 @@ class EditActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if (
-            !(requestCode == 100 && Environment.getExternalStorageState() ==
-                    Environment.MEDIA_MOUNTED)
+        if (requestCode == 100 && ActivityCompat.checkSelfPermission(
+                this@EditActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_DENIED
         ) {
             Snackbar.make(
                 snackbar_container,
-                getString(R.string.not_saved),
+                getString(R.string.error_message),
                 Snackbar.LENGTH_SHORT
             ).setTextColor(Color.WHITE).show()
         }

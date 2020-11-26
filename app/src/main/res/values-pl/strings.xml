@@ -42,6 +42,7 @@
     <!-- snackbar messages -->
     <string name="saved">Obraz zapisany pomyślnie!</string>
     <string name="error_message">Coś poszło nie tak!</string>
+    <string name="no_permissions">Nie przyznano uprawnień!</string>
 
     <!-- welcome fragment -->
     <string name="welcome_title">Witaj w Oledify!</string>
