@@ -5,8 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:minWidth="75dp"
-        android:minHeight="75dp"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
         android:background="@drawable/dialog_rounded"
         android:orientation="vertical">
 
@@ -23,5 +23,16 @@
             android:layout_margin="16dp"
             android:visibility="visible"
             android:indeterminateTint="@android:color/white"/>
+
+    <TextView
+            android:id="@+id/loading_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/progressBar"
+            app:layout_constraintRight_toRightOf="@id/fragment_loading_constraint_layout"
+            app:layout_constraintLeft_toLeftOf="@id/fragment_loading_constraint_layout"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_loading_constraint_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
