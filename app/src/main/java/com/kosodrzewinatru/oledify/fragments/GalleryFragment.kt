@@ -7,9 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
@@ -40,6 +38,7 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_gallery, container, false)
     }
 
@@ -62,6 +61,18 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
                 populateGallery()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.gallery_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.refresh_button) {
+            // refresh
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onRequestPermissionsResult(

@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/column_count_button"
-            android:icon="@drawable/ic_column_count"
+            android:id="@+id/refresh_button"
+            android:icon="@drawable/ic_refresh"
             android:title=""
             app:showAsAction="always" />
 </menu>
