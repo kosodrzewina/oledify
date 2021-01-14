@@ -40,17 +40,14 @@ class RecyclerAdapter(private val itemList: MutableList<GalleryItem>, private va
         notifyItemRangeRemoved(0, size)
     }
 
-    class RecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    class RecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.image_view
 
         init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(p0: View?) {
-            val imagePreviewFragment = ImagePreviewFragment(imageView.drawable)
-            imagePreviewFragment.show((context as AppCompatActivity).supportFragmentManager, "PREVIEW")
+            itemView.setOnClickListener {
+                val imagePreviewFragment = ImagePreviewFragment(imageView.drawable)
+                imagePreviewFragment.show((context as AppCompatActivity).supportFragmentManager, "PREVIEW")
+            }
         }
     }
 }
