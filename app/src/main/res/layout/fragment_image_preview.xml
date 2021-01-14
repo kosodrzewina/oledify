@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/dialog_rounded"
+        android:orientation="vertical">
+
+    <ImageView
+            android:id="@+id/preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_enabled"
+            android:minWidth="60dp"
+            android:minHeight="30dp"
+            android:text="@string/source"
+            android:textSize="12sp"
+            android:theme="@style/ButtonTextEnabled"
+            app:layout_constraintTop_toBottomOf="@id/preview"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_enabled"
+            android:minWidth="60dp"
+            android:minHeight="30dp"
+            android:text="@string/source"
+            android:textSize="12sp"
+            android:theme="@style/ButtonTextEnabled"
+            app:layout_constraintTop_toBottomOf="@+id/preview"
+            app:layout_constraintLeft_toRightOf="@+id/open"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
