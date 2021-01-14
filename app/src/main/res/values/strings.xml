@@ -19,6 +19,10 @@
     <string name="gallery_loading">Refreshing Gallery...</string>
     <string name="saving_loading">Saving...</string>
 
+    <!-- gallery image preview -->
+    <string name="open">open</string>
+    <string name="delete">delete</string>
+
     <!-- bottom navigation view menu -->
     <string name="gallery">Gallery</string>
     <string name="editing">Editing</string>

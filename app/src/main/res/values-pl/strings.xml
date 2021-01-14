@@ -18,6 +18,10 @@
     <string name="gallery_loading">Odświeżanie Galerii...</string>
     <string name="saving_loading">Zapisywanie...</string>
 
+    <!-- gallery image preview -->
+    <string name="open">otwórz</string>
+    <string name="delete">usuń</string>
+
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>
     <string name="editing">Edytowanie</string>
