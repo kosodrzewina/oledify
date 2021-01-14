@@ -1,15 +1,15 @@
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import com.kosodrzewinatru.oledify.R
 import kotlinx.android.synthetic.main.fragment_image_preview.*
 
-class ImagePreviewFragment : DialogFragment() {
+class ImagePreviewFragment(val drawable: Drawable) : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,6 +22,6 @@ class ImagePreviewFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        preview.setImageDrawable(resources.getDrawable(R.drawable.ic_splash, null))
+        preview.setImageDrawable(drawable)
     }
 }
