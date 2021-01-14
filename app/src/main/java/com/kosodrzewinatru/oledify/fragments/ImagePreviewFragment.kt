@@ -22,6 +22,6 @@ class ImagePreviewFragment(val drawable: Drawable) : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        preview.setImageDrawable(drawable)
+        image.setImageDrawable(drawable)
     }
 }
