@@ -165,7 +165,8 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
                             file,
                             500,
                             500
-                        )
+                        ),
+                        file.absolutePath
                     )
                 )
             }
