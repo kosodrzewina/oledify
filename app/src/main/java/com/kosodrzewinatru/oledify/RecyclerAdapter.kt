@@ -1,8 +1,8 @@
 package com.kosodrzewinatru.oledify
 
 import ImagePreviewFragment
-import android.app.Activity
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
-class RecyclerAdapter(private val itemList: MutableList<GalleryItem>, private val context: Context) :
+class RecyclerAdapter(
+    private val itemList: MutableList<GalleryItem>,
+    private val context: Context
+) :
     RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>() {
 
     override fun getItemCount(): Int = itemList.size
@@ -27,7 +30,10 @@ class RecyclerAdapter(private val itemList: MutableList<GalleryItem>, private va
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentItem = itemList[position]
-        holder.imageView.setImageBitmap(currentItem.bitmap)
+        val bitmap = BitmapFactory.decodeFile(currentItem.path)
+
+        holder.imageView.setImageBitmap(bitmap)
+        holder.imageView.tag = currentItem.path
     }
 
     fun addNewItem(galleryItem: GalleryItem) {
@@ -40,13 +46,17 @@ class RecyclerAdapter(private val itemList: MutableList<GalleryItem>, private va
         notifyItemRangeRemoved(0, size)
     }
 
-    class RecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
+    class RecyclerViewHolder(itemView: View, private val context: Context) :
+        RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.image_view
 
         init {
             itemView.setOnClickListener {
-                val imagePreviewFragment = ImagePreviewFragment(imageView.drawable)
-                imagePreviewFragment.show((context as AppCompatActivity).supportFragmentManager, "PREVIEW")
+                val imagePreviewFragment = ImagePreviewFragment(imageView.tag as String)
+                imagePreviewFragment.show(
+                    (context as AppCompatActivity).supportFragmentManager,
+                    "PREVIEW"
+                )
             }
         }
     }
