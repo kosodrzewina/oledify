@@ -40,6 +40,17 @@ class RecyclerAdapter(
         itemList.add(galleryItem)
     }
 
+    fun removeItem(path: String) {
+        for (i in 0..itemList.size) {
+            if (itemList[i].path == path) {
+                itemList.removeAt(i)
+                notifyItemRemoved(i)
+                notifyItemRangeChanged(i, itemCount - i)
+                break
+            }
+        }
+    }
+
     fun removeAllItems() {
         val size = itemList.size
         itemList.clear()

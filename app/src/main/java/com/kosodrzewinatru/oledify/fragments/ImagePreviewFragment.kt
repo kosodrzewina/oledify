@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.kosodrzewinatru.oledify.R
+import com.kosodrzewinatru.oledify.RecyclerAdapter
+import com.kosodrzewinatru.oledify.fragments.GalleryFragment
+import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.fragment_image_preview.*
 import java.io.File
 
@@ -36,6 +39,13 @@ class ImagePreviewFragment(private val path: String) : DialogFragment() {
             startActivity(intent)
         }
 
-        delete_button.setOnClickListener {}
+        delete_button.setOnClickListener {
+            val file = File(path)
+
+            GalleryFragment.adapter.removeItem(path)
+            GalleryFragment.adapter.notifyDataSetChanged()
+            file.delete()
+            this.dismiss()
+        }
     }
 }

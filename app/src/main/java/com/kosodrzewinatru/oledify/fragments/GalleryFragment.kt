@@ -30,6 +30,7 @@ import java.io.File
 class GalleryFragment : Fragment(), DataMover<DialogFragment> {
     companion object {
         private const val TAG = "GALLERY_FRAGMENT"
+        lateinit var adapter: RecyclerAdapter
         private lateinit var loadingFragment: DialogFragment
         lateinit var files: List<File>
         var galleryItems = mutableListOf<GalleryItem>()
@@ -62,6 +63,8 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
                 populateGallery()
             }
         }
+
+        adapter = images_recycler_view.adapter as RecyclerAdapter
     }
 
     override fun onRequestPermissionsResult(
@@ -83,8 +86,7 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
                 context,
                 resources.getString(R.string.no_permissions),
                 Toast.LENGTH_SHORT
-            )
-                .show()
+            ).show()
         }
     }
 
