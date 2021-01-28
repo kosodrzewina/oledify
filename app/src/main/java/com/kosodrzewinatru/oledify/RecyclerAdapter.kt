@@ -30,9 +30,8 @@ class RecyclerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentItem = itemList[position]
-        val bitmap = BitmapFactory.decodeFile(currentItem.path)
 
-        holder.imageView.setImageBitmap(bitmap)
+        holder.imageView.setImageBitmap(currentItem.bitmap)
         holder.imageView.tag = currentItem.path
     }
 
