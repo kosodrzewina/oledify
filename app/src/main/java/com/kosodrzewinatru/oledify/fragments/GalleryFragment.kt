@@ -67,7 +67,9 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
         }
 
         recyclerView = images_recycler_view
-        adapter = images_recycler_view.adapter as RecyclerAdapter
+
+        if (images_recycler_view.adapter != null)
+            adapter = images_recycler_view.adapter as RecyclerAdapter
     }
 
     override fun onRequestPermissionsResult(
