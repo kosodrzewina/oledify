@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kosodrzewinatru.oledify.DataMover
 import com.kosodrzewinatru.oledify.GalleryItem
 import com.kosodrzewinatru.oledify.R
@@ -30,6 +31,7 @@ import java.io.File
 class GalleryFragment : Fragment(), DataMover<DialogFragment> {
     companion object {
         private const val TAG = "GALLERY_FRAGMENT"
+        lateinit var recyclerView: RecyclerView
         lateinit var adapter: RecyclerAdapter
         private lateinit var loadingFragment: DialogFragment
         lateinit var files: List<File>
@@ -64,6 +66,7 @@ class GalleryFragment : Fragment(), DataMover<DialogFragment> {
             }
         }
 
+        recyclerView = images_recycler_view
         adapter = images_recycler_view.adapter as RecyclerAdapter
     }
 

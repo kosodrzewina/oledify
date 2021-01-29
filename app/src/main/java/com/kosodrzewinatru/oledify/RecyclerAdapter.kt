@@ -2,7 +2,6 @@ package com.kosodrzewinatru.oledify
 
 import ImagePreviewFragment
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,12 +38,12 @@ class RecyclerAdapter(
         itemList.add(galleryItem)
     }
 
-    fun removeItem(path: String) {
+    fun removeItem(path: String, recyclerView: RecyclerView) {
         for (i in 0..itemList.size) {
             if (itemList[i].path == path) {
                 itemList.removeAt(i)
                 notifyItemRemoved(i)
-                notifyItemRangeChanged(i, itemCount - i)
+                recyclerView.swapAdapter(this, true)
                 break
             }
         }
