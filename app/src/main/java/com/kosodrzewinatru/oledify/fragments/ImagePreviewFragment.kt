@@ -2,6 +2,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,6 +43,12 @@ class ImagePreviewFragment(private val path: String) : DialogFragment() {
 
             GalleryFragment.adapter.removeItem(path, GalleryFragment.recyclerView)
             file.delete()
+            MediaScannerConnection.scanFile(
+                context,
+                arrayOf(file.toString()),
+                arrayOf(file.name),
+                null
+            )
             this.dismiss()
         }
     }
