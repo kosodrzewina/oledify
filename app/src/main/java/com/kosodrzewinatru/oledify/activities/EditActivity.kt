@@ -15,6 +15,7 @@ import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -34,10 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import kotlin.math.abs
-import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /**
@@ -262,6 +260,7 @@ class EditActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.switch_editing -> {
                     if (galleryFragment.isVisible) {
+                        black_percentage_card_view.visibility = View.VISIBLE
                         supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
                     }
                 }
@@ -271,6 +270,7 @@ class EditActivity : AppCompatActivity() {
                         galleryFragment.manageData(loadingFragment)
                         loadingFragment.manageData(resources.getString(R.string.gallery_loading))
                         loadingFragment.show(supportFragmentManager, "LOADING_START")
+                        black_percentage_card_view.visibility = View.GONE
 
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.fragment_container_edit, galleryFragment).commit()
@@ -343,6 +343,7 @@ class EditActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (galleryFragment.isVisible) {
+            black_percentage_card_view.visibility = View.VISIBLE
             supportFragmentManager.beginTransaction().remove(galleryFragment).commit()
         } else {
             super.onBackPressed()
