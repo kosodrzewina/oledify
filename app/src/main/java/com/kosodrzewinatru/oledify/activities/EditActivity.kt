@@ -133,13 +133,13 @@ class EditActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Default).launch {
                 val processedBitmap =
                     when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                        true -> Edit().makeBlackToneCurve(
+                        true -> Edit.makeBlackToneCurve(
                             bitmap,
                             blackness_or_red_value.text.toString().toFloat(),
                             green_value.text.toString().toFloat(),
                             blue_value.text.toString().toFloat()
                         )
-                        false -> Edit().makeBlackToneCurve(
+                        false -> Edit.makeBlackToneCurve(
                             bitmap, blackness_or_red_value
                                 .text
                                 .toString()
@@ -353,13 +353,13 @@ class EditActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                true -> Edit().makeBlackToneCurve(
+                true -> Edit.makeBlackToneCurve(
                     params[0] ?: return null,
                     blackness_or_red_value.text.toString().toFloat(),
                     green_value.text.toString().toFloat(),
                     blue_value.text.toString().toFloat()
                 )
-                false -> Edit().makeBlackToneCurve(
+                false -> Edit.makeBlackToneCurve(
                     params[0] ?: return null, blackness_or_red_value
                         .text
                         .toString()
