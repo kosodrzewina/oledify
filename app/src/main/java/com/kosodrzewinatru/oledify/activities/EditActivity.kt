@@ -34,7 +34,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import kotlin.math.abs
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /**
@@ -138,13 +141,13 @@ class EditActivity : AppCompatActivity() {
                             blackness_or_red_value.text.toString().toFloat(),
                             green_value.text.toString().toFloat(),
                             blue_value.text.toString().toFloat()
-                        )
+                        ).first
                         false -> Edit.makeBlackToneCurve(
                             bitmap, blackness_or_red_value
                                 .text
                                 .toString()
                                 .toFloat()
-                        )
+                        ).first
                     }
 
                 save(processedBitmap)
@@ -353,18 +356,36 @@ class EditActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
-                true -> Edit.makeBlackToneCurve(
-                    params[0] ?: return null,
-                    blackness_or_red_value.text.toString().toFloat(),
-                    green_value.text.toString().toFloat(),
-                    blue_value.text.toString().toFloat()
-                )
-                false -> Edit.makeBlackToneCurve(
-                    params[0] ?: return null, blackness_or_red_value
-                        .text
-                        .toString()
-                        .toFloat()
-                )
+                true -> {
+                    val pair = Edit.makeBlackToneCurve(
+                        params[0] ?: return null,
+                        blackness_or_red_value.text.toString().toFloat(),
+                        green_value.text.toString().toFloat(),
+                        blue_value.text.toString().toFloat()
+                    )
+                    val percentage = (pair.second * 100).toInt().toString() + "%"
+
+                    runOnUiThread {
+                        black_percentage.text = percentage
+                    }
+
+                    return pair.first
+                }
+                false -> {
+                    val pair = Edit.makeBlackToneCurve(
+                        params[0] ?: return null, blackness_or_red_value
+                            .text
+                            .toString()
+                            .toFloat()
+                    )
+                    val percentage = (pair.second * 100).toInt().toString() + "%"
+
+                    runOnUiThread {
+                        black_percentage.text = percentage
+                    }
+
+                    return pair.first
+                }
             }
         }
 

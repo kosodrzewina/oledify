@@ -43,7 +43,7 @@ class Edit {
 
         /**
          * A function responsible for processing bitmap with three different values of intensity. Each
-         * indcating intensity of a different primary color (RGB).
+         * indicating intensity of a different primary color (RGB).
          *
          * @param bitmap bitmap that will be processed
          * @param intensityRed float value indicating intensity of red color
@@ -82,9 +82,11 @@ class Edit {
             return processed
         }
 
-        fun makeBlackToneCurve(bitmap: Bitmap, intensity: Float): Bitmap {
+        fun makeBlackToneCurve(bitmap: Bitmap, intensity: Float): Pair<Bitmap, Double> {
             val topRange = intensity * 765 / 100
             val bottomRange = topRange - 300
+
+            var blackPixelCounter = 0.0
 
             val pixels = IntArray(bitmap.height * bitmap.width)
             bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
@@ -97,6 +99,7 @@ class Edit {
 
                 if (totalValue < (bottomRange + (topRange - bottomRange) / 2)) {
                     pixels[it] = Color.BLACK
+                    blackPixelCounter++
                 } else if (totalValue <= topRange) {
                     val degradationRate = totalValue / topRange
 
@@ -115,7 +118,7 @@ class Edit {
             val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
             processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-            return processed
+            return Pair(processed, blackPixelCounter / pixels.size)
         }
 
         fun makeBlackToneCurve(
@@ -123,7 +126,7 @@ class Edit {
             intensityRed: Float,
             intensityGreen: Float,
             intensityBlue: Float
-        ): Bitmap {
+        ): Pair<Bitmap, Double> {
             val intensityRed = intensityRed * 255 / 100
             val intensityGreen = intensityGreen * 255 / 100
             val intensityBlue = intensityBlue * 255 / 100
@@ -135,8 +138,9 @@ class Edit {
             val topRangeBlue = intensityBlue * 255 / 100
             val bottomRangeBlue = topRangeBlue - 300
 
-            val pixels = IntArray(bitmap.height * bitmap.width)
+            var blackPixelCounter = 0.0
 
+            val pixels = IntArray(bitmap.height * bitmap.width)
             bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
             pixels.indices.forEach {
@@ -150,6 +154,7 @@ class Edit {
                     && blue < (bottomRangeBlue + (topRangeBlue - bottomRangeBlue) / 2)
                 ) {
                     pixels[it] = Color.BLACK
+                    blackPixelCounter++
                 } else if (red <= topRangeRed && green <= topRangeGreen && blue <= topRangeBlue) {
                     val degradationRate =
                         (red + green + blue) / (topRangeRed + topRangeGreen + topRangeBlue)
@@ -170,7 +175,7 @@ class Edit {
             val processed = bitmap.copy(Bitmap.Config.ARGB_8888, true)
             processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-            return processed
+            return Pair(processed, blackPixelCounter / pixels.size)
         }
     }
 }
