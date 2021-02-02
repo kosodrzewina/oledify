@@ -7,7 +7,7 @@
     <string name="settings">Settings</string>
     <string name="change_language">Change language</string>
     <string name="about">About</string>
-    
+
     <!-- about menu -->
     <string name="about_title">About Oledify</string>
     <string name="version">App version</string>

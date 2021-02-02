@@ -22,7 +22,7 @@
             app:layout_constraintRight_toRightOf="@id/fragment_loading_constraint_layout"
             android:layout_margin="16dp"
             android:visibility="visible"
-            android:indeterminateTint="@android:color/white"/>
+            android:indeterminateTint="@android:color/white" />
 
     <TextView
             android:id="@+id/loading_text"

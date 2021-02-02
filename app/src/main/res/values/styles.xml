@@ -32,7 +32,7 @@
         <item name="itemIconTint">@android:color/white</item>
         <item name="itemTextColor">@color/color_accent</item>
     </style>
-    
+
     <style name="AppTheme.ContentLoadingProgressBar">
         <item name="android:colorAccent">@android:color/white</item>
     </style>

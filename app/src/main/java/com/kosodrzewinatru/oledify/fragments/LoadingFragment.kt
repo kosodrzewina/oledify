@@ -11,7 +11,7 @@ import com.kosodrzewinatru.oledify.DataMover
 import com.kosodrzewinatru.oledify.R
 import kotlinx.android.synthetic.main.fragment_loading.*
 
-class LoadingFragment: DialogFragment(), DataMover<String> {
+class LoadingFragment : DialogFragment(), DataMover<String> {
     private lateinit var loadingText: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +19,11 @@ class LoadingFragment: DialogFragment(), DataMover<String> {
         isCancelable = false
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_loading, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
