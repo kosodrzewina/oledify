@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.loader.content.Loader
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
 import kotlinx.android.synthetic.main.fragment_image_preview.*
@@ -30,9 +31,8 @@ class ImagePreviewFragment(private val path: String) : DialogFragment() {
         image.setImageDrawable(Drawable.createFromPath(path))
 
         open_button.setOnClickListener {
-            val file = File(path)
             val intent = Intent(Intent.ACTION_VIEW)
-            val data = Uri.parse(file.absolutePath)
+            val data = Uri.parse(path)
 
             intent.setDataAndType(data, "image/*")
             startActivity(intent)
