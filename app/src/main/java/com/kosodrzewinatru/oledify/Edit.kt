@@ -97,7 +97,7 @@ class Edit {
                 val blue = Color.blue(pixels[it])
                 val totalValue = red + green + blue
 
-                if (totalValue < (bottomRange + (topRange - bottomRange) / 2)) {
+                if (totalValue < bottomRange + (topRange - bottomRange) / 2) {
                     pixels[it] = Color.BLACK
                     blackPixelCounter++
                 } else if (totalValue <= topRange) {
@@ -149,9 +149,9 @@ class Edit {
                 val blue = Color.blue(pixels[it])
 
                 if (
-                    red < (bottomRangeRed + (topRangeRed - bottomRangeRed) / 2)
-                    && green < (bottomRangeGreen + (topRangeGreen - bottomRangeGreen) / 2)
-                    && blue < (bottomRangeBlue + (topRangeBlue - bottomRangeBlue) / 2)
+                    red < bottomRangeRed + (topRangeRed - bottomRangeRed) / 2
+                    && green < bottomRangeGreen + (topRangeGreen - bottomRangeGreen) / 2
+                    && blue < bottomRangeBlue + (topRangeBlue - bottomRangeBlue) / 2
                 ) {
                     pixels[it] = Color.BLACK
                     blackPixelCounter++
