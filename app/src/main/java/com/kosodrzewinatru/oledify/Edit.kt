@@ -15,11 +15,11 @@ class Edit {
          *
          * @param bitmap bitmap that will be processed
          * @param intensity float value indicating how intense processing should be
-         * @return processed bitmap
+         * @return Pair(<processed bitmap>, <blackness intensity [0.0; 1.0]]>)
          */
-        fun makeBlack(bitmap: Bitmap, intensity: Float): Bitmap {
+        fun makeBlack(bitmap: Bitmap, intensity: Float): Pair<Bitmap, Double> {
             val intensity = intensity * 765 / 100
-
+            var blackPixelCounter = 0.0
             val pixels = IntArray(bitmap.height * bitmap.width)
 
             bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
@@ -31,6 +31,7 @@ class Edit {
 
                 if (red + green + blue <= intensity) {
                     pixels[it] = Color.BLACK
+                    blackPixelCounter++
                 }
             }
 
@@ -38,7 +39,7 @@ class Edit {
 
             processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-            return processed
+            return Pair(processed, blackPixelCounter / pixels.size)
         }
 
         /**
@@ -49,17 +50,18 @@ class Edit {
          * @param intensityRed float value indicating intensity of red color
          * @param intensityGreen float value indicating intensity of green color
          * @param intensityBlue float value indicating intensity of blue color
-         * @return processed bitmap
+         * @return Pair(<processed bitmap>, <blackness intensity [0.0; 1.0]]>)
          */
         fun makeBlack(
             bitmap: Bitmap,
             intensityRed: Float,
             intensityGreen: Float,
             intensityBlue: Float
-        ): Bitmap {
+        ): Pair<Bitmap, Double> {
             val intensityRed = intensityRed * 255 / 100
             val intensityGreen = intensityGreen * 255 / 100
             val intensityBlue = intensityBlue * 255 / 100
+            var blackPixelCounter = 0.0
 
             val pixels = IntArray(bitmap.height * bitmap.width)
 
@@ -72,6 +74,7 @@ class Edit {
 
                 if (red <= intensityRed && green <= intensityGreen && blue <= intensityBlue) {
                     pixels[it] = Color.BLACK
+                    blackPixelCounter++
                 }
             }
 
@@ -79,7 +82,7 @@ class Edit {
 
             processed.setPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-            return processed
+            return Pair(processed, blackPixelCounter / pixels.size)
         }
 
         fun makeBlackToneCurve(bitmap: Bitmap, intensity: Float): Pair<Bitmap, Double> {
