@@ -6,6 +6,11 @@
 
         <SwitchPreference
                 android:defaultValue="true"
+                android:key="tone_curve_switch"
+                android:title="@string/tone_curve"/>
+
+        <SwitchPreference
+                android:defaultValue="true"
                 android:key="real_time_switch"
                 android:title="@string/real_time_processing" />
 

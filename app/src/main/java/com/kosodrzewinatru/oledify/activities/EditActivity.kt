@@ -358,12 +358,21 @@ class EditActivity : AppCompatActivity() {
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
                 true -> {
-                    val pair = Edit.makeBlackToneCurve(
-                        params[0] ?: return null,
-                        blackness_or_red_value.text.toString().toFloat(),
-                        green_value.text.toString().toFloat(),
-                        blue_value.text.toString().toFloat()
-                    )
+                    val pair = when (sharedPrefs.getBoolean(SettingsActivity.TONE_CURVE, true)) {
+                        true -> Edit.makeBlackToneCurve(
+                            params[0] ?: return null,
+                            blackness_or_red_value.text.toString().toFloat(),
+                            green_value.text.toString().toFloat(),
+                            blue_value.text.toString().toFloat()
+                        )
+
+                        false -> Edit.makeBlack(
+                            params[0] ?: return null,
+                            blackness_or_red_value.text.toString().toFloat(),
+                            green_value.text.toString().toFloat(),
+                            blue_value.text.toString().toFloat()
+                        )
+                    }
                     val percentage = (pair.second * 100).toInt().toString() + "%"
 
                     runOnUiThread {
@@ -372,13 +381,25 @@ class EditActivity : AppCompatActivity() {
 
                     return pair.first
                 }
+
                 false -> {
-                    val pair = Edit.makeBlackToneCurve(
-                        params[0] ?: return null, blackness_or_red_value
-                            .text
-                            .toString()
-                            .toFloat()
-                    )
+                    val ehh = sharedPrefs.getBoolean(SettingsActivity.TONE_CURVE, true)
+
+                    val pair = when (sharedPrefs.getBoolean(SettingsActivity.TONE_CURVE, true)) {
+                        true -> Edit.makeBlackToneCurve(
+                            params[0] ?: return null, blackness_or_red_value
+                                .text
+                                .toString()
+                                .toFloat()
+                        )
+
+                        false -> Edit.makeBlack(
+                            params[0] ?: return null, blackness_or_red_value
+                                .text
+                                .toString()
+                                .toFloat()
+                        )
+                    }
                     val percentage = (pair.second * 100).toInt().toString() + "%"
 
                     runOnUiThread {

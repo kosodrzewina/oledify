@@ -11,6 +11,7 @@ import com.kosodrzewinatru.oledify.fragments.SettingsFragment
 
 class SettingsActivity : AppCompatActivity() {
     companion object {
+        const val TONE_CURVE = "tone_curve"
         const val REAL_TIME_PROCESSING_SWITCH = "real_time_switch"
         const val RGB_SLIDERS_SWITCH = "rgb_sliders_switch"
         const val HIGH_RESOLUTION_SWITCH = "high_res_switch"
