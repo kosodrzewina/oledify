@@ -28,6 +28,7 @@
     <string name="editing">Editing</string>
 
     <!-- settings screen -->
+    <string name="tone_curve">Tone Curve (recommended)</string>
     <string name="image_processing">Image Processing</string>
     <string name="real_time_processing">Real Time Processing</string>
     <string name="RGB_sliders">RGB Sliders</string>

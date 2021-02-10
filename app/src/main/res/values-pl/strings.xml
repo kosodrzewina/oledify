@@ -27,6 +27,7 @@
     <string name="editing">Edytowanie</string>
 
     <!-- settings screen -->
+    <string name="tone_curve">Krzywa Tonalna (rekomendowane)</string>
     <string name="image_processing">Przetwarzanie Obrazu</string>
     <string name="real_time_processing">Przetwarzanie w Czasie Rzeczywistym</string>
     <string name="RGB_sliders">Suwaki RGB</string>
