@@ -39,7 +39,7 @@ class ImplementStates {
         blue: AppCompatSeekBar
     ) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                SettingsActivity.RGB_SLIDERS_SWITCH,
+                SettingsActivity.RGB_SLIDERS,
                 false
             )
         ) {
@@ -109,7 +109,7 @@ class ImplementStates {
         thumbnail: Bitmap
     ) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                SettingsActivity.HIGH_RESOLUTION_SWITCH,
+                SettingsActivity.HIGH_RESOLUTION,
                 false
             )
         ) {

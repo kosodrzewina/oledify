@@ -12,9 +12,9 @@ import com.kosodrzewinatru.oledify.fragments.SettingsFragment
 class SettingsActivity : AppCompatActivity() {
     companion object {
         const val TONE_CURVE = "tone_curve_switch"
-        const val REAL_TIME_PROCESSING_SWITCH = "real_time_switch"
-        const val RGB_SLIDERS_SWITCH = "rgb_sliders_switch"
-        const val HIGH_RESOLUTION_SWITCH = "high_res_switch"
+        const val REAL_TIME_PROCESSING = "real_time_switch"
+        const val RGB_SLIDERS = "rgb_sliders_switch"
+        const val HIGH_RESOLUTION = "high_res_switch"
         const val THEME = "theme_drop_down"
         const val COLUMN_COUNT = "column_count_drop_down"
         private lateinit var preferences: SharedPreferences

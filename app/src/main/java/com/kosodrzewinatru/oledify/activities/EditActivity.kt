@@ -133,7 +133,7 @@ class EditActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.Default).launch {
                 val processedBitmap =
-                    when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+                    when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS, false)) {
                         true -> Edit.makeBlackToneCurve(
                             bitmap,
                             blackness_or_red_value.text.toString().toFloat(),
@@ -162,7 +162,7 @@ class EditActivity : AppCompatActivity() {
 
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                     if (sharedPrefs.getBoolean(
-                            SettingsActivity.REAL_TIME_PROCESSING_SWITCH,
+                            SettingsActivity.REAL_TIME_PROCESSING,
                             true
                         )
                     ) {
@@ -172,7 +172,7 @@ class EditActivity : AppCompatActivity() {
                         blackness_or_red_value.text = p1.toString()
                     }
 
-                    if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+                    if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS, false)) {
                         intensity_seek_bar_green.progress = intensity_seek_bar_maybe_red.progress
                         intensity_seek_bar_blue.progress = intensity_seek_bar_maybe_red.progress
                     }
@@ -180,7 +180,7 @@ class EditActivity : AppCompatActivity() {
 
                 override fun onStopTrackingTouch(p0: SeekBar?) {
                     if (sharedPrefs.getBoolean(
-                            SettingsActivity.REAL_TIME_PROCESSING_SWITCH,
+                            SettingsActivity.REAL_TIME_PROCESSING,
                             true
                         )
                     ) {
@@ -200,7 +200,7 @@ class EditActivity : AppCompatActivity() {
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING, true)) {
                     green_value.text = p1.toString()
                     Processing().execute(currentBitmap)
                 } else {
@@ -209,7 +209,7 @@ class EditActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING, true)) {
                     save_button.isEnabled = true
                 } else {
                     save_button.isEnabled = true
@@ -226,7 +226,7 @@ class EditActivity : AppCompatActivity() {
             }
 
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING, true)) {
                     blue_value.text = p1.toString()
                     Processing().execute(currentBitmap)
                 } else {
@@ -235,7 +235,7 @@ class EditActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING_SWITCH, true)) {
+                if (sharedPrefs.getBoolean(SettingsActivity.REAL_TIME_PROCESSING, true)) {
                     save_button.isEnabled = true
                 } else {
                     save_button.isEnabled = true
@@ -335,7 +335,7 @@ class EditActivity : AppCompatActivity() {
 
         val sharedPrefs = PreferenceManager
             .getDefaultSharedPreferences(applicationContext)
-        if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+        if (!sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS, false)) {
             intensity_seek_bar_green.progress = intensity_seek_bar_maybe_red.progress
             intensity_seek_bar_blue.progress = intensity_seek_bar_maybe_red.progress
         }
@@ -356,7 +356,7 @@ class EditActivity : AppCompatActivity() {
             .getDefaultSharedPreferences(applicationContext)!!
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
-            return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS_SWITCH, false)) {
+            return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS, false)) {
                 true -> {
                     val pair = when (sharedPrefs.getBoolean(SettingsActivity.TONE_CURVE, true)) {
                         true -> Edit.makeBlackToneCurve(
