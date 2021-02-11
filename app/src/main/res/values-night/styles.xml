@@ -10,6 +10,14 @@
         <item name="android:navigationBarColor">@color/color_additional_dark</item>
     </style>
 
+    <style name="PercentageBackgroundStyle">
+        <item name="cardBackgroundColor">@android:color/white</item>
+    </style>
+
+    <style name="PercentageTextStyle">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
     <style name="AppTheme.SettingsScreen">
         <item name="android:windowBackground">@color/color_background_dark</item>
         <item name="android:textColor">@android:color/white</item>
