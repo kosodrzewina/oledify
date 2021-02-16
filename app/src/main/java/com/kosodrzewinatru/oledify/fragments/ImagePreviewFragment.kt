@@ -31,7 +31,7 @@ class ImagePreviewFragment(private val bitmap: Bitmap, private val path: String)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         image.setImageDrawable(Drawable.createFromPath(path))
 
-        open_button.setOnClickListener {
+        wallpaper_button.setOnClickListener {
             WallpaperManager.getInstance(context).setBitmap(bitmap)
             Toast.makeText(context, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
         }
