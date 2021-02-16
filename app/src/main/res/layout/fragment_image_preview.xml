@@ -29,17 +29,15 @@
             android:id="@+id/open_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/button_enabled"
-            android:minWidth="60dp"
+            android:minWidth="130dp"
             android:minHeight="30dp"
-            android:text="@string/open"
+            android:text="@string/set_wallpaper"
             android:textSize="12sp"
             android:theme="@style/ButtonTextEnabled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/delete_button"
+            app:layout_constraintBottom_toTopOf="@id/delete_button"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/preview" />
 
@@ -54,9 +52,9 @@
             android:text="@string/delete"
             android:textSize="12sp"
             android:theme="@style/ButtonTextEnabled"
-            app:layout_constraintLeft_toRightOf="@+id/open_button"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/preview" />
+            app:layout_constraintTop_toBottomOf="@id/open_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
