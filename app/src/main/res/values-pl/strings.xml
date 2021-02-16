@@ -19,7 +19,7 @@
     <string name="saving_loading">Zapisywanie...</string>
 
     <!-- gallery image preview -->
-    <string name="open">otwórz</string>
+    <string name="set_wallpaper">ustaw jako tapetę</string>
     <string name="delete">usuń</string>
 
     <!-- bottom navigation view menu -->
