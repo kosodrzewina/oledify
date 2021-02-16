@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
@@ -61,7 +62,8 @@ class RecyclerAdapter(
 
         init {
             itemView.setOnClickListener {
-                val imagePreviewFragment = ImagePreviewFragment(imageView.tag as String)
+                val imagePreviewFragment =
+                    ImagePreviewFragment((imageView.drawable).toBitmap(), imageView.tag as String)
                 imagePreviewFragment.show(
                     (context as AppCompatActivity).supportFragmentManager,
                     "PREVIEW"

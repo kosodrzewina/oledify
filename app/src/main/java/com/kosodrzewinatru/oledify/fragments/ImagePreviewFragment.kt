@@ -1,20 +1,25 @@
-import android.content.Intent
+import android.app.WallpaperManager
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.media.MediaScannerConnection
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
+import kotlinx.android.synthetic.main.activity_edit.*
+import kotlinx.android.synthetic.main.activity_edit.snackbar_container
+import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.fragment_image_preview.*
 import java.io.File
 
-class ImagePreviewFragment(private val path: String) : DialogFragment() {
+class ImagePreviewFragment(private val bitmap: Bitmap, private val path: String) :
+    DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,11 +35,7 @@ class ImagePreviewFragment(private val path: String) : DialogFragment() {
         image.setImageDrawable(Drawable.createFromPath(path))
 
         open_button.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            val data = Uri.parse(path)
-
-            intent.setDataAndType(data, "image/*")
-            startActivity(intent)
+            WallpaperManager.getInstance(context).setBitmap(bitmap)
         }
 
         delete_button.setOnClickListener {
