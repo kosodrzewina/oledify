@@ -21,6 +21,7 @@
     <!-- gallery image preview -->
     <string name="set_wallpaper">ustaw jako tapetę</string>
     <string name="delete">usuń</string>
+    <string name="wallpaper_set">Tapeta Ustawiona Pomyślnie!</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>
