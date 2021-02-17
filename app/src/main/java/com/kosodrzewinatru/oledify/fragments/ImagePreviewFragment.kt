@@ -32,7 +32,7 @@ class ImagePreviewFragment(private val bitmap: Bitmap, private val path: String)
 
         wallpaper_button.setOnClickListener {
             activity?.supportFragmentManager?.let { manager ->
-                WallpaperFragment().show(
+                WallpaperFragment(bitmap).show(
                     manager,
                     "WALLPAPER_FRAGMENT"
                 )
