@@ -20,7 +20,7 @@
     <string name="saving_loading">Saving...</string>
 
     <!-- gallery image preview -->
-    <string name="set_as">set as</string>
+    <string name="set_as_wallpaper">set as wallpaper</string>
     <string name="delete">delete</string>
     <string name="wallpaper_set">Wallpaper Set Successfully!</string>
 
