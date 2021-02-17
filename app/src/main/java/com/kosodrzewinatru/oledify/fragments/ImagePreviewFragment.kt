@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
+import com.kosodrzewinatru.oledify.fragments.WallpaperFragment
 import kotlinx.android.synthetic.main.fragment_image_preview.*
 import java.io.File
 
@@ -32,8 +33,15 @@ class ImagePreviewFragment(private val bitmap: Bitmap, private val path: String)
         image.setImageDrawable(Drawable.createFromPath(path))
 
         wallpaper_button.setOnClickListener {
-            WallpaperManager.getInstance(context).setBitmap(bitmap)
-            Toast.makeText(context, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
+            activity?.supportFragmentManager?.let { manager ->
+                WallpaperFragment().show(
+                    manager,
+                    "WALLPAPER_FRAGMENT"
+                )
+            }
+
+//            WallpaperManager.getInstance(context).setBitmap(bitmap)
+//            Toast.makeText(context, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
         }
 
         delete_button.setOnClickListener {
