@@ -19,9 +19,13 @@
     <string name="saving_loading">Zapisywanie...</string>
 
     <!-- gallery image preview -->
-    <string name="set_wallpaper">ustaw jako tapetę</string>
+    <string name="set_as">ustaw jako</string>
     <string name="delete">usuń</string>
     <string name="wallpaper_set">Tapeta Ustawiona Pomyślnie!</string>
+
+    <!-- wallpaper fragment -->
+    <string name="wallpaper_home">ekran główny</string>
+    <string name="wallpaper_lock">ekran blokady</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Galeria</string>

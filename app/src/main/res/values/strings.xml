@@ -20,9 +20,13 @@
     <string name="saving_loading">Saving...</string>
 
     <!-- gallery image preview -->
-    <string name="set_wallpaper">set as wallpaper</string>
+    <string name="set_as">set as</string>
     <string name="delete">delete</string>
     <string name="wallpaper_set">Wallpaper Set Successfully!</string>
+
+    <!-- wallpaper fragment -->
+    <string name="wallpaper_home">home screen</string>
+    <string name="wallpaper_lock">lock screen</string>
 
     <!-- bottom navigation view menu -->
     <string name="gallery">Gallery</string>
