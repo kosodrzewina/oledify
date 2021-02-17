@@ -1,4 +1,3 @@
-import android.app.WallpaperManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.kosodrzewinatru.oledify.R
 import com.kosodrzewinatru.oledify.fragments.GalleryFragment
@@ -39,9 +37,6 @@ class ImagePreviewFragment(private val bitmap: Bitmap, private val path: String)
                     "WALLPAPER_FRAGMENT"
                 )
             }
-
-//            WallpaperManager.getInstance(context).setBitmap(bitmap)
-//            Toast.makeText(context, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
         }
 
         delete_button.setOnClickListener {
