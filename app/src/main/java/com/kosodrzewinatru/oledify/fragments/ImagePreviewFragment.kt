@@ -50,7 +50,7 @@ class ImagePreviewFragment(private val bitmap: Bitmap, private val path: String)
                 arrayOf(file.name),
                 null
             )
-            this.dismiss()
+            dismiss()
         }
     }
 }

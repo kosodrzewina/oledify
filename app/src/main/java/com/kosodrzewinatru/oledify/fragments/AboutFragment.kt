@@ -42,7 +42,7 @@ class AboutFragment : DialogFragment() {
         }
 
         licence_button.setOnClickListener {
-            this.dismiss()
+            dismiss()
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace((requireView().parent as ViewGroup).id, licenceFragment)
                 ?.addToBackStack(null)
