@@ -30,12 +30,16 @@ class WallpaperFragment(private val bitmap: Bitmap) : DialogFragment() {
             WallpaperManager.getInstance(context)
                 .setBitmap(bitmap, null, false, WallpaperManager.FLAG_SYSTEM)
             Toast.makeText(context, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
+
+            dismiss()
         }
 
         wallpaper_lock_button.setOnClickListener {
             WallpaperManager.getInstance(context)
                 .setBitmap(bitmap, null, false, WallpaperManager.FLAG_LOCK)
             Toast.makeText(context, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
+
+            dismiss()
         }
     }
 }
