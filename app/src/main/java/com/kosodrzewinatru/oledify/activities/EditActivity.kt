@@ -354,6 +354,7 @@ class EditActivity : AppCompatActivity() {
     internal inner class Processing : AsyncTask<Bitmap, Void, Bitmap>() {
         private val sharedPrefs = PreferenceManager
             .getDefaultSharedPreferences(applicationContext)!!
+        val Double.percentage get() = (this * 100).toInt().toString() + "%"
 
         override fun doInBackground(vararg params: Bitmap?): Bitmap? {
             return when (sharedPrefs.getBoolean(SettingsActivity.RGB_SLIDERS, false)) {
@@ -373,10 +374,9 @@ class EditActivity : AppCompatActivity() {
                             blue_value.text.toString().toFloat()
                         )
                     }
-                    val percentage = (pair.second * 100).toInt().toString() + "%"
 
                     runOnUiThread {
-                        black_percentage.text = percentage
+                        black_percentage.text = pair.second.percentage
                     }
 
                     return pair.first
