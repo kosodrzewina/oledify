@@ -383,8 +383,6 @@ class EditActivity : AppCompatActivity() {
                 }
 
                 false -> {
-                    val ehh = sharedPrefs.getBoolean(SettingsActivity.TONE_CURVE, true)
-
                     val pair = when (sharedPrefs.getBoolean(SettingsActivity.TONE_CURVE, true)) {
                         true -> Edit.makeBlackToneCurve(
                             params[0] ?: return null, blackness_or_red_value
