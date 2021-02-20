@@ -46,6 +46,7 @@
     <string name="upload_image">upload an image</string>
     <string name="trick">do the trick</string>
     <string name="clear">clear</string>
+    <string name="choose_image">choose image</string>
 
     <!-- edit activity -->
     <string name="save">save</string>

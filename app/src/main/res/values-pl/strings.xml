@@ -45,6 +45,7 @@
     <string name="upload_image">załaduj zdjęcie</string>
     <string name="trick">Przejdź dalej</string>
     <string name="clear">wyczyść</string>
+    <string name="choose_image">wybierz obraz</string>
 
     <!-- edit activity -->
     <string name="save">zapisz</string>
