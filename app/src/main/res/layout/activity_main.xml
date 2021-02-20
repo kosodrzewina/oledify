@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraint_layout_main"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/constraint_layout_main"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:orientation="vertical">
 
     <TableLayout
 
@@ -17,30 +17,30 @@
             <View android:theme="@style/ViewBackgroundLeft" />
 
             <View
-                    android:theme="@style/ViewBackgroundRight"
-                    android:layout_gravity="right" />
+                    android:layout_gravity="right"
+                    android:theme="@style/ViewBackgroundRight" />
         </TableRow>
     </TableLayout>
 
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_main">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
             <com.github.chrisbanes.photoview.PhotoView
                     android:id="@+id/image_preview_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxHeight="300dp"
                     android:layout_marginBottom="16dp"
-                    android:adjustViewBounds="true" />
+                    android:adjustViewBounds="true"
+                    android:maxHeight="300dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/magic_button"
@@ -50,9 +50,9 @@
                     android:layout_marginTop="16dp"
                     android:width="150dp"
                     android:background="@drawable/button_disabled"
-                    android:theme="@style/ButtonTextDisabled"
                     android:text="@string/trick"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:theme="@style/ButtonTextDisabled" />
 
             <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/clear_button"
@@ -62,9 +62,9 @@
                     android:layout_marginTop="16dp"
                     android:width="150dp"
                     android:background="@drawable/button_disabled"
-                    android:theme="@style/ButtonTextDisabled"
                     android:text="@string/clear"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:theme="@style/ButtonTextDisabled" />
 
         </LinearLayout>
 
@@ -79,18 +79,19 @@
             android:id="@+id/upload_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_main"
-            app:layout_constraintRight_toRightOf="@+id/constraint_layout_main"
-            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_add" />
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/choose_image"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_main"
+            app:layout_constraintRight_toRightOf="@+id/constraint_layout_main" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_main"
+            style="@style/AppTheme.BottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/constraint_layout_main"
-            app:menu="@menu/navigation_menu"
-            style="@style/AppTheme.BottomNavigationView" />
+            app:menu="@menu/navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
