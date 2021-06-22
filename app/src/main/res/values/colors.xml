@@ -4,17 +4,17 @@
     <color name="color_main">#283593</color>
     <color name="color_background">#5C6BC0</color>
     <color name="color_additional">#1A237E</color>
-    <color name="color_accent">#80CBC4</color>
+    <color name="color_accent">#3CCD89</color>
     <color name="color_background_additional">#3F51B5</color>
 
     <!-- Dark theme -->
     <color name="color_main_dark">#424242</color>
     <color name="color_background_dark">@android:color/black</color>
     <color name="color_additional_dark">#212121</color>
-    <color name="color_accent_dark">#80CBC4</color>
+    <color name="color_accent_dark">#40E396</color>
     <color name="color_background_additional_dark">#171717</color>
 
-    <color name="color_button_text_enabled">#212121</color>
+    <color name="color_button_text_enabled">@android:color/black</color>
     <color name="color_button_text_disabled">#616161</color>
 
     <color name="color_red_light">@android:color/holo_red_light</color>

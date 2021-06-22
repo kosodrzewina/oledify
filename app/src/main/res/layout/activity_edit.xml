@@ -65,8 +65,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
-                    android:width="150dp"
                     android:background="@drawable/button_enabled"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:minHeight="40dp"
+                    android:minWidth="70dp"
                     android:text="@string/save"
                     android:textSize="12sp"
                     android:theme="@style/ButtonTextEnabled" />

@@ -44,24 +44,28 @@
 
             <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/magic_button"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:width="150dp"
                     android:background="@drawable/button_disabled"
+                    android:minHeight="40dp"
+                    android:minWidth="120dp"
                     android:text="@string/trick"
                     android:textSize="12sp"
                     android:theme="@style/ButtonTextDisabled" />
 
             <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/clear_button"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:width="150dp"
+                    android:minWidth="120dp"
                     android:background="@drawable/button_disabled"
+                    android:minHeight="40dp"
                     android:text="@string/clear"
                     android:textSize="12sp"
                     android:theme="@style/ButtonTextDisabled" />
