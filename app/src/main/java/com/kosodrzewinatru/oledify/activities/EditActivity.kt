@@ -1,6 +1,7 @@
 package com.kosodrzewinatru.oledify.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
@@ -61,6 +62,7 @@ class EditActivity : AppCompatActivity() {
      * @param savedInstanceState contains recent data in case of re-initializing the activity after
      * being shut down
      */
+    @SuppressLint("WrongThread")
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
 
@@ -113,11 +115,11 @@ class EditActivity : AppCompatActivity() {
         // sets imageView src via URI from MainActivity
         val selectedFileEdit = Uri.parse(intent.getStringExtra("selectedFileEdit"))
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val source = ImageDecoder.createSource(contentResolver, selectedFileEdit ?: return)
-            bitmap = ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.ARGB_8888, true)
+            ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.ARGB_8888, true)
         } else {
-            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
+            MediaStore.Images.Media.getBitmap(contentResolver, selectedFileEdit)
         }
 
         thumbnail = Bitmap.createScaledBitmap(
@@ -487,6 +489,8 @@ class EditActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         if (requestCode == 100 && ActivityCompat.checkSelfPermission(
                 this@EditActivity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE

@@ -1,5 +1,6 @@
 package com.kosodrzewinatru.oledify.activities
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private val sharedPrefs = "sharedPrefs"
     private val IS_FIRST_LAUNCH = "isFirstLaunch"
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
 
